@@ -4,16 +4,14 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useTheme } from "next-themes"
 
 export function Hero() {
   const [mounted, setMounted] = useState(false)
-  const [theme, setTheme] = useState("light")
+  const { theme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
-    setTheme(
-      document.documentElement.classList.contains("dark") ? "dark" : "light"
-    )
   }, [])
 
   return (
@@ -40,7 +38,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          {mounted && (
+          {mounted && theme && (
             <img
               src={theme === "dark" ? "/Logo ICON-02.png" : "/Logo ICON-01.png"}
               alt="Logo"
