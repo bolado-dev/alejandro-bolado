@@ -22,7 +22,7 @@ interface DockProps {
   items: {
     icon: React.ReactNode
     label: string
-    onClick?: () => void
+    onClick?: (event: React.MouseEvent) => void
     href?: string
   }[]
 }
@@ -30,7 +30,7 @@ interface DockProps {
 interface DockIconButtonProps {
   icon: React.ReactNode
   label: string
-  onClick?: () => void
+  onClick?: (event: React.MouseEvent) => void
   href?: string
   className?: string
 }
@@ -166,8 +166,43 @@ export function DockComponent() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
+  const toggleTheme = (event: React.MouseEvent) => {
+    if (!document.startViewTransition) {
+      setTheme(theme === "dark" ? "light" : "dark")
+      return
+    }
+
+    const x = event.clientX
+    const y = event.clientY
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    )
+
+    const transition = document.startViewTransition(() => {
+      setTheme(theme === "dark" ? "light" : "dark")
+    })
+
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`,
+      ]
+
+      document.documentElement.animate(
+        {
+          clipPath: theme === "dark" ? [...clipPath].reverse() : clipPath,
+        },
+        {
+          duration: 500,
+          easing: "ease-in-out",
+          pseudoElement:
+            theme === "dark"
+              ? "::view-transition-old(root)"
+              : "::view-transition-new(root)",
+        }
+      )
+    })
   }
 
   const currentItem =
@@ -269,8 +304,8 @@ export function DockComponent() {
                 ))}
                 <div className="border-t p-2">
                   <button
-                    onClick={() => {
-                      toggleTheme()
+                    onClick={(e) => {
+                      toggleTheme(e)
                       setIsOpen(false)
                     }}
                     className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-3 hover:bg-secondary"
