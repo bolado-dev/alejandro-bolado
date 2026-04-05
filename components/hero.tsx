@@ -57,7 +57,7 @@ export function Hero() {
             Alejandro Bolado
           </h1>
 
-          <p className="mx-auto max-w-xl text-lg font-light text-muted-foreground md:text-xl">
+          <p className="mx-auto max-w-xl text-lg font-light md:text-xl">
             Full Stack Developer · Building amazing experiences
           </p>
         </motion.div>
