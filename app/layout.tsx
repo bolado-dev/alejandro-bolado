@@ -1,11 +1,11 @@
-import { Geist, Geist_Mono, Outfit } from "next/font/google"
-
+// app/layout.tsx
+import { Geist_Mono, Outfit, Syne } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Navbar } from "@/components/navbar"
+import { DockComponent } from "@/components/dock"
 import { cn } from "@/lib/utils"
 
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans" })
+const syne = Syne({ subsets: ["latin"], variable: "--font-sans" })
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
@@ -19,24 +19,21 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="es"
       suppressHydrationWarning
-      className={cn(
-        "antialiased",
-        fontMono.variable,
-        "font-sans",
-        outfit.variable
-      )}
+      className={cn(syne.variable, fontMono.variable)}
     >
-      <body>
+      <body
+        className={cn("bg-background font-sans text-foreground antialiased")}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          <main className="container max-w-7xl">{children}</main>
+          <DockComponent />
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>
