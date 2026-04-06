@@ -16,7 +16,7 @@ export function Hero() {
 
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center px-4">
-      <div className="absolute inset-0 z-0 flex items-center justify-center p-6">
+      <div className="absolute inset-0 z-0 flex items-center justify-center p-2 md:p-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
