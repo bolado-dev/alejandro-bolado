@@ -247,7 +247,7 @@ export function DockComponent() {
               : "/Logo ICON-01.png"
           }
           alt="Logo"
-          className="h-5 w-5"
+          className="h-5 w-5 object-contain"
         />
       ),
       label: "Home",
