@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import {
@@ -47,6 +48,14 @@ const floatingAnimation = {
   },
 }
 
+const scrollToSection = (href: string) => {
+  const id = href.replace("#", "")
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" })
+  }
+}
+
 const DockIconButton = React.forwardRef<HTMLButtonElement, DockIconButtonProps>(
   ({ icon, label, onClick, href, className }, ref) => {
     const content = (
@@ -88,6 +97,17 @@ const DockIconButton = React.forwardRef<HTMLButtonElement, DockIconButtonProps>(
     )
 
     if (href) {
+      // Use scroll for anchor links (#section), Next Link for internal routes
+      if (href.startsWith("#")) {
+        return (
+          <button onClick={() => scrollToSection(href)} className="contents">
+            {content}
+          </button>
+        )
+      }
+      if (href.startsWith("/")) {
+        return <Link href={href}>{content}</Link>
+      }
       return (
         <a href={href} target="_blank" rel="noreferrer">
           {content}
@@ -166,6 +186,14 @@ export function DockComponent() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const scrollToSection = (href: string) => {
+    const id = href.replace("#", "")
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   const toggleTheme = (event: React.MouseEvent) => {
     if (!document.startViewTransition) {
       setTheme(theme === "dark" ? "light" : "dark")
@@ -224,11 +252,6 @@ export function DockComponent() {
       ),
       label: "Home",
       href: "/",
-    },
-    {
-      icon: <GithubIcon className="h-5 w-5" />,
-      label: "GitHub",
-      href: "https://github.com",
     },
     ...navItems.map((item) => ({
       icon: React.createElement(item.icon, { className: "h-5 w-5" }),
@@ -289,20 +312,31 @@ export function DockComponent() {
                   />
                 </div>
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <motion.button
                     key={item.href}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      scrollToSection(item.href)
+                      setIsOpen(false)
+                    }}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="flex cursor-pointer items-center gap-3 px-4 py-3 hover:bg-secondary"
+                    className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-3 text-left hover:bg-secondary"
                   >
                     <item.icon className="h-5 w-5" />
                     <span>{item.label}</span>
-                  </motion.a>
+                  </motion.button>
                 ))}
                 <div className="border-t p-2">
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-3 hover:bg-secondary"
+                  >
+                    <GithubIcon className="h-5 w-5" />
+                    <span>GitHub</span>
+                  </a>
                   <button
                     onClick={(e) => {
                       toggleTheme(e)
