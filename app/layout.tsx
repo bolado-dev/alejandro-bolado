@@ -3,6 +3,7 @@ import { Geist_Mono, Outfit, Syne } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { DockComponent } from "@/components/dock"
+import { SmoothScroll } from "@/components/smooth-scroll"
 import { cn } from "@/lib/utils"
 
 const syne = Syne({ subsets: ["latin"], variable: "--font-sans" })
@@ -32,6 +33,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <SmoothScroll />
           <DockComponent />
           <main>{children}</main>
         </ThemeProvider>

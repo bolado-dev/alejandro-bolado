@@ -1,5 +1,6 @@
 import { Hero } from "@/components/hero"
 import { BottomBlur } from "@/components/bottom-blur"
+import { Grain } from "@/components/grain"
 import {
   About,
   Skills,
@@ -12,6 +13,7 @@ import {
 export default function Page() {
   return (
     <>
+      <Grain />
       <Hero />
       <About />
       <Skills />
