@@ -14,6 +14,7 @@ import rehypeStringify from "rehype-stringify"
 import { visit } from "unist-util-visit"
 import { toString as mdastToString } from "mdast-util-to-string"
 import GithubSlugger from "github-slugger"
+import { VFile } from "vfile"
 import { promises as fs } from "node:fs"
 import path from "node:path"
 import { imageSize } from "image-size"
@@ -68,8 +69,29 @@ function remarkAdmonitionStyles() {
 }
 
 /**
+ * Reescribe las rutas de imagen relativas (`./captura.png` o `captura.png`)
+ * colocadas junto al index.md a la ruta servida `/writeups/<slug>/captura.png`.
+ * Solo actúa si el VFile lleva `data.writeupSlug`. Las rutas absolutas
+ * (`/writeups/...`) y remotas (`http...`) se dejan intactas.
+ */
+function rehypeRelativeImages() {
+  return (tree: Parameters<typeof visit>[0], file: VFile) => {
+    const slug = file.data?.writeupSlug as string | undefined
+    if (!slug) return
+    visit(tree, "element", (node: unknown) => {
+      const el = node as { tagName: string; properties?: Record<string, unknown> }
+      if (el.tagName !== "img" || !el.properties) return
+      const src = String(el.properties.src ?? "")
+      if (!src || /^([a-z]+:|\/)/i.test(src)) return // remota o ya absoluta
+      el.properties.src = `/writeups/${slug}/${src.replace(/^\.\//, "")}`
+    })
+  }
+}
+
+/**
  * Añade width/height reales (evita CLS) + lazy loading a las imágenes locales,
- * y una clase para el lightbox. Lee dimensiones del fichero en /public.
+ * y una clase para el lightbox. Lee dimensiones desde /public o, si la imagen
+ * está colocada junto al markdown, desde content/ (ambos bajo /writeups/<slug>/).
  */
 function rehypeImageDims() {
   return async (tree: Parameters<typeof visit>[0]) => {
@@ -89,16 +111,23 @@ function rehypeImageDims() {
         const cls = Array.isArray(properties.className) ? properties.className : []
         properties.className = [...cls, "prose-img"]
         if (!src.startsWith("/")) return
-        try {
-          const file = path.join(process.cwd(), "public", src)
-          const buf = await fs.readFile(file)
-          const { width, height } = imageSize(buf)
-          if (width && height) {
-            properties.width = width
-            properties.height = height
+        // 1º en /public; si no, colocada en content/ (mismo path /writeups/<slug>/file).
+        const candidates = [
+          path.join(process.cwd(), "public", src),
+          path.join(process.cwd(), "content", src),
+        ]
+        for (const file of candidates) {
+          try {
+            const buf = await fs.readFile(file)
+            const { width, height } = imageSize(buf)
+            if (width && height) {
+              properties.width = width
+              properties.height = height
+            }
+            return
+          } catch {
+            // probar siguiente candidato
           }
-        } catch {
-          // imagen remota o no encontrada: se omite el dimensionado
         }
       })
     )
@@ -125,13 +154,19 @@ function buildProcessor() {
     .use(rehypeRaw)
     .use(rehypeSlug)
     .use(rehypeKatex)
+    .use(rehypeRelativeImages)
     .use(rehypeImageDims)
     .use(rehypeStringify, { allowDangerousHtml: true })
 }
 
-export async function renderMarkdown(content: string): Promise<string> {
+export async function renderMarkdown(
+  content: string,
+  opts: { slug?: string } = {}
+): Promise<string> {
   processor = processor ?? buildProcessor()
-  return String(await processor.process(normalizeFences(content)))
+  const file = new VFile({ value: normalizeFences(content) })
+  if (opts.slug) file.data.writeupSlug = opts.slug
+  return String(await processor.process(file))
 }
 
 /** Extrae los encabezados h2/h3 con el mismo id que genera rehype-slug. */

@@ -71,7 +71,7 @@ export async function getAllWriteups(): Promise<WriteupMeta[]> {
 export async function getWriteup(slug: string): Promise<Writeup | null> {
   try {
     const { content, meta } = await parseFile(slug)
-    const html = await renderMarkdown(content)
+    const html = await renderMarkdown(content, { slug })
     const headings = extractHeadings(content)
     return { ...meta, html, headings }
   } catch {
