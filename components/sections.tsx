@@ -378,8 +378,8 @@ export function Education() {
 const contactLinks: { Icon: IconCmp; label: string; href: string }[] = [
   {
     Icon: Mail,
-    label: "alexbolatrue@gmail.com",
-    href: "mailto:alexbolatrue@gmail.com",
+    label: "a.bolado.dev@gmail.com",
+    href: "mailto:a.bolado.dev@gmail.com",
   },
   {
     Icon: GithubIcon,
@@ -388,8 +388,8 @@ const contactLinks: { Icon: IconCmp; label: string; href: string }[] = [
   },
   {
     Icon: LinkedinIcon,
-    label: "linkedin.com/in/alejandro",
-    href: "https://linkedin.com/in/alejandro",
+    label: "linkedin.com/in/alejandrobolado",
+    href: "https://linkedin.com/in/alejandrobolado",
   },
 ]
 
