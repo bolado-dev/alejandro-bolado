@@ -255,16 +255,24 @@ export function DockComponent() {
       label: "Home",
       href: "/",
     },
-    ...navItems.map((item) => ({
-      icon: React.createElement(item.icon, { className: "h-5 w-5" }),
-      label: item.label,
-      href: item.href,
-    })),
+    // Sobre mí
+    {
+      icon: React.createElement(navItems[0].icon, { className: "h-5 w-5" }),
+      label: navItems[0].label,
+      href: navItems[0].href,
+    },
+    // Cybersec (entre "Sobre mí" y "Habilidades")
     {
       icon: <Terminal className="h-5 w-5" />,
       label: "Cybersec",
       href: "/cybersec",
     },
+    // resto: Habilidades, Educación, Contacto
+    ...navItems.slice(1).map((item) => ({
+      icon: React.createElement(item.icon, { className: "h-5 w-5" }),
+      label: item.label,
+      href: item.href,
+    })),
     {
       icon: <Sun className="h-5 w-5" />,
       label: theme === "dark" ? "Light" : "Dark",
@@ -319,30 +327,34 @@ export function DockComponent() {
                   />
                 </div>
                 {navItems.map((item, index) => (
-                  <motion.button
-                    key={item.href}
-                    onClick={() => {
-                      scrollToSection(item.href)
-                      setIsOpen(false)
-                    }}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-3 text-left hover:bg-secondary"
-                  >
-                    <item.icon className="h-5 w-5" />
-                    <span>{item.label}</span>
-                  </motion.button>
+                  <React.Fragment key={item.href}>
+                    <motion.button
+                      onClick={() => {
+                        scrollToSection(item.href)
+                        setIsOpen(false)
+                      }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-3 text-left hover:bg-secondary"
+                    >
+                      <item.icon className="h-5 w-5" />
+                      <span>{item.label}</span>
+                    </motion.button>
+                    {/* Cybersec entre "Sobre mí" y "Habilidades" */}
+                    {index === 0 && (
+                      <Link
+                        href="/cybersec"
+                        onClick={() => setIsOpen(false)}
+                        className="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-3 hover:bg-secondary"
+                      >
+                        <Terminal className="h-5 w-5" />
+                        <span>Cybersec</span>
+                      </Link>
+                    )}
+                  </React.Fragment>
                 ))}
                 <div className="border-t p-2">
-                  <Link
-                    href="/cybersec"
-                    onClick={() => setIsOpen(false)}
-                    className="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-3 hover:bg-secondary"
-                  >
-                    <Terminal className="h-5 w-5" />
-                    <span>Cybersec</span>
-                  </Link>
                   <a
                     href="https://github.com/bolado-dev"
                     target="_blank"
