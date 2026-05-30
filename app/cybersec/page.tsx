@@ -10,7 +10,7 @@ export default async function CybersecLanding() {
 
   return (
     <main className="px-4 pt-24 pb-28">
-      <div className="container mx-auto max-w-3xl">
+      <div className="container mx-auto flex max-w-3xl flex-col items-center text-center">
         <p className="mb-4 text-[11px] tracking-widest text-muted-foreground uppercase">
           Ciberseguridad
         </p>
@@ -23,13 +23,13 @@ export default async function CybersecLanding() {
           explotación, post-explotación y escalada de privilegios.
         </p>
 
-        <div className="mt-10 flex flex-wrap gap-x-10 gap-y-3">
+        <div className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-3">
           <Stat value={writeups.length} label="Writeups" />
           <Stat value={machines} label="Máquinas HTB" />
           <Stat value={manualPages} label="Páginas de manual" />
         </div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2">
+        <div className="mt-14 grid w-full gap-4 text-left sm:grid-cols-2">
           <LandingCard
             href="/cybersec/writeups"
             icon={<FileText className="h-5 w-5" />}
