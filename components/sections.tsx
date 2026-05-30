@@ -3,7 +3,17 @@
 import { useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { ArrowUpRight, Mail, MapPin, Send, Target, Terminal } from "lucide-react"
+import {
+  ArrowUpRight,
+  Globe,
+  Mail,
+  MapPin,
+  Radar,
+  Send,
+  ShieldAlert,
+  Target,
+  Terminal,
+} from "lucide-react"
 import {
   SiLinux,
   SiKalilinux,
@@ -166,32 +176,53 @@ export function About() {
 
 type Skill = { name: string; Icon: IconCmp }
 
-const skillGroups: { category: string; items: Skill[] }[] = [
+// Técnicas reales extraídas de los writeups (HTB), agrupadas por área.
+const areas: { label: string; Icon: IconCmp; items: string[] }[] = [
   {
-    category: "Sistemas & Redes",
+    label: "Explotación web",
+    Icon: Globe,
     items: [
-      { name: "Linux", Icon: SiLinux },
-      { name: "Kali Linux", Icon: SiKalilinux },
-      { name: "Bash", Icon: SiGnubash },
+      "SQLi & PostgreSQL RCE",
+      "LFI / RFI → RCE",
+      "SSTI",
+      "XXE · SSRF",
+      "Directory Traversal",
+      "Information Leakage",
     ],
   },
   {
-    category: "Herramientas",
+    label: "Post-explotación",
+    Icon: ShieldAlert,
     items: [
-      { name: "Burp Suite", Icon: SiBurpsuite },
-      { name: "Wireshark", Icon: SiWireshark },
-      { name: "Python", Icon: SiPython },
-      { name: "Git", Icon: SiGit },
-      { name: "Docker", Icon: SiDocker },
+      "Escalada Linux (sudo, PATH hijacking)",
+      "Escalada Windows (SeImpersonate, PrintNightmare)",
+      "Active Directory (BloodHound, RBCD)",
+      "Port forwarding & pivoting",
     ],
   },
   {
-    category: "Plataformas",
+    label: "Enumeración & redes",
+    Icon: Radar,
     items: [
-      { name: "Hack The Box", Icon: SiHackthebox },
-      { name: "TryHackMe", Icon: SiTryhackme },
+      "Nmap & fuzzing web",
+      "SMB · NFS · SNMP",
+      "VHOST & subdominios",
+      "Enumeración de CMS",
     ],
   },
+]
+
+const tools: Skill[] = [
+  { name: "Linux", Icon: SiLinux },
+  { name: "Kali Linux", Icon: SiKalilinux },
+  { name: "Bash", Icon: SiGnubash },
+  { name: "Python", Icon: SiPython },
+  { name: "Burp Suite", Icon: SiBurpsuite },
+  { name: "Wireshark", Icon: SiWireshark },
+  { name: "Git", Icon: SiGit },
+  { name: "Docker", Icon: SiDocker },
+  { name: "Hack The Box", Icon: SiHackthebox },
+  { name: "TryHackMe", Icon: SiTryhackme },
 ]
 
 function SkillChip({ skill }: { skill: Skill }) {
@@ -211,23 +242,50 @@ export function Skills() {
 
         <StaggerReveal
           className="grid gap-x-12 gap-y-12 sm:grid-cols-3"
-          selector="[data-stack-group]"
+          selector="[data-area]"
           stagger={0.12}
           y={24}
         >
-          {skillGroups.map(({ category, items }) => (
-            <div key={category} data-stack-group>
-              <p className="mb-4 text-[11px] uppercase tracking-widest text-muted-foreground">
-                {category}
-              </p>
-              <div className="flex flex-col gap-2.5">
-                {items.map((skill) => (
-                  <SkillChip key={skill.name} skill={skill} />
-                ))}
+          {areas.map((area) => (
+            <div key={area.label} data-area>
+              <div className="mb-4 flex items-center gap-2">
+                <area.Icon className="h-[18px] w-[18px] text-muted-foreground" />
+                <p className="text-[11px] uppercase tracking-widest text-muted-foreground">
+                  {area.label}
+                </p>
               </div>
+              <ul className="flex flex-col gap-2.5">
+                {area.items.map((it) => (
+                  <li
+                    key={it}
+                    className="flex items-start gap-2.5 text-[15px] leading-snug text-muted-foreground"
+                  >
+                    <span className="mt-[7px] h-1 w-1 flex-shrink-0 rounded-full bg-foreground/40" />
+                    {it}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </StaggerReveal>
+
+        <div className="mt-16 border-t pt-10">
+          <p className="mb-5 text-[11px] uppercase tracking-widest text-muted-foreground">
+            Herramientas
+          </p>
+          <StaggerReveal
+            className="flex flex-wrap gap-2.5"
+            selector="[data-tool]"
+            stagger={0.05}
+            y={14}
+          >
+            {tools.map((skill) => (
+              <div key={skill.name} data-tool>
+                <SkillChip skill={skill} />
+              </div>
+            ))}
+          </StaggerReveal>
+        </div>
       </div>
     </section>
   )
