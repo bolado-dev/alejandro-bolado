@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import {
@@ -14,6 +15,7 @@ import {
   GraduationCap,
   ChevronDown,
   Monitor,
+  Terminal,
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { GithubIcon } from "@/components/icons/github-icon"
@@ -162,6 +164,7 @@ const navItems = [
 ]
 
 export function DockComponent() {
+  const pathname = usePathname()
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
@@ -237,6 +240,9 @@ export function DockComponent() {
     navItems.find((item) => item.href.slice(1) === activeSection) || navItems[0]
   const CurrentIcon = currentItem?.icon || User
 
+  // El dock del portfolio no aparece en la sección cybersec (tiene su propio header)
+  if (pathname?.startsWith("/cybersec")) return null
+
   const dockItems = [
     {
       icon: (
@@ -258,6 +264,11 @@ export function DockComponent() {
       label: item.label,
       href: item.href,
     })),
+    {
+      icon: <Terminal className="h-5 w-5" />,
+      label: "Cybersec",
+      href: "/cybersec",
+    },
     {
       icon: <Sun className="h-5 w-5" />,
       label: theme === "dark" ? "Light" : "Dark",
@@ -328,8 +339,16 @@ export function DockComponent() {
                   </motion.button>
                 ))}
                 <div className="border-t p-2">
+                  <Link
+                    href="/cybersec"
+                    onClick={() => setIsOpen(false)}
+                    className="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-3 hover:bg-secondary"
+                  >
+                    <Terminal className="h-5 w-5" />
+                    <span>Cybersec</span>
+                  </Link>
                   <a
-                    href="https://github.com"
+                    href="https://github.com/bolado-dev"
                     target="_blank"
                     rel="noreferrer"
                     className="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-3 hover:bg-secondary"

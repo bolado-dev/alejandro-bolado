@@ -5,6 +5,15 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { DockComponent } from "@/components/dock"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { cn } from "@/lib/utils"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://alejandrobolado.es"),
+  title: {
+    default: "Alejandro Bolado",
+    template: "%s",
+  },
+}
 
 const syne = Syne({ subsets: ["latin"], variable: "--font-sans" })
 
