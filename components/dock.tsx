@@ -6,12 +6,10 @@ import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import {
-  Briefcase,
   Code,
   User,
   Mail,
   Sun,
-  Folder,
   GraduationCap,
   ChevronDown,
   Monitor,
@@ -157,8 +155,6 @@ export { Dock }
 const navItems = [
   { label: "Sobre mí", href: "#about", icon: User },
   { label: "Habilidades", href: "#skills", icon: Code },
-  { label: "Proyectos", href: "#projects", icon: Folder },
-  { label: "Experiencia", href: "#experience", icon: Briefcase },
   { label: "Educación", href: "#education", icon: GraduationCap },
   { label: "Contacto", href: "#contact", icon: Mail },
 ]

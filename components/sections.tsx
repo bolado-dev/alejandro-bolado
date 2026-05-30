@@ -3,26 +3,20 @@
 import { useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ArrowUpRight, Mail, MapPin, Send } from "lucide-react"
 import {
-  ArrowUpRight,
-  Mail,
-  MapPin,
-  Send,
-} from "lucide-react"
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
-  SiNodedotjs,
+  SiLinux,
+  SiKalilinux,
+  SiGnubash,
   SiPython,
-  SiPostgresql,
   SiGit,
-  SiVercel,
-  SiRedis,
+  SiDocker,
+  SiWireshark,
+  SiHackthebox,
+  SiTryhackme,
+  SiBurpsuite,
 } from "@icons-pack/react-simple-icons"
 
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -35,7 +29,6 @@ import { SectionLabel } from "@/components/section-label"
 import { GithubIcon } from "@/components/icons/github-icon"
 import { LinkedinIcon } from "@/components/icons/linkedin-icon"
 import { useGsap } from "@/hooks/use-gsap"
-import { cn } from "@/lib/utils"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -88,7 +81,7 @@ export function About() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
                 </span>
-                Disponible
+                Aprendiendo
               </span>
             </Reveal>
           </div>
@@ -105,21 +98,28 @@ export function About() {
             <Reveal delay={0.15} y={12}>
               <p className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground">
                 <MapPin className="h-3.5 w-3.5" />
-                Full Stack Developer, Madrid
+                Ciberseguridad · Cantabria, España
               </p>
             </Reveal>
             <Reveal delay={0.25}>
               <p className="text-[15px] leading-[1.75] text-muted-foreground">
-                Desarrollo aplicaciones web modernas con énfasis en arquitectura
-                limpia y experiencias de usuario precisas. Me especializo en el
-                stack React/Next.js con TypeScript y en construir productos SaaS
-                escalables desde cero.
+                Me apasiona la seguridad ofensiva: pentesting, hacking ético y
+                retos estilo CTF. De forma autodidacta practico enumeración,
+                explotación y escalada de privilegios resolviendo máquinas en
+                plataformas como Hack The Box y TryHackMe.
               </p>
             </Reveal>
             <Reveal delay={0.35}>
               <p className="mt-4 text-[15px] leading-[1.75] text-muted-foreground">
-                Cuando no estoy programando, exploro nuevas tecnologías,
-                contribuyo a proyectos open source o me pierdo en el mundo JDM.
+                Documento todo mi aprendizaje en{" "}
+                <a
+                  href="/cybersec"
+                  className="text-foreground underline underline-offset-4"
+                >
+                  writeups y un manual técnico
+                </a>
+                . Mi objetivo es ganar experiencia práctica y certificarme
+                (eJPT, OSCP).
               </p>
             </Reveal>
 
@@ -131,26 +131,26 @@ export function About() {
             >
               <div data-stat>
                 <p className="text-3xl font-medium tracking-tight">
-                  <Counter to={6} suffix="+" />
+                  <Counter to={42} />
                 </p>
                 <p className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
-                  Años codeando
+                  Writeups
                 </p>
               </div>
               <div data-stat>
                 <p className="text-3xl font-medium tracking-tight">
-                  <Counter to={30} suffix="+" />
+                  <Counter to={42} />
                 </p>
                 <p className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
-                  Proyectos
+                  Máquinas HTB
                 </p>
               </div>
               <div data-stat>
                 <p className="text-3xl font-medium tracking-tight">
-                  <Counter to={12} />
+                  <Counter to={10} suffix="+" />
                 </p>
                 <p className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
-                  Clientes
+                  Páginas de manual
                 </p>
               </div>
             </StaggerReveal>
@@ -166,21 +166,21 @@ export function About() {
 type Skill = { name: string; Icon: IconCmp }
 
 const primarySkills: Record<string, Skill[]> = {
-  Frontend: [
-    { name: "React", Icon: SiReact },
-    { name: "Next.js", Icon: SiNextdotjs },
-    { name: "TypeScript", Icon: SiTypescript },
-    { name: "Tailwind", Icon: SiTailwindcss },
+  Sistemas: [
+    { name: "Linux", Icon: SiLinux },
+    { name: "Kali Linux", Icon: SiKalilinux },
+    { name: "Bash", Icon: SiGnubash },
   ],
-  Backend: [
-    { name: "Node.js", Icon: SiNodedotjs },
+  Tooling: [
+    { name: "Burp Suite", Icon: SiBurpsuite },
+    { name: "Wireshark", Icon: SiWireshark },
     { name: "Python", Icon: SiPython },
-    { name: "PostgreSQL", Icon: SiPostgresql },
-    { name: "Redis", Icon: SiRedis },
-  ],
-  Herramientas: [
     { name: "Git", Icon: SiGit },
-    { name: "Vercel", Icon: SiVercel },
+    { name: "Docker", Icon: SiDocker },
+  ],
+  Plataformas: [
+    { name: "Hack The Box", Icon: SiHackthebox },
+    { name: "TryHackMe", Icon: SiTryhackme },
   ],
 }
 
@@ -197,7 +197,7 @@ export function Skills() {
   return (
     <section id="skills" className="border-b px-4 py-24">
       <div className="container mx-auto max-w-3xl">
-        <SectionLabel>Stack tecnológico</SectionLabel>
+        <SectionLabel>Stack &amp; herramientas</SectionLabel>
 
         <StaggerReveal
           className="grid gap-12"
@@ -227,379 +227,30 @@ export function Skills() {
   )
 }
 
-// ─── PROJECTS ─────────────────────────────────────────────────────────────────
-
-const projects = [
-  {
-    id: 1,
-    title: "Hawkr",
-    category: "SaaS · Web App",
-    description:
-      "Plataforma de inteligencia y monitorización de redes sociales. Dashboard con análisis multi-perfil, comparativas y exportación de datos.",
-    tags: [
-      { label: "Next.js", Icon: SiNextdotjs as IconCmp },
-      { label: "TypeScript", Icon: SiTypescript as IconCmp },
-      { label: "Postgres", Icon: SiPostgresql as IconCmp },
-    ],
-    href: "#",
-  },
-  {
-    id: 2,
-    title: "Analytics Dash",
-    category: "Dashboard · Analytics",
-    description:
-      "Dashboard de análisis con datos en tiempo real y visualizaciones interactivas para equipos de producto.",
-    tags: [
-      { label: "React", Icon: SiReact as IconCmp },
-      { label: "Node.js", Icon: SiNodedotjs as IconCmp },
-      { label: "Redis", Icon: SiRedis as IconCmp },
-    ],
-    href: "#",
-  },
-  {
-    id: 3,
-    title: "REST API Pro",
-    category: "API · Backend",
-    description:
-      "API RESTful con autenticación JWT, rate limiting y documentación OpenAPI completa.",
-    tags: [
-      { label: "Node.js", Icon: SiNodedotjs as IconCmp },
-      { label: "TypeScript", Icon: SiTypescript as IconCmp },
-      { label: "Postgres", Icon: SiPostgresql as IconCmp },
-    ],
-    href: "#",
-  },
-]
-
-type Project = (typeof projects)[number]
-
-function ProjectRow({
-  project,
-  isLast,
-}: {
-  project: Project
-  isLast: boolean
-}) {
-  const rowRef = useRef<HTMLAnchorElement>(null)
-  const thumbRef = useRef<HTMLDivElement>(null)
-  const arrowRef = useRef<HTMLSpanElement>(null)
-
-  useGsap(() => {
-    const row = rowRef.current
-    if (!row) return
-
-    gsap.fromTo(
-      row,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: row, start: "top 85%" },
-      },
-    )
-
-    const thumb = thumbRef.current
-    if (thumb) {
-      gsap.fromTo(
-        thumb,
-        { clipPath: "inset(0 0 100% 0)" },
-        {
-          clipPath: "inset(0 0 0% 0)",
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: { trigger: thumb, start: "top 85%" },
-        },
-      )
-    }
-
-    const arrow = arrowRef.current
-    if (!arrow) return
-    const xTo = gsap.quickTo(arrow, "x", { duration: 0.35, ease: "power2.out" })
-    const yTo = gsap.quickTo(arrow, "y", { duration: 0.35, ease: "power2.out" })
-
-    const enter = () => {
-      xTo(6)
-      yTo(-6)
-    }
-    const leave = () => {
-      xTo(0)
-      yTo(0)
-    }
-    row.addEventListener("mouseenter", enter)
-    row.addEventListener("mouseleave", leave)
-    return () => {
-      row.removeEventListener("mouseenter", enter)
-      row.removeEventListener("mouseleave", leave)
-    }
-  }, [])
-
-  return (
-    <a
-      ref={rowRef}
-      href={project.href}
-      className={cn(
-        "group grid grid-cols-[1fr_2fr] items-start gap-8 py-8",
-        !isLast && "border-b",
-      )}
-    >
-      <div
-        ref={thumbRef}
-        className="aspect-video overflow-hidden rounded-md bg-muted transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-      />
-      <div>
-        <p className="mb-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
-          {project.category}
-        </p>
-        <h3 className="mb-2 inline-flex items-center gap-1.5 text-lg font-medium tracking-tight">
-          {project.title}
-          <span ref={arrowRef} className="inline-block text-muted-foreground">
-            <ArrowUpRight className="h-4 w-4" />
-          </span>
-        </h3>
-        <p className="text-sm leading-[1.65] text-muted-foreground">
-          {project.description}
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <Badge
-              key={tag.label}
-              variant="outline"
-              className="gap-1.5 rounded-full text-xs font-normal text-muted-foreground"
-            >
-              <tag.Icon className="h-3 w-3" />
-              {tag.label}
-            </Badge>
-          ))}
-        </div>
-      </div>
-    </a>
-  )
-}
-
-export function Projects() {
-  return (
-    <section id="projects" className="border-b px-4 py-24">
-      <div className="container mx-auto max-w-3xl">
-        <SectionLabel>Proyectos</SectionLabel>
-        <div className="flex flex-col">
-          {projects.map((project, i) => (
-            <ProjectRow
-              key={project.id}
-              project={project}
-              isLast={i === projects.length - 1}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── EXPERIENCE ───────────────────────────────────────────────────────────────
-
-const jobs = [
-  {
-    id: 1,
-    role: "Senior Developer",
-    company: "Tech Company",
-    period: "2022 — Hoy",
-    description:
-      "Liderando el desarrollo de aplicaciones web de alto tráfico. Arquitectura de sistemas, revisiones de código y mentoría de equipo junior.",
-  },
-  {
-    id: 2,
-    role: "Full Stack Developer",
-    company: "Startup",
-    period: "2020 — 2022",
-    description:
-      "Construí desde cero aplicaciones escalables para B2B. Implementé infraestructura CI/CD y reduje el tiempo de despliegue un 60%.",
-  },
-  {
-    id: 3,
-    role: "Junior Developer",
-    company: "Agency",
-    period: "2018 — 2020",
-    description:
-      "Desarrollé proyectos web para clientes de distintos sectores. Primeros pasos con React y arquitecturas REST.",
-  },
-]
-
-function JobRow({ job, isLast }: { job: (typeof jobs)[number]; isLast: boolean }) {
-  const rowRef = useRef<HTMLDivElement>(null)
-  const periodRef = useRef<HTMLParagraphElement>(null)
-  const roleRef = useRef<HTMLHeadingElement>(null)
-  const companyRef = useRef<HTMLParagraphElement>(null)
-  const descRef = useRef<HTMLParagraphElement>(null)
-  const markerRef = useRef<HTMLSpanElement>(null)
-
-  useGsap(() => {
-    const row = rowRef.current
-    if (!row) return
-
-    const tl = gsap.timeline({
-      scrollTrigger: { trigger: row, start: "top 82%" },
-      defaults: { ease: "power3.out" },
-    })
-
-    if (markerRef.current) {
-      tl.fromTo(
-        markerRef.current,
-        { scale: 0, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" },
-        0,
-      )
-    }
-
-    if (periodRef.current) {
-      tl.fromTo(
-        periodRef.current,
-        { opacity: 0, x: -16 },
-        { opacity: 1, x: 0, duration: 0.7 },
-        0.05,
-      )
-    }
-
-    if (roleRef.current) {
-      const chars = roleRef.current.querySelectorAll<HTMLElement>("[data-char]")
-      tl.fromTo(
-        chars,
-        { y: "100%", opacity: 0 },
-        { y: "0%", opacity: 1, duration: 0.7, stagger: 0.02 },
-        0.1,
-      )
-    }
-
-    if (companyRef.current) {
-      tl.fromTo(
-        companyRef.current,
-        { opacity: 0, y: 8 },
-        { opacity: 1, y: 0, duration: 0.6 },
-        0.35,
-      )
-    }
-
-    if (descRef.current) {
-      tl.fromTo(
-        descRef.current,
-        { opacity: 0, y: 12, filter: "blur(4px)" },
-        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 },
-        0.45,
-      )
-    }
-
-    const enter = () => {
-      gsap.to(markerRef.current, { scale: 1.6, duration: 0.3, ease: "power2.out" })
-      gsap.to(row, { x: 6, duration: 0.4, ease: "power2.out" })
-    }
-    const leave = () => {
-      gsap.to(markerRef.current, { scale: 1, duration: 0.3, ease: "power2.out" })
-      gsap.to(row, { x: 0, duration: 0.4, ease: "power2.out" })
-    }
-    row.addEventListener("mouseenter", enter)
-    row.addEventListener("mouseleave", leave)
-    return () => {
-      row.removeEventListener("mouseenter", enter)
-      row.removeEventListener("mouseleave", leave)
-    }
-  }, [])
-
-  const roleChars = job.role.split("")
-
-  return (
-    <div
-      ref={rowRef}
-      className={cn(
-        "relative grid grid-cols-[120px_1fr] gap-8 py-8 pl-8",
-        !isLast && "border-b",
-      )}
-    >
-      <span
-        ref={markerRef}
-        aria-hidden
-        className="absolute left-0 top-[42px] h-2 w-2 rounded-full bg-foreground"
-      />
-      <p ref={periodRef} className="font-mono text-sm text-muted-foreground">
-        {job.period}
-      </p>
-      <div>
-        <h3
-          ref={roleRef}
-          className="overflow-hidden text-base font-medium tracking-tight"
-          aria-label={job.role}
-        >
-          {roleChars.map((c, i) => (
-            <span
-              key={i}
-              data-char
-              aria-hidden
-              className="inline-block whitespace-pre will-change-transform"
-            >
-              {c}
-            </span>
-          ))}
-        </h3>
-        <p
-          ref={companyRef}
-          className="mb-3 mt-0.5 text-[13px] text-muted-foreground"
-        >
-          {job.company}
-        </p>
-        <p
-          ref={descRef}
-          className="text-sm leading-[1.65] text-muted-foreground"
-        >
-          {job.description}
-        </p>
-      </div>
-    </div>
-  )
-}
-
-export function Experience() {
-  return (
-    <section id="experience" className="border-b px-4 py-24">
-      <div className="container mx-auto max-w-3xl">
-        <SectionLabel>Experiencia</SectionLabel>
-        <div className="relative flex flex-col">
-          {jobs.map((job, i) => (
-            <JobRow
-              key={job.id}
-              job={job}
-              isLast={i === jobs.length - 1}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── EDUCATION + ACHIEVEMENTS ─────────────────────────────────────────────────
+// ─── EDUCATION + OBJETIVOS ────────────────────────────────────────────────────
 
 const educationItems = [
   {
-    title: "Grado en Ingeniería Informática",
-    sub: "Universidad, 2014 — 2018",
-    description: "Fundamentos de software, algoritmos y sistemas distribuidos.",
+    title: "ASIR — Administración de Sistemas en Red",
+    sub: "Formación profesional, en curso",
+    description: "Sistemas, redes, servidores y administración Linux/Windows.",
   },
   {
-    title: "Máster en Desarrollo Web",
-    sub: "Instituto, 2018 — 2020",
+    title: "Ciberseguridad autodidacta",
+    sub: "Hack The Box · TryHackMe",
     description:
-      "Especialización en tecnologías web modernas y arquitectura frontend.",
+      "Pentesting, explotación web, Active Directory y scripting en Python.",
   },
 ]
 
 const achievements = [
   {
-    title: "Google Cloud Professional",
-    sub: "Google Cloud Platform, Certified",
+    title: "eJPT",
+    sub: "eLearnSecurity Junior Penetration Tester · objetivo",
   },
   {
-    title: "Open Source Contributor",
-    sub: "Contribuidor activo en proyectos de la comunidad.",
+    title: "OSCP",
+    sub: "Offensive Security Certified Professional · objetivo",
   },
 ]
 
@@ -639,20 +290,10 @@ function EduItem({
       )
     }
     if (title) {
-      tl.fromTo(
-        title,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.7 },
-        0.2,
-      )
+      tl.fromTo(title, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7 }, 0.2)
     }
     if (sub) {
-      tl.fromTo(
-        sub,
-        { opacity: 0, y: 8 },
-        { opacity: 1, y: 0, duration: 0.6 },
-        0.32,
-      )
+      tl.fromTo(sub, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.6 }, 0.32)
     }
     if (desc) {
       tl.fromTo(
@@ -711,7 +352,7 @@ export function Education() {
       <div className="container mx-auto max-w-3xl">
         <div className="grid grid-cols-2 gap-16">
           <div>
-            <SectionLabel>Educación</SectionLabel>
+            <SectionLabel>Formación</SectionLabel>
             <div className="flex flex-col gap-10">
               {educationItems.map((item) => (
                 <EduItem key={item.title} item={item} fromLeft />
@@ -719,7 +360,7 @@ export function Education() {
             </div>
           </div>
           <div>
-            <SectionLabel>Reconocimientos</SectionLabel>
+            <SectionLabel>Objetivos</SectionLabel>
             <div className="flex flex-col gap-10">
               {achievements.map((item) => (
                 <EduItem key={item.title} item={item} />
@@ -735,7 +376,11 @@ export function Education() {
 // ─── CONTACT ──────────────────────────────────────────────────────────────────
 
 const contactLinks: { Icon: IconCmp; label: string; href: string }[] = [
-  { Icon: Mail, label: "hola@alejandro.dev", href: "mailto:hola@alejandro.dev" },
+  {
+    Icon: Mail,
+    label: "alexbolatrue@gmail.com",
+    href: "mailto:alexbolatrue@gmail.com",
+  },
   {
     Icon: GithubIcon,
     label: "github.com/bolado-dev",
@@ -761,12 +406,12 @@ export function Contact() {
               duration={1}
               className="mb-4 text-3xl font-medium leading-tight tracking-tight"
             >
-              ¿Tienes un proyecto en mente?
+              ¿Hablamos de seguridad?
             </SplitText>
             <Reveal delay={0.2}>
               <p className="text-[15px] leading-[1.7] text-muted-foreground">
-                Estoy disponible para proyectos freelance y nuevas oportunidades.
-                Escríbeme y hablamos.
+                Abierto a aprender, recibir consejos y participar en iniciativas
+                de ciberseguridad. Escríbeme y hablamos.
               </p>
             </Reveal>
             <StaggerReveal
@@ -811,7 +456,7 @@ export function Contact() {
               <Label className="text-[11px] uppercase tracking-widest text-muted-foreground">
                 Mensaje
               </Label>
-              <Textarea placeholder="Cuéntame tu proyecto..." rows={4} />
+              <Textarea placeholder="¿En qué puedo ayudarte?" rows={4} />
             </div>
             <div data-field>
               <Magnetic strength={0.2} className="w-full">

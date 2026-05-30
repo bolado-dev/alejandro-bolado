@@ -61,7 +61,7 @@ export function Hero() {
             </h1>
 
             <p className="max-w-md text-lg font-light md:text-xl">
-              Full Stack Developer · Building amazing experiences
+              Entusiasta de la ciberseguridad · Hacking ético & CTFs
             </p>
           </motion.div>
 
@@ -76,8 +76,8 @@ export function Hero() {
               size="lg"
               className="h-12 w-full rounded-full px-6 font-medium sm:w-auto"
             >
-              <a href="#projects">
-                View Projects
+              <a href="/cybersec">
+                Ver writeups
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
@@ -88,7 +88,7 @@ export function Hero() {
               size="lg"
               className="h-12 w-full rounded-full px-6 sm:w-auto"
             >
-              <a href="#contact">Contact Me</a>
+              <a href="#contact">Contacto</a>
             </Button>
           </motion.div>
         </div>
