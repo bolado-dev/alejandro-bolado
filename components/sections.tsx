@@ -3,7 +3,7 @@
 import { useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { ArrowUpRight, Mail, MapPin, Send } from "lucide-react"
+import { ArrowUpRight, Mail, MapPin, Send, Target, Terminal } from "lucide-react"
 import {
   SiLinux,
   SiKalilinux,
@@ -29,6 +29,7 @@ import { SectionLabel } from "@/components/section-label"
 import { GithubIcon } from "@/components/icons/github-icon"
 import { LinkedinIcon } from "@/components/icons/linkedin-icon"
 import { useGsap } from "@/hooks/use-gsap"
+import { cn } from "@/lib/utils"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -59,15 +60,15 @@ export function About() {
   }, [])
 
   return (
-    <section id="about" className="border-b px-4 py-24">
-      <div className="container mx-auto max-w-3xl">
+    <section id="about" className="border-b px-4 py-28 md:py-32">
+      <div className="container mx-auto max-w-4xl">
         <SectionLabel>Sobre mí</SectionLabel>
 
-        <div className="grid grid-cols-[120px_1fr] items-start gap-10">
+        <div className="grid grid-cols-[140px_1fr] items-start gap-12">
           <div className="relative">
             <div
               ref={imgRef}
-              className="relative flex h-[120px] w-[120px] flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-muted"
+              className="relative flex h-[140px] w-[140px] flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-muted"
             >
               <img
                 src="/alejandro.png"
@@ -76,7 +77,7 @@ export function About() {
               />
             </div>
             <Reveal delay={0.4} y={8}>
-              <span className="absolute -bottom-2 -right-2 flex items-center gap-1.5 rounded-full bg-background px-2.5 py-1 text-[10px] font-medium text-muted-foreground shadow-sm ring-1 ring-border">
+              <span className="absolute -bottom-2 -right-2 flex items-center gap-1.5 rounded-full bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground shadow-sm ring-1 ring-border">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -91,18 +92,18 @@ export function About() {
               as="h1"
               stagger={0.05}
               duration={0.9}
-              className="mb-1 text-3xl font-medium tracking-tight"
+              className="mb-2 text-4xl font-medium tracking-tight"
             >
               Alejandro Bolado
             </SplitText>
             <Reveal delay={0.15} y={12}>
-              <p className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground">
-                <MapPin className="h-3.5 w-3.5" />
+              <p className="mb-7 flex items-center gap-1.5 text-[15px] text-muted-foreground">
+                <MapPin className="h-4 w-4" />
                 Ciberseguridad · Cantabria, España
               </p>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="text-[15px] leading-[1.75] text-muted-foreground">
+              <p className="text-[17px] leading-[1.8] text-muted-foreground">
                 Me apasiona la seguridad ofensiva: pentesting, hacking ético y
                 retos estilo CTF. De forma autodidacta practico enumeración,
                 explotación y escalada de privilegios resolviendo máquinas en
@@ -110,7 +111,7 @@ export function About() {
               </p>
             </Reveal>
             <Reveal delay={0.35}>
-              <p className="mt-4 text-[15px] leading-[1.75] text-muted-foreground">
+              <p className="mt-5 text-[17px] leading-[1.8] text-muted-foreground">
                 Documento todo mi aprendizaje en{" "}
                 <a
                   href="/cybersec"
@@ -124,32 +125,32 @@ export function About() {
             </Reveal>
 
             <StaggerReveal
-              className="mt-10 grid grid-cols-3 gap-6"
+              className="mt-12 grid grid-cols-3 gap-6"
               selector="[data-stat]"
               stagger={0.1}
               y={20}
             >
               <div data-stat>
-                <p className="text-3xl font-medium tracking-tight">
+                <p className="text-4xl font-medium tracking-tight">
                   <Counter to={42} />
                 </p>
-                <p className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
+                <p className="mt-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
                   Writeups
                 </p>
               </div>
               <div data-stat>
-                <p className="text-3xl font-medium tracking-tight">
+                <p className="text-4xl font-medium tracking-tight">
                   <Counter to={42} />
                 </p>
-                <p className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
+                <p className="mt-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
                   Máquinas HTB
                 </p>
               </div>
               <div data-stat>
-                <p className="text-3xl font-medium tracking-tight">
+                <p className="text-4xl font-medium tracking-tight">
                   <Counter to={10} suffix="+" />
                 </p>
-                <p className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
+                <p className="mt-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
                   Páginas de manual
                 </p>
               </div>
@@ -165,58 +166,63 @@ export function About() {
 
 type Skill = { name: string; Icon: IconCmp }
 
-const primarySkills: Record<string, Skill[]> = {
-  Sistemas: [
-    { name: "Linux", Icon: SiLinux },
-    { name: "Kali Linux", Icon: SiKalilinux },
-    { name: "Bash", Icon: SiGnubash },
-  ],
-  Tooling: [
-    { name: "Burp Suite", Icon: SiBurpsuite },
-    { name: "Wireshark", Icon: SiWireshark },
-    { name: "Python", Icon: SiPython },
-    { name: "Git", Icon: SiGit },
-    { name: "Docker", Icon: SiDocker },
-  ],
-  Plataformas: [
-    { name: "Hack The Box", Icon: SiHackthebox },
-    { name: "TryHackMe", Icon: SiTryhackme },
-  ],
-}
+const skillGroups: { category: string; items: Skill[] }[] = [
+  {
+    category: "Sistemas & Redes",
+    items: [
+      { name: "Linux", Icon: SiLinux },
+      { name: "Kali Linux", Icon: SiKalilinux },
+      { name: "Bash", Icon: SiGnubash },
+    ],
+  },
+  {
+    category: "Herramientas",
+    items: [
+      { name: "Burp Suite", Icon: SiBurpsuite },
+      { name: "Wireshark", Icon: SiWireshark },
+      { name: "Python", Icon: SiPython },
+      { name: "Git", Icon: SiGit },
+      { name: "Docker", Icon: SiDocker },
+    ],
+  },
+  {
+    category: "Plataformas",
+    items: [
+      { name: "Hack The Box", Icon: SiHackthebox },
+      { name: "TryHackMe", Icon: SiTryhackme },
+    ],
+  },
+]
 
-function SkillTile({ skill }: { skill: Skill }) {
+function SkillChip({ skill }: { skill: Skill }) {
   return (
-    <div className="group flex items-center gap-3 py-2 text-muted-foreground transition-colors hover:text-foreground">
+    <div className="group flex items-center gap-3 rounded-xl border bg-card px-4 py-3 text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:text-foreground hover:shadow-sm">
       <skill.Icon className="h-5 w-5 transition-transform group-hover:scale-110" />
-      <span className="text-sm font-medium">{skill.name}</span>
+      <span className="text-[15px] font-medium">{skill.name}</span>
     </div>
   )
 }
 
 export function Skills() {
   return (
-    <section id="skills" className="border-b px-4 py-24">
-      <div className="container mx-auto max-w-3xl">
-        <SectionLabel>Stack &amp; herramientas</SectionLabel>
+    <section id="skills" className="border-b px-4 py-28 md:py-32">
+      <div className="container mx-auto max-w-4xl">
+        <SectionLabel>Habilidades</SectionLabel>
 
         <StaggerReveal
-          className="grid gap-12"
+          className="grid gap-x-12 gap-y-12 sm:grid-cols-3"
           selector="[data-stack-group]"
           stagger={0.12}
           y={24}
         >
-          {Object.entries(primarySkills).map(([category, items]) => (
-            <div
-              key={category}
-              data-stack-group
-              className="grid grid-cols-[120px_1fr] items-start gap-8"
-            >
-              <p className="pt-2 text-[11px] uppercase tracking-widest text-muted-foreground">
+          {skillGroups.map(({ category, items }) => (
+            <div key={category} data-stack-group>
+              <p className="mb-4 text-[11px] uppercase tracking-widest text-muted-foreground">
                 {category}
               </p>
-              <div className="grid grid-cols-2 gap-x-8 gap-y-1 sm:grid-cols-4">
+              <div className="flex flex-col gap-2.5">
                 {items.map((skill) => (
-                  <SkillTile key={skill.name} skill={skill} />
+                  <SkillChip key={skill.name} skill={skill} />
                 ))}
               </div>
             </div>
@@ -227,12 +233,136 @@ export function Skills() {
   )
 }
 
+// ─── EXPERIENCIA PRÁCTICA ─────────────────────────────────────────────────────
+
+const experience: {
+  period: string
+  title: string
+  sub: string
+  description: string
+  Icon: IconCmp
+}[] = [
+  {
+    period: "2025 — Hoy",
+    title: "Hack The Box",
+    sub: "Pentesting práctico",
+    description:
+      "Resolución de 42+ máquinas (Linux, Windows y Active Directory) documentando cada explotación, post-explotación y escalada de privilegios en writeups detallados.",
+    Icon: SiHackthebox,
+  },
+  {
+    period: "2025 — Hoy",
+    title: "TryHackMe",
+    sub: "Paths & fundamentos",
+    description:
+      "Recorrido de rutas de seguridad ofensiva, redes y fundamentos de sistemas mediante laboratorios guiados y retos prácticos.",
+    Icon: SiTryhackme,
+  },
+  {
+    period: "2024 — Hoy",
+    title: "Investigación autodidacta",
+    sub: "Scripting & documentación",
+    description:
+      "Estudio de técnicas de explotación, automatización con Python y Bash, y redacción de un manual técnico propio estilo HackTricks.",
+    Icon: Terminal,
+  },
+]
+
+function TimelineRow({
+  item,
+  isLast,
+}: {
+  item: (typeof experience)[number]
+  isLast: boolean
+}) {
+  const rowRef = useRef<HTMLDivElement>(null)
+
+  useGsap(() => {
+    const el = rowRef.current
+    if (!el) return
+    const dot = el.querySelector<HTMLElement>("[data-dot]")
+    const content = el.querySelector<HTMLElement>("[data-content]")
+    const period = el.querySelector<HTMLElement>("[data-period]")
+
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: el, start: "top 82%" },
+      defaults: { ease: "power3.out" },
+    })
+    if (dot) tl.fromTo(dot, { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(2)" }, 0)
+    if (period) tl.fromTo(period, { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.7 }, 0.05)
+    if (content)
+      tl.fromTo(
+        content,
+        { opacity: 0, y: 16, filter: "blur(4px)" },
+        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 },
+        0.12,
+      )
+  }, [])
+
+  return (
+    <div
+      ref={rowRef}
+      className={cn(
+        "relative grid grid-cols-[120px_1fr] gap-8 pl-8",
+        !isLast && "pb-12",
+      )}
+    >
+      {/* línea vertical */}
+      {!isLast && (
+        <span
+          aria-hidden
+          className="absolute left-[3px] top-3 h-full w-px bg-border"
+        />
+      )}
+      <span
+        data-dot
+        aria-hidden
+        className="absolute left-0 top-2 h-[7px] w-[7px] rounded-full bg-foreground ring-4 ring-background"
+      />
+      <p data-period className="pt-1 font-mono text-sm text-muted-foreground">
+        {item.period}
+      </p>
+      <div data-content>
+        <div className="flex items-center gap-2.5">
+          <item.Icon className="h-5 w-5" />
+          <h3 className="text-lg font-medium tracking-tight">{item.title}</h3>
+        </div>
+        <p className="mt-1 text-[13px] uppercase tracking-widest text-muted-foreground">
+          {item.sub}
+        </p>
+        <p className="mt-3 text-[15px] leading-[1.7] text-muted-foreground">
+          {item.description}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+export function Experience() {
+  return (
+    <section id="experience" className="border-b px-4 py-28 md:py-32">
+      <div className="container mx-auto max-w-4xl">
+        <SectionLabel>Trabajo &amp; práctica</SectionLabel>
+        <div className="relative">
+          {experience.map((item, i) => (
+            <TimelineRow
+              key={item.title}
+              item={item}
+              isLast={i === experience.length - 1}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── EDUCATION + OBJETIVOS ────────────────────────────────────────────────────
 
 const educationItems = [
   {
     title: "ASIR — Administración de Sistemas en Red",
-    sub: "Formación profesional, en curso",
+    sub: "Formación profesional · en curso",
     description: "Sistemas, redes, servidores y administración Linux/Windows.",
   },
   {
@@ -243,23 +373,27 @@ const educationItems = [
   },
 ]
 
-const achievements = [
+const objectives = [
   {
     title: "eJPT",
-    sub: "eLearnSecurity Junior Penetration Tester · objetivo",
+    sub: "eLearnSecurity Junior Penetration Tester",
+    description: "Certificación práctica de pentesting de nivel inicial.",
   },
   {
     title: "OSCP",
-    sub: "Offensive Security Certified Professional · objetivo",
+    sub: "Offensive Security Certified Professional",
+    description: "El objetivo a medio plazo: explotación manual y reporte.",
   },
 ]
 
 function EduItem({
   item,
   fromLeft,
+  Icon,
 }: {
   item: { title: string; sub: string; description?: string }
   fromLeft?: boolean
+  Icon: IconCmp
 }) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -276,40 +410,26 @@ function EduItem({
       defaults: { ease: "power3.out" },
     })
 
-    tl.fromTo(
-      el,
-      { opacity: 0, x: fromLeft ? -32 : 32 },
-      { opacity: 1, x: 0, duration: 0.9 },
-    )
-    if (accent) {
+    tl.fromTo(el, { opacity: 0, x: fromLeft ? -32 : 32 }, { opacity: 1, x: 0, duration: 0.9 })
+    if (accent)
       tl.fromTo(
         accent,
         { scaleY: 0, transformOrigin: "top center" },
         { scaleY: 1, duration: 0.7, ease: "power4.out" },
         0.15,
       )
-    }
-    if (title) {
-      tl.fromTo(title, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7 }, 0.2)
-    }
-    if (sub) {
-      tl.fromTo(sub, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.6 }, 0.32)
-    }
-    if (desc) {
+    if (title) tl.fromTo(title, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7 }, 0.2)
+    if (sub) tl.fromTo(sub, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.6 }, 0.32)
+    if (desc)
       tl.fromTo(
         desc,
         { opacity: 0, y: 10, filter: "blur(4px)" },
         { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.7 },
         0.42,
       )
-    }
 
-    const enter = () => {
-      gsap.to(accent, { height: "100%", duration: 0.4, ease: "power2.out" })
-    }
-    const leave = () => {
-      gsap.to(accent, { height: "60%", duration: 0.4, ease: "power2.out" })
-    }
+    const enter = () => gsap.to(accent, { height: "100%", duration: 0.4, ease: "power2.out" })
+    const leave = () => gsap.to(accent, { height: "60%", duration: 0.4, ease: "power2.out" })
     el.addEventListener("mouseenter", enter)
     el.addEventListener("mouseleave", leave)
     return () => {
@@ -325,20 +445,17 @@ function EduItem({
         aria-hidden
         className="absolute left-0 top-0 block h-[60%] w-px bg-foreground"
       />
-      <h3
-        data-eu-title
-        className="text-[15px] font-medium tracking-tight transition-transform group-hover:translate-x-0.5"
-      >
-        {item.title}
-      </h3>
-      <p data-eu-sub className="mt-0.5 text-[13px] text-muted-foreground">
+      <div data-eu-title className="flex items-center gap-2">
+        <Icon className="h-4 w-4 text-muted-foreground" />
+        <h3 className="text-base font-medium tracking-tight transition-transform group-hover:translate-x-0.5">
+          {item.title}
+        </h3>
+      </div>
+      <p data-eu-sub className="mt-1 text-[13px] text-muted-foreground">
         {item.sub}
       </p>
       {item.description && (
-        <p
-          data-eu-desc
-          className="mt-2 text-sm leading-relaxed text-muted-foreground"
-        >
+        <p data-eu-desc className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
           {item.description}
         </p>
       )}
@@ -348,22 +465,22 @@ function EduItem({
 
 export function Education() {
   return (
-    <section id="education" className="border-b px-4 py-24">
-      <div className="container mx-auto max-w-3xl">
-        <div className="grid grid-cols-2 gap-16">
+    <section id="education" className="border-b px-4 py-28 md:py-32">
+      <div className="container mx-auto max-w-4xl">
+        <div className="grid gap-16 md:grid-cols-2">
           <div>
             <SectionLabel>Formación</SectionLabel>
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-12">
               {educationItems.map((item) => (
-                <EduItem key={item.title} item={item} fromLeft />
+                <EduItem key={item.title} item={item} Icon={SiLinux} fromLeft />
               ))}
             </div>
           </div>
           <div>
             <SectionLabel>Objetivos</SectionLabel>
-            <div className="flex flex-col gap-10">
-              {achievements.map((item) => (
-                <EduItem key={item.title} item={item} />
+            <div className="flex flex-col gap-12">
+              {objectives.map((item) => (
+                <EduItem key={item.title} item={item} Icon={Target} />
               ))}
             </div>
           </div>
@@ -395,27 +512,27 @@ const contactLinks: { Icon: IconCmp; label: string; href: string }[] = [
 
 export function Contact() {
   return (
-    <section id="contact" className="px-4 py-24">
-      <div className="container mx-auto max-w-3xl">
+    <section id="contact" className="px-4 py-28 md:py-32">
+      <div className="container mx-auto max-w-4xl">
         <SectionLabel>Contacto</SectionLabel>
-        <div className="grid grid-cols-2 items-start gap-16">
+        <div className="grid gap-16 md:grid-cols-2 md:items-start">
           <div>
             <SplitText
               as="h2"
               stagger={0.05}
               duration={1}
-              className="mb-4 text-3xl font-medium leading-tight tracking-tight"
+              className="mb-4 text-4xl font-medium leading-tight tracking-tight"
             >
               ¿Hablamos de seguridad?
             </SplitText>
             <Reveal delay={0.2}>
-              <p className="text-[15px] leading-[1.7] text-muted-foreground">
+              <p className="text-[17px] leading-[1.7] text-muted-foreground">
                 Abierto a aprender, recibir consejos y participar en iniciativas
                 de ciberseguridad. Escríbeme y hablamos.
               </p>
             </Reveal>
             <StaggerReveal
-              className="mt-8 flex flex-col gap-3"
+              className="mt-8 flex flex-col gap-3.5"
               selector="[data-link]"
               stagger={0.08}
               y={14}
@@ -425,11 +542,11 @@ export function Contact() {
                   key={label}
                   data-link
                   href={href}
-                  className="group inline-flex items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  className="group inline-flex items-center gap-2.5 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  <Icon className="h-3.5 w-3.5" />
+                  <Icon className="h-4 w-4" />
                   {label}
-                  <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+                  <ArrowUpRight className="h-4 w-4 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
                 </a>
               ))}
             </StaggerReveal>

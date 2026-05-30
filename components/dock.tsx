@@ -10,6 +10,7 @@ import {
   User,
   Mail,
   Sun,
+  Briefcase,
   GraduationCap,
   ChevronDown,
   Monitor,
@@ -155,6 +156,7 @@ export { Dock }
 const navItems = [
   { label: "Sobre mí", href: "#about", icon: User },
   { label: "Habilidades", href: "#skills", icon: Code },
+  { label: "Trabajo", href: "#experience", icon: Briefcase },
   { label: "Educación", href: "#education", icon: GraduationCap },
   { label: "Contacto", href: "#contact", icon: Mail },
 ]
