@@ -8,6 +8,7 @@ import {
   Education,
   Contact,
 } from "@/components/sections"
+import { WriteupsTeaser } from "@/components/sections/writeups-teaser"
 
 export default function Page() {
   return (
@@ -16,6 +17,7 @@ export default function Page() {
       <About />
       <Skills />
       <Projects />
+      <WriteupsTeaser />
       <Experience />
       <Education />
       <Contact />

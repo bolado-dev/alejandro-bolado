@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "katex/dist/katex.min.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -170,3 +171,193 @@ html.lenis { height: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+/* ─── Writeup prose ─────────────────────────────────────────────────────── */
+.writeup-prose {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--foreground);
+  word-wrap: break-word;
+}
+.writeup-prose > *:first-child { margin-top: 0; }
+
+.writeup-prose h2,
+.writeup-prose h3,
+.writeup-prose h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 6rem;
+}
+.writeup-prose h2 {
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+.writeup-prose h3 { margin-top: 2rem; margin-bottom: 0.75rem; font-size: 1.2rem; }
+.writeup-prose h4 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.02rem; }
+
+.writeup-prose p { margin: 1rem 0; color: color-mix(in oklch, var(--foreground), var(--muted-foreground) 25%); }
+.writeup-prose a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border);
+  transition: text-decoration-color 0.15s;
+}
+.writeup-prose a:hover { text-decoration-color: var(--foreground); }
+.writeup-prose strong { color: var(--foreground); font-weight: 600; }
+
+.writeup-prose ul,
+.writeup-prose ol { margin: 1rem 0; padding-left: 1.4rem; }
+.writeup-prose li { margin: 0.35rem 0; color: color-mix(in oklch, var(--foreground), var(--muted-foreground) 25%); }
+.writeup-prose ul { list-style: disc; }
+.writeup-prose ol { list-style: decimal; }
+.writeup-prose li::marker { color: var(--muted-foreground); }
+
+/* inline code */
+.writeup-prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.12em 0.4em;
+  white-space: nowrap;
+}
+
+/* bloques de código (rehype-pretty-code) */
+.writeup-prose pre {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 0;
+  margin: 1.25rem 0;
+  overflow-x: auto;
+}
+.writeup-prose pre code {
+  display: grid;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  counter-reset: line;
+}
+.writeup-prose pre code [data-line] { padding: 0 1.1rem; }
+.writeup-prose figure[data-rehype-pretty-code-figure] { margin: 1.25rem 0; }
+.writeup-prose [data-rehype-pretty-code-title] {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--muted-foreground);
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 0.5rem 1.1rem;
+}
+.writeup-prose [data-rehype-pretty-code-title] + pre {
+  margin-top: 0;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+/* shiki dual theme: claro por defecto, oscuro con .dark */
+.writeup-prose code[data-theme*=" "] span,
+.writeup-prose code[data-theme*=" "] { color: var(--shiki-light); }
+.dark .writeup-prose code[data-theme*=" "] span,
+.dark .writeup-prose code[data-theme*=" "] { color: var(--shiki-dark); }
+
+/* tablas */
+.writeup-prose table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  display: block;
+  overflow-x: auto;
+}
+.writeup-prose th,
+.writeup-prose td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.writeup-prose th { background: var(--muted); font-weight: 600; }
+
+/* imágenes */
+.writeup-prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* citas */
+.writeup-prose blockquote {
+  margin: 1.25rem 0;
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 3px solid var(--border);
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+.writeup-prose hr { margin: 2.5rem 0; border: 0; border-top: 1px solid var(--border); }
+
+/* admoniciones (:::note/tip/important/warning/caution) */
+.writeup-prose .admonition {
+  margin: 1.5rem 0;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-radius: var(--radius-md);
+  background: var(--muted);
+  font-size: 0.9rem;
+}
+.writeup-prose .admonition > *:first-child { margin-top: 0; }
+.writeup-prose .admonition > *:last-child { margin-bottom: 0; }
+.writeup-prose .admonition-note { border-left-color: oklch(0.6 0.13 240); }
+.writeup-prose .admonition-tip { border-left-color: oklch(0.65 0.15 150); }
+.writeup-prose .admonition-important { border-left-color: oklch(0.6 0.2 300); }
+.writeup-prose .admonition-warning { border-left-color: oklch(0.7 0.16 80); }
+.writeup-prose .admonition-caution { border-left-color: oklch(0.62 0.2 25); }
+
+/* ─── Manual: enlace activo del sidebar (estética del portfolio) ───────── */
+.manual-link-active {
+  color: var(--foreground);
+  background: var(--secondary);
+  font-weight: 500;
+}
+
+/* ─── Mejoras de prose: copiar código, zoom ────────────────────────────── */
+.writeup-prose pre { position: relative; }
+.writeup-prose pre .code-copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.9rem;
+  width: 1.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--muted-foreground);
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+.writeup-prose pre:hover .code-copy-btn,
+.writeup-prose pre .code-copy-btn:focus-visible { opacity: 1; }
+.writeup-prose pre .code-copy-btn:hover { color: var(--foreground); background: var(--secondary); }
+.writeup-prose pre .code-copy-btn.copied { color: oklch(0.6 0.15 150); opacity: 1; }
+.writeup-prose pre .code-copy-btn.copy-error { color: oklch(0.6 0.2 25); opacity: 1; }
+@media (hover: none) { .writeup-prose pre .code-copy-btn { opacity: 1; } }
+
+.writeup-prose img.zoomable { cursor: zoom-in; }
