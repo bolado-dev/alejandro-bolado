@@ -211,6 +211,53 @@ html.lenis { height: auto; }
 .writeup-prose a:hover { text-decoration-color: var(--foreground); }
 .writeup-prose strong { color: var(--foreground); font-weight: 600; }
 
+/* --- Tarjeta "Pwned!" (logro HTB) --- */
+.writeup-prose .pwned-wrap { margin: 2.5rem 0; }
+.writeup-prose a.pwned-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  background: var(--card);
+  color: var(--foreground);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.writeup-prose a.pwned-card:hover {
+  border-color: #9fef00;
+  background: color-mix(in oklab, #9fef00 9%, var(--card));
+  transform: translateY(-1px);
+}
+.pwned-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.7rem;
+  background: #9fef00;
+  color: #0b0f0a;
+}
+.pwned-flag svg { width: 1.2rem; height: 1.2rem; }
+.pwned-body { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.pwned-title { font-weight: 600; font-size: 0.95rem; line-height: 1.2; }
+.pwned-sub { font-size: 0.78rem; color: var(--muted-foreground); }
+.pwned-go {
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-left: auto;
+  color: var(--muted-foreground);
+  transition: color 0.2s, transform 0.2s;
+}
+.writeup-prose a.pwned-card:hover .pwned-go {
+  color: var(--foreground);
+  transform: translate(2px, -2px);
+}
+
 .writeup-prose ul,
 .writeup-prose ol { margin: 1rem 0; padding-left: 1.4rem; }
 .writeup-prose li { margin: 0.35rem 0; color: color-mix(in oklch, var(--foreground), var(--muted-foreground) 25%); }

@@ -134,6 +134,59 @@ function rehypeImageDims() {
   }
 }
 
+/**
+ * Convierte el enlace final "[Pwned!](…/achievement/machine/…)" en una
+ * tarjeta estética (bandera HTB + enlace al logro). Detecta por la URL del
+ * logro, así que funciona sea cual sea el texto del enlace.
+ */
+function rehypePwnedBadge() {
+  const RE = /labs\.hackthebox\.com\/achievement\/machine\//i
+  const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;")
+  const card = (href: string) =>
+    `<a class="pwned-card" href="${esc(href)}" target="_blank" rel="noopener noreferrer">` +
+    `<span class="pwned-flag" aria-hidden="true">` +
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22V15"/></svg>` +
+    `</span>` +
+    `<span class="pwned-body">` +
+    `<span class="pwned-title">Máquina comprometida</span>` +
+    `<span class="pwned-sub">Pwned! · ver logro en Hack The Box</span>` +
+    `</span>` +
+    `<svg class="pwned-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>` +
+    `</a>`
+
+  return (tree: Parameters<typeof visit>[0]) => {
+    visit(tree, "element", (node: unknown, index, parent: unknown) => {
+      const el = node as { tagName: string; properties?: Record<string, unknown> }
+      if (el.tagName !== "a") return
+      const href = String(el.properties?.href ?? "")
+      if (!RE.test(href)) return
+
+      const raw = { type: "raw", value: card(href) }
+      const p = parent as {
+        tagName?: string
+        children: unknown[]
+        properties?: Record<string, unknown>
+      } | null
+
+      // Si el enlace es lo único del párrafo, reemplaza el párrafo entero.
+      if (p && p.tagName === "p") {
+        const meaningful = p.children.filter((c) => {
+          const n = c as { type: string; value?: string }
+          return !(n.type === "text" && !(n.value ?? "").trim())
+        })
+        if (meaningful.length === 1) {
+          p.children = [raw as never]
+          p.properties = { ...(p.properties ?? {}), className: ["pwned-wrap"] }
+          return
+        }
+      }
+      if (p && typeof index === "number") {
+        ;(p.children as unknown[])[index] = raw
+      }
+    })
+  }
+}
+
 let processor: ReturnType<typeof buildProcessor> | null = null
 function buildProcessor() {
   return unified()
@@ -156,6 +209,7 @@ function buildProcessor() {
     .use(rehypeKatex)
     .use(rehypeRelativeImages)
     .use(rehypeImageDims)
+    .use(rehypePwnedBadge)
     .use(rehypeStringify, { allowDangerousHtml: true })
 }
 
