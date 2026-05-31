@@ -6,8 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-display);
-    --font-display: var(--font-display);
+    --font-heading: var(--font-sans);
     --font-sans: var(--font-sans);
     --font-mono: var(--font-mono);
     --color-sidebar-ring: var(--sidebar-ring);
@@ -166,11 +165,6 @@
 
 ::view-transition-old(root) { z-index: 999; }
 ::view-transition-new(root) { z-index: 1; }
-
-/* --- Display headings (Syne) --- */
-@layer base {
-  h1, h2 { font-family: var(--font-display); }
-}
 
 /* --- Lenis Smooth Scroll --- */
 html.lenis { height: auto; }

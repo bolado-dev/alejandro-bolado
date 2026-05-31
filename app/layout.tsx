@@ -1,5 +1,5 @@
 // app/layout.tsx
-import { Geist, Geist_Mono, Syne } from "next/font/google"
+import { Geist_Mono, Outfit } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { DockComponent } from "@/components/dock"
@@ -15,9 +15,7 @@ export const metadata: Metadata = {
   },
 }
 
-const geistSans = Geist({ subsets: ["latin"], variable: "--font-sans" })
-
-const syne = Syne({ subsets: ["latin"], variable: "--font-display" })
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans" })
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
@@ -33,7 +31,7 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className={cn(geistSans.variable, syne.variable, fontMono.variable)}
+      className={cn(outfit.variable, fontMono.variable)}
     >
       <body
         className={cn("bg-background font-sans text-foreground antialiased")}
