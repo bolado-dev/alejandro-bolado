@@ -1,4 +1,30 @@
-const puppeteer = require("puppeteer")
+// puppeteer no es dependencia del proyecto (engorda los installs con Chrome).
+// Se resuelve desde la instalación local si existe y, si no, desde la global
+// (`pnpm add -g puppeteer` o `npm i -g puppeteer`).
+function loadPuppeteer() {
+  try {
+    return require("puppeteer")
+  } catch {
+    const { execSync } = require("node:child_process")
+    const { createRequire } = require("node:module")
+    const path = require("node:path")
+    for (const cmd of ["pnpm root -g", "npm root -g"]) {
+      try {
+        const root = execSync(cmd, { stdio: ["ignore", "pipe", "ignore"] })
+          .toString()
+          .trim()
+        if (root) return createRequire(path.join(root, "noop.js"))("puppeteer")
+      } catch {
+        /* siguiente gestor */
+      }
+    }
+    throw new Error(
+      "puppeteer no encontrado. Instálalo globalmente: pnpm add -g puppeteer"
+    )
+  }
+}
+
+const puppeteer = loadPuppeteer()
 
 async function captureScreenshot() {
   const browser = await puppeteer.launch({
