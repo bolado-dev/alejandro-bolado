@@ -11,7 +11,10 @@ import {
   ArrowUpRight,
   X,
   SlidersHorizontal,
+  Monitor,
 } from "lucide-react"
+import { SiLinux } from "@icons-pack/react-simple-icons"
+import { WindowsIcon } from "@/components/icons/windows-icon"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
@@ -41,15 +44,10 @@ function diffColor(d: string) {
   }
 }
 
-function osDot(os: string) {
-  switch (os) {
-    case "Linux":
-      return "bg-amber-500"
-    case "Windows":
-      return "bg-sky-500"
-    default:
-      return "bg-muted-foreground"
-  }
+function OsIcon({ os, className }: { os: string; className?: string }) {
+  if (os === "Linux") return <SiLinux className={className} />
+  if (os === "Windows") return <WindowsIcon className={className} />
+  return <Monitor className={className} />
 }
 
 type Estado = "Todas" | "Hechas" | "Pendientes"
@@ -330,7 +328,7 @@ function MachineCard({ m }: { m: Machine }) {
 
       <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px]">
         <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-          <span className={cn("h-1.5 w-1.5 rounded-full", osDot(m.os))} />
+          <OsIcon os={m.os} className="h-3.5 w-3.5" />
           {m.os}
         </span>
         <span className={cn("font-medium", diffColor(m.difficulty))}>
