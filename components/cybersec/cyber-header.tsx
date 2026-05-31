@@ -25,12 +25,12 @@ export function CyberHeader() {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-4 px-4">
-        <Link href="/cybersec" className="flex items-center gap-2.5">
+        <Link href="/cybersec" className="flex items-center gap-3.5">
           {mounted && (
             <img
               src={theme === "dark" ? "/Logo ICON-02.png" : "/Logo ICON-01.png"}
               alt="Alejandro Bolado"
-              className="h-7 w-auto object-contain"
+              className="h-5 w-auto object-contain"
             />
           )}
           <span className="text-sm font-semibold tracking-tight">
