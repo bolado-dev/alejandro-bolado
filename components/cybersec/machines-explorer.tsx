@@ -303,7 +303,7 @@ function MachineCard({ m }: { m: Machine }) {
 
       <div className="flex items-start justify-between gap-2">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-muted">
+          <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border bg-muted">
             {m.image ? (
               <Image
                 src={m.image}

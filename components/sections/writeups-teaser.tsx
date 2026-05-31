@@ -90,7 +90,7 @@ export async function WriteupsTeaser() {
                 i < latest.length - 1 && "border-b"
               )}
             >
-              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg border bg-muted">
+              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border bg-muted">
                 {w.image ? (
                   <Image
                     src={w.image}

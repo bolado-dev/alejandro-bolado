@@ -112,7 +112,7 @@ export default async function WriteupPage({
           <header className="mb-10 border-b pb-8">
             <div className="mb-5 flex items-center gap-4">
               {writeup.image && (
-                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-muted">
+                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border bg-muted">
                   <Image
                     src={writeup.image}
                     alt={writeup.title}
@@ -185,7 +185,7 @@ export default async function WriteupPage({
                           alt={r.title}
                           width={28}
                           height={28}
-                          className="h-7 w-7 flex-shrink-0 rounded-md border object-cover"
+                          className="h-7 w-7 flex-shrink-0 rounded-full border object-cover"
                         />
                       )}
                       <span className="truncate text-[13px] font-medium">

@@ -114,7 +114,7 @@ export function WriteupsExplorer({
               href={`/cybersec/writeups/${w.slug}`}
               className="group flex h-full gap-4 rounded-xl border bg-card p-4 transition-colors hover:bg-secondary"
             >
-              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-muted">
+              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border bg-muted">
                 {w.image ? (
                   <Image
                     src={w.image}
