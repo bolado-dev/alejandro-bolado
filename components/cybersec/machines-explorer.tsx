@@ -10,13 +10,13 @@ import {
   ExternalLink,
   ArrowUpRight,
   X,
-  SlidersHorizontal,
   Monitor,
 } from "lucide-react"
 import { SiLinux } from "@icons-pack/react-simple-icons"
 import { WindowsIcon } from "@/components/icons/windows-icon"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
+import { FilterDropdown } from "@/components/cybersec/filter-dropdown"
 import { cn } from "@/lib/utils"
 import type { Machine, MachineStats } from "@/lib/machines"
 
@@ -102,6 +102,7 @@ export function MachinesExplorer({
     () => ["Todas", ...stats.byDifficulty.map((d) => d.label)],
     [stats.byDifficulty]
   )
+  const certOptions = React.useMemo(() => ["Todas", ...stats.certs], [stats.certs])
 
   const filtered = React.useMemo(() => {
     const terms = normalize(deferredQuery.trim()).split(/\s+/).filter(Boolean)
@@ -207,36 +208,26 @@ export function MachinesExplorer({
           )}
         </div>
 
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-            <FilterGroup
-              options={["Todas", "Hechas", "Pendientes"]}
-              value={estado}
-              onChange={(v) => setEstado(v as Estado)}
-            />
-            <FilterGroup options={osOptions} value={os} onChange={setOs} />
-            <FilterGroup
-              options={diffOptions}
-              value={difficulty}
-              onChange={setDifficulty}
-            />
-          </div>
-
-          <div className="flex items-center gap-2">
-            <SlidersHorizontal className="h-3.5 w-3.5 text-muted-foreground" />
-            <select
-              value={cert}
-              onChange={(e) => setCert(e.target.value)}
-              className="h-9 rounded-full border bg-background px-3 text-xs text-muted-foreground outline-none transition-colors hover:text-foreground focus:text-foreground"
-            >
-              <option value="Todas">Todas las certificaciones</option>
-              {stats.certs.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <FilterDropdown
+            label="Estado"
+            options={["Todas", "Hechas", "Pendientes"]}
+            value={estado}
+            onChange={(v) => setEstado(v as Estado)}
+          />
+          <FilterDropdown label="OS" options={osOptions} value={os} onChange={setOs} />
+          <FilterDropdown
+            label="Dificultad"
+            options={diffOptions}
+            value={difficulty}
+            onChange={setDifficulty}
+          />
+          <FilterDropdown
+            label="Cert"
+            options={certOptions}
+            value={cert}
+            onChange={setCert}
+          />
         </div>
       </div>
 
@@ -401,31 +392,3 @@ function StatusPill({ done }: { done: boolean }) {
   )
 }
 
-function FilterGroup({
-  options,
-  value,
-  onChange,
-}: {
-  options: string[]
-  value: string
-  onChange: (v: string) => void
-}) {
-  return (
-    <div className="flex flex-wrap gap-1.5">
-      {options.map((opt) => (
-        <button
-          key={opt}
-          onClick={() => onChange(opt)}
-          className={cn(
-            "rounded-full border px-3 py-1 text-xs transition-colors",
-            value === opt
-              ? "border-foreground bg-foreground text-background"
-              : "border-border text-muted-foreground hover:bg-secondary"
-          )}
-        >
-          {opt}
-        </button>
-      ))}
-    </div>
-  )
-}
