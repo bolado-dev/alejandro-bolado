@@ -1,7 +1,6 @@
 ---
 title: Shoppy | Linux
 published: 2025-10-19
-image: "/writeups/shoppy/logo.png"
 tags: [Easy, Linux, ]
 category: HackTheBox
 ---

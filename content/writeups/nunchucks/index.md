@@ -1,7 +1,6 @@
 ---
 title: Nunchucks | Linux
 published: 2025-03-01
-image: "/writeups/nunchucks/logo.png"
 tags: [Easy, Linux, SSTI, AppArmor, eJPT, eWPT]
 category: HackTheBox
 ---

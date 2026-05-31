@@ -1,7 +1,6 @@
 ---
 title: Postman | Linux
 published: 2025-08-11
-image: "/writeups/postman/logo.png"
 tags: [Easy, Linux, Information Leakage, PFsense, Abusing RRD Graphs, RCE, Evasion Techniques, eWPT, eWPTXv2, OSWE]
 category: HackTheBox
 ---

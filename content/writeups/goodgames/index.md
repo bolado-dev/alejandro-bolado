@@ -1,7 +1,6 @@
 ---
 title: GoodGames | Linux
 published: 2025-03-02
-image: "/writeups/goodgames/logo.png"
 tags: [Easy, Linux, SQLi, Hash Cracking, Password Reuse, SSTI, Docker Breakout, eJPT, eWPT, eCPPTv3, OSCP]
 category: HackTheBox
 ---

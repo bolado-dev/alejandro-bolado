@@ -1,7 +1,6 @@
 ---
 title: Blocky | Linux
 published: 2025-09-16
-image: "/writeups/blocky/logo.png"
 tags: [Easy, Linux, Wordpress Enumeration, Information Leakage, Analyzing a jar file, Abusing Sudoers Privilege, eJPT]
 category: HackTheBox
 ---

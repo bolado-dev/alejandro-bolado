@@ -1,7 +1,6 @@
 ---
 title: Horizontall | Linux
 published: 2025-02-26
-image: "/writeups/horizontall/logo.png"
 tags: [Easy, Linux, Information Leakage, Strapi CMS, Laravel, eJPT, eWPT]
 category: HackTheBox
 ---

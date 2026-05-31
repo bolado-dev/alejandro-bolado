@@ -1,7 +1,6 @@
 ---
 title: Bounty | Windows
 published: 2025-08-18
-image: "/writeups/bounty/logo.png"
 tags: [Easy, Windows, IIS Enum, IIS Exploitation, Abusing SeImpersonatePrivilege, Juicy Potato, eWPT, OSWE, OSCP]
 category: HackTheBox
 ---

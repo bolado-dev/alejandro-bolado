@@ -1,7 +1,6 @@
 ---
 title: Driver | Windows
 published: 2025-03-10
-image: "/writeups/driver/logo.png"
 tags: [Easy, Windows, Password Guessing, SCF Malicious File PrintNightmare, OSCP, eJPT]
 category: HackTheBox
 ---

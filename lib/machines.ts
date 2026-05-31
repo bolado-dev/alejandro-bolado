@@ -1,6 +1,23 @@
 import "server-only"
+import { promises as fs } from "node:fs"
+import path from "node:path"
 import data from "@/content/machines.json"
 import { getWriteupSlugs } from "@/lib/writeups"
+
+const IMAGES_DIR = path.join(process.cwd(), "public", "machines")
+
+async function getImageSlugs(): Promise<Set<string>> {
+  try {
+    const files = await fs.readdir(IMAGES_DIR)
+    return new Set(
+      files
+        .filter((f) => f.toLowerCase().endsWith(".png"))
+        .map((f) => f.slice(0, -4))
+    )
+  } catch {
+    return new Set()
+  }
+}
 
 export interface Machine {
   slug: string
@@ -12,6 +29,8 @@ export interface Machine {
   techniques: string[]
   certs: string[]
   video: string | null
+  /** Avatar oficial de HTB, si está descargado en public/machines/. */
+  image: string | null
   /** Resuelta por mí: existe un writeup con el mismo slug. */
   done: boolean
   /** Ruta a mi writeup, sólo si done. */
@@ -28,12 +47,16 @@ export interface MachineStats {
   techniqueCount: number
 }
 
-type RawMachine = Omit<Machine, "done" | "writeup">
+type RawMachine = Omit<Machine, "done" | "writeup" | "image">
 
 export async function getMachines(): Promise<Machine[]> {
-  const writeupSlugs = new Set(await getWriteupSlugs())
+  const [writeupSlugs, imageSlugs] = await Promise.all([
+    getWriteupSlugs().then((s) => new Set(s)),
+    getImageSlugs(),
+  ])
   return (data.machines as RawMachine[]).map((m) => ({
     ...m,
+    image: imageSlugs.has(m.slug) ? `/machines/${m.slug}.png` : null,
     done: writeupSlugs.has(m.slug),
     writeup: writeupSlugs.has(m.slug) ? `/cybersec/writeups/${m.slug}` : null,
   }))

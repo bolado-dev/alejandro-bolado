@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import {
   Search,
   Check,
@@ -301,11 +302,28 @@ function MachineCard({ m }: { m: Machine }) {
       )}
 
       <div className="flex items-start justify-between gap-2">
-        <div className="min-w-0">
-          <h3 className="truncate text-[15px] font-medium">{m.name}</h3>
-          <p className="mt-0.5 font-mono text-[11px] text-muted-foreground">
-            {m.ip || "—"}
-          </p>
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-muted">
+            {m.image ? (
+              <Image
+                src={m.image}
+                alt={m.name}
+                width={44}
+                height={44}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <span className="text-base font-semibold text-muted-foreground">
+                {m.name.charAt(0)}
+              </span>
+            )}
+          </span>
+          <div className="min-w-0">
+            <h3 className="truncate text-[15px] font-medium">{m.name}</h3>
+            <p className="mt-0.5 font-mono text-[11px] text-muted-foreground">
+              {m.ip || "—"}
+            </p>
+          </div>
         </div>
         <StatusPill done={m.done} />
       </div>

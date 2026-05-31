@@ -1,7 +1,6 @@
 ---
 title: Backdoor | Linux
 published: 2025-08-09
-image: "/writeups/backdoor/logo.png"
 tags: [Easy, WordPress, LFI, LFI to RCE, Gdbserver, Abusing Screen, OSCP, eWPT, OSWE, eWPTXv2]
 category: HackTheBox
 ---

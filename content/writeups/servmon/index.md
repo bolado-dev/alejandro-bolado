@@ -1,7 +1,6 @@
 ---
 title: ServMon | Windows
 published: 2025-08-11
-image: "/writeups/servmon/logo.png"
 tags: [Easy, Windows, NVMS-1000, LFI, Directory Traversal, Port Forwarding, NSClient++ Exploitation, eWPT, eWPTXv2, OSWE]
 category: HackTheBox
 ---

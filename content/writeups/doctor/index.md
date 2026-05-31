@@ -1,7 +1,6 @@
 ---
 title: Doctor | Linux
 published: 2025-09-06
-image: "/writeups/doctor/logo.png"
 tags: [Easy, Linux, SSTI, RCE, Abusing adm group, Splunk Exploitation, eWPT, eWPTXv2, OSWE]
 category: HackTheBox
 ---

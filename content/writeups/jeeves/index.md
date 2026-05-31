@@ -1,7 +1,6 @@
 ---
 title: Jeeves | Windows
 published: 2025-10-25
-image: "/writeups/jeeves/logo.png"
 tags: [Medium, Windows, Jenkins Exploitation, JuicyPotato, SeImpersonatePrivilege, Breaking KeePass, Alternate Data Streams, OSCP, eJPT, eWPT,eCPPTv3]
 category: HackTheBox
 ---

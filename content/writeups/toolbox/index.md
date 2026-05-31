@@ -1,7 +1,6 @@
 ---
 title: Toolbox | Windows
 published: 2025-03-11
-image: "/writeups/toolbox/logo.png"
 tags: [Easy, Windows, PostgreSQL Injection (RCE), Abusing boot2docker, Pivoting, OSCP, eWPT]
 category: HackTheBox
 ---

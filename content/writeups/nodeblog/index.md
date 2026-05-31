@@ -1,7 +1,6 @@
 ---
 title: NodeBlog | Linux
 published: 2025-02-28
-image: "/writeups/nodeblog/logo.png"
 tags: [Easy, Linux, NoSQLi, XXE, Deserialization Attack, MongoDB Enum, eJPT, eWPT]
 category: HackTheBox
 ---

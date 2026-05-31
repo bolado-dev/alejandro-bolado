@@ -1,7 +1,6 @@
 ---
 title: Active | Windows
 published: 2025-09-06
-image: "/writeups/active/logo.png"
 tags: [Easy, Windows, SMB Enum, Abusing GPP Passwords, gpp-decrypt, Kerberoastin Attack, GetUserSPNs.py, OSCP, OSEP, eCPPTv3, Active Directory]
 category: HackTheBox
 ---

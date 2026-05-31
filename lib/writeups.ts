@@ -1,10 +1,22 @@
 import "server-only"
-import { promises as fs } from "node:fs"
+import { promises as fs, existsSync } from "node:fs"
 import path from "node:path"
 import matter from "gray-matter"
 import { renderMarkdown, extractHeadings, readingTime, type Heading } from "@/lib/markdown"
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "writeups")
+const MACHINE_IMG_DIR = path.join(process.cwd(), "public", "machines")
+
+/**
+ * El logo de cada writeup es el avatar oficial de HTB de la máquina con el
+ * mismo slug (descargado en public/machines/ con `pnpm sync:machine-images`).
+ * Así no hay que mantener un logo.png por writeup.
+ */
+function avatarFor(slug: string): string | null {
+  return existsSync(path.join(MACHINE_IMG_DIR, `${slug}.png`))
+    ? `/machines/${slug}.png`
+    : null
+}
 
 export interface WriteupMeta {
   slug: string
@@ -50,7 +62,7 @@ async function parseFile(slug: string): Promise<{
     category: String(fm.category ?? "General"),
     difficulty: deriveDifficulty(tags),
     tags,
-    image: fm.image ? String(fm.image) : null,
+    image: avatarFor(slug) ?? (fm.image ? String(fm.image) : null),
     description: String(fm.description ?? ""),
     readingMinutes: readingTime(data.content),
   }

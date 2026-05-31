@@ -1,7 +1,6 @@
 ---
 title: Pandora | Linux
 published: 2025-08-13
-image: "/writeups/pandora/logo.png"
 tags: [Easy, Linux, SNMP, Information Leakage, Port Forwarding, SQLi, RCE, CVE-2019-20224, PandoraFMS, PATH Hijacking, OSCP, eWPT]
 category: HackTheBox
 ---

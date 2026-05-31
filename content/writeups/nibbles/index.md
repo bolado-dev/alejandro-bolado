@@ -1,7 +1,6 @@
 ---
 title: Nibbles | Linux
 published: 2025-09-25
-image: "/writeups/nibbles/logo.png"
 tags: [Easy, Linux, Abusing Nibbleblog, Abusing Sudoers, eJPT]
 category: HackTheBox
 ---

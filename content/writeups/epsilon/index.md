@@ -1,7 +1,6 @@
 ---
 title: Epsilon | Linux
 published: 2025-10-22
-image: "/writeups/epsilon/logo.png"
 tags: [Medium, Linux, Git Source Leak Exploit, AWS Enum, Lambda Function Enum, Authentication Bypass, Abusing JWT, SSTI, Tar Symlink Exploitation, eWPT, eWPTXv2, OSCP, OSWE]
 category: HackTheBox
 ---

@@ -1,7 +1,6 @@
 ---
 title: Buff | Windows
 published: 2025-08-12
-image: "/writeups/buff/logo.png"
 tags: [Easy, Windows, RCE, Buffer Overflow, Python Scripting, OSCP, eCPPTv3]
 category: HackTheBox
 ---

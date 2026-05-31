@@ -1,7 +1,6 @@
 ---
 title: Validation | Linux
 published: 2025-02-24
-image: "/writeups/validation/logo.png"
 tags: [Easy, Linux, SQLi, RCE, Information Leakage, eJPT, eWPT]
 category: HackTheBox
 ---

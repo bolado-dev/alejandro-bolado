@@ -10,7 +10,8 @@
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
-    "sync:machines": "node scripts/sync-machines.mjs"
+    "sync:machines": "node scripts/sync-machines.mjs",
+    "sync:machine-images": "node scripts/sync-machine-images.mjs"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.13.0",

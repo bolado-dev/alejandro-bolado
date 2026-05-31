@@ -1,7 +1,6 @@
 ---
 title: SteamCoud | Linux
 published: 2025-03-13
-image: "/writeups/steamcloud/logo.png"
 tags: [Easy, Linux, Kubernetes, YAML POD RCE, eWPTXv2, OSWE]
 category: HackTheBox
 ---
