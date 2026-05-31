@@ -1,11 +1,16 @@
 import Link from "next/link"
-import { FileText, BookOpen, ArrowUpRight } from "lucide-react"
+import { FileText, BookOpen, Server, ArrowUpRight } from "lucide-react"
 import { getAllWriteups } from "@/lib/writeups"
 import { getManualNav } from "@/lib/manual"
+import { getMachines, getMachineStats } from "@/lib/machines"
 
 export default async function CybersecLanding() {
-  const [writeups, manual] = await Promise.all([getAllWriteups(), getManualNav()])
-  const machines = writeups.filter((w) => w.category === "HackTheBox").length
+  const [writeups, manual, machineList] = await Promise.all([
+    getAllWriteups(),
+    getManualNav(),
+    getMachines(),
+  ])
+  const machineStats = getMachineStats(machineList)
   const manualPages = manual.reduce((acc, s) => acc + s.pages.length, 0)
 
   return (
@@ -25,11 +30,22 @@ export default async function CybersecLanding() {
 
         <div className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-3">
           <Stat value={writeups.length} label="Writeups" />
-          <Stat value={machines} label="Máquinas HTB" />
+          <Stat
+            value={`${machineStats.done}/${machineStats.total}`}
+            label="Máquinas resueltas"
+          />
           <Stat value={manualPages} label="Páginas de manual" />
         </div>
 
-        <div className="mt-14 grid w-full gap-4 text-left sm:grid-cols-2">
+        <div className="mt-14 grid w-full gap-4 text-left sm:grid-cols-2 lg:grid-cols-3">
+          <LandingCard
+            href="/cybersec/maquinas"
+            icon={<Server className="h-5 w-5" />}
+            eyebrow="Roadmap"
+            title="Máquinas"
+            desc="El listado completo: resueltas y pendientes, con buscador por técnica, OS, dificultad y certificación."
+            meta={`${machineStats.done}/${machineStats.total} resueltas`}
+          />
           <LandingCard
             href="/cybersec/writeups"
             icon={<FileText className="h-5 w-5" />}
@@ -52,7 +68,7 @@ export default async function CybersecLanding() {
   )
 }
 
-function Stat({ value, label }: { value: number; label: string }) {
+function Stat({ value, label }: { value: number | string; label: string }) {
   return (
     <div className="flex items-baseline gap-2">
       <span className="text-2xl font-medium">{value}</span>

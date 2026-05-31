@@ -3,16 +3,22 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import { createPortal } from "react-dom"
-import { Search, FileText, BookOpen, CornerDownLeft } from "lucide-react"
+import { Search, FileText, BookOpen, Server, CornerDownLeft } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export interface PaletteItem {
   title: string
   href: string
-  kind: "writeup" | "manual"
+  kind: "writeup" | "manual" | "machine"
   sub: string
   keywords: string
 }
+
+const KIND_ICON = {
+  writeup: FileText,
+  manual: BookOpen,
+  machine: Server,
+} as const
 
 export function CommandPalette({ items }: { items: PaletteItem[] }) {
   const router = useRouter()
@@ -104,7 +110,7 @@ export function CommandPalette({ items }: { items: PaletteItem[] }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={onKeyDown}
-            placeholder="Buscar writeups y manual…"
+            placeholder="Buscar máquinas, writeups y manual…"
             className="h-12 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
           />
           <kbd className="rounded border px-1.5 py-0.5 text-[10px] text-muted-foreground">
@@ -129,11 +135,9 @@ export function CommandPalette({ items }: { items: PaletteItem[] }) {
               )}
             >
               <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md border bg-background text-muted-foreground">
-                {it.kind === "writeup" ? (
-                  <FileText className="h-3.5 w-3.5" />
-                ) : (
-                  <BookOpen className="h-3.5 w-3.5" />
-                )}
+                {React.createElement(KIND_ICON[it.kind], {
+                  className: "h-3.5 w-3.5",
+                })}
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-medium">

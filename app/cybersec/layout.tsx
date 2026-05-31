@@ -6,6 +6,7 @@ import {
 } from "@/components/cybersec/command-palette"
 import { getAllWriteups } from "@/lib/writeups"
 import { getManualNav } from "@/lib/manual"
+import { getMachines } from "@/lib/machines"
 
 export const metadata: Metadata = {
   title: {
@@ -21,9 +22,27 @@ export default async function CybersecLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [writeups, manual] = await Promise.all([getAllWriteups(), getManualNav()])
+  const [writeups, manual, machines] = await Promise.all([
+    getAllWriteups(),
+    getManualNav(),
+    getMachines(),
+  ])
 
   const items: PaletteItem[] = [
+    {
+      title: "Máquinas",
+      href: "/cybersec/maquinas",
+      kind: "machine" as const,
+      sub: "Roadmap · resueltas y pendientes",
+      keywords: "htb hack the box listado roadmap progreso",
+    },
+    ...machines.map((m) => ({
+      title: m.name,
+      href: m.done ? (m.writeup as string) : "/cybersec/maquinas",
+      kind: "machine" as const,
+      sub: `${m.os} · ${m.difficulty} · ${m.done ? "Hecha" : "Pendiente"}`,
+      keywords: [m.ip, ...m.techniques, ...m.certs].join(" "),
+    })),
     ...writeups.map((w) => ({
       title: w.title,
       href: `/cybersec/writeups/${w.slug}`,

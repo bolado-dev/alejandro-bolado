@@ -1,9 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { ArrowRight, ArrowUpRight, Server } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { getAllWriteups } from "@/lib/writeups"
+import { getMachines, getMachineStats } from "@/lib/machines"
 
 const DIFF_ORDER = ["Easy", "Medium", "Hard", "Insane"]
 
@@ -23,9 +24,12 @@ function diffColor(d: string | null) {
 }
 
 export async function WriteupsTeaser() {
-  const all = await getAllWriteups()
+  const [all, machines] = await Promise.all([getAllWriteups(), getMachines()])
   const latest = all.slice(0, 4)
   if (latest.length === 0) return null
+
+  const stats = getMachineStats(machines)
+  const pct = Math.round((stats.done / stats.total) * 100)
 
   return (
     <section id="writeups" className="border-b px-4 py-20">
@@ -48,6 +52,33 @@ export async function WriteupsTeaser() {
           técnico estilo HackTricks. Hacking ético, explotación y escalada de
           privilegios.
         </p>
+
+        <Link
+          href="/cybersec/maquinas"
+          className="group mb-10 flex items-center gap-5 rounded-xl border bg-card p-5 transition-colors hover:bg-secondary"
+        >
+          <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg border bg-background">
+            <Server className="h-5 w-5" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="text-[10px] tracking-widest text-muted-foreground uppercase">
+                Roadmap de máquinas
+              </span>
+              <span className="text-[13px] tabular-nums text-muted-foreground">
+                <span className="font-medium text-foreground">{stats.done}</span>
+                /{stats.total} · {pct}%
+              </span>
+            </div>
+            <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-muted">
+              <div
+                className="h-full rounded-full bg-foreground"
+                style={{ width: `${pct}%` }}
+              />
+            </div>
+          </div>
+          <ArrowUpRight className="h-4 w-4 flex-shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+        </Link>
 
         <div className="flex flex-col">
           {latest.map((w, i) => (
