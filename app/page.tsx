@@ -4,6 +4,7 @@ import { Grain } from "@/components/grain"
 import {
   About,
   Skills,
+  Projects,
   Experience,
   Education,
   Contact,
@@ -18,6 +19,7 @@ export default function Page() {
       <About />
       <WriteupsTeaser />
       <Skills />
+      <Projects />
       <Experience />
       <Education />
       <Contact />

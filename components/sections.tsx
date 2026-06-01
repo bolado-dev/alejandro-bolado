@@ -3,6 +3,7 @@
 import { useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Link from "next/link"
 import {
   ArrowUpRight,
   Globe,
@@ -543,6 +544,52 @@ export function Education() {
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── PROJECTS ─────────────────────────────────────────────────────────────────
+
+export function Projects() {
+  return (
+    <section id="projects" className="border-b px-4 py-28 md:py-32">
+      <div className="container mx-auto max-w-4xl">
+        <SectionLabel>Proyectos</SectionLabel>
+        <Reveal>
+          <Link
+            href="https://github.com/bolado-dev/BoladoBSPWM"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-start gap-5 rounded-2xl border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-sm"
+          >
+            <span className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-background transition-colors group-hover:border-foreground/20">
+              <Terminal className="h-5 w-5" />
+            </span>
+            <div className="flex-1">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[11px] uppercase tracking-widest text-muted-foreground">
+                    Entorno / Dotfiles
+                  </p>
+                  <h3 className="mt-1 text-xl font-medium tracking-tight">
+                    BoladoBSPWM
+                  </h3>
+                </div>
+                <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+              </div>
+              <p className="mt-3 text-[15px] leading-[1.7] text-muted-foreground">
+                Setup personalizado de escritorio sobre BSPWM orientado a
+                hacking y desarrollo. Incluye Polybar, Rofi, Kitty, Picom y
+                scripts propios para un entorno enfocado en ciberseguridad.
+              </p>
+              <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+                <GithubIcon className="h-4 w-4" />
+                <span>bolado-dev/BoladoBSPWM</span>
+              </div>
+            </div>
+          </Link>
+        </Reveal>
       </div>
     </section>
   )

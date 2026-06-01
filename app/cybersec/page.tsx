@@ -1,8 +1,9 @@
 import Link from "next/link"
-import { FileText, BookOpen, Server, ArrowUpRight } from "lucide-react"
+import { FileText, BookOpen, Server, ArrowUpRight, Terminal } from "lucide-react"
 import { getAllWriteups } from "@/lib/writeups"
 import { getManualNav } from "@/lib/manual"
 import { getMachines, getMachineStats } from "@/lib/machines"
+import { GithubIcon } from "@/components/icons/github-icon"
 
 export default async function CybersecLanding() {
   const [writeups, manual, machineList] = await Promise.all([
@@ -63,6 +64,33 @@ export default async function CybersecLanding() {
             meta={`${manual.length} ${manual.length === 1 ? "sección" : "secciones"}`}
           />
         </div>
+
+        <Link
+          href="https://github.com/bolado-dev/BoladoBSPWM"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-6 flex w-full items-center justify-between gap-6 rounded-xl border border-dashed bg-card px-6 py-5 text-left transition-colors hover:bg-secondary"
+        >
+          <div className="flex items-center gap-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border bg-background">
+              <Terminal className="h-5 w-5" />
+            </span>
+            <div>
+              <p className="text-[11px] tracking-widest text-muted-foreground uppercase">
+                Mi entorno de hacking
+              </p>
+              <p className="mt-0.5 font-medium">BoladoBSPWM</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Setup personalizado de escritorio sobre BSPWM: Polybar, Rofi, Kitty y scripts propios para un entorno orientado a ciberseguridad.
+              </p>
+            </div>
+          </div>
+          <div className="flex shrink-0 items-center gap-2 text-sm text-muted-foreground">
+            <GithubIcon className="h-4 w-4" />
+            <span className="hidden sm:inline">bolado-dev/BoladoBSPWM</span>
+            <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+          </div>
+        </Link>
       </div>
     </main>
   )
