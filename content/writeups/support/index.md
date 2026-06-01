@@ -1,7 +1,8 @@
 ---
-title: Support | Windows
+title: Support
+os: Windows
 published: 2025-10-19
-tags: [Easy, Windows, SMB Enum, DNSpy, Information Leakage, Abusing Remote Management Users group, SharpHound + BloodHound Enumeration, rbcd Attack]
+tags: [Easy, SMB Enum, DNSpy, Information Leakage, Abusing Remote Management Users group, SharpHound + BloodHound Enumeration, rbcd Attack]
 category: HackTheBox
 ---
 

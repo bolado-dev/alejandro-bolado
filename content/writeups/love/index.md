@@ -1,7 +1,8 @@
 ---
-title: Love | Windows
+title: Love
+os: Windows
 published: 2025-02-27
-tags: [Easy, Windows, SSRF, msiexec/msi file, eJPT, eWPT, OSCP]
+tags: [Easy, SSRF, msiexec/msi file, eJPT, eWPT, OSCP]
 category: HackTheBox
 ---
 

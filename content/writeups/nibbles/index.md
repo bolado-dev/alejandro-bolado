@@ -1,7 +1,8 @@
 ---
-title: Nibbles | Linux
+title: Nibbles
+os: Linux
 published: 2025-09-25
-tags: [Easy, Linux, Abusing Nibbleblog, Abusing Sudoers, eJPT]
+tags: [Easy, Abusing Nibbleblog, Abusing Sudoers, eJPT]
 category: HackTheBox
 ---
 

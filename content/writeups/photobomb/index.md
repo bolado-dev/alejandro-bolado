@@ -1,7 +1,8 @@
 ---
-title: Photobomb | Linux
+title: Photobomb
+os: Linux
 published: 2026-05-31
-tags: [Easy, Linux, SNMP, Information Leakage, Port Forwarding, SQLi, RCE, CVE-2019-20224, PandoraFMS, PATH Hijacking, OSCP, eWPT]
+tags: [Easy, SNMP, Information Leakage, Port Forwarding, SQLi, RCE, CVE-2019-20224, PandoraFMS, PATH Hijacking, OSCP, eWPT]
 category: HackTheBox
 ---
 

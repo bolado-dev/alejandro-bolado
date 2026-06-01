@@ -1,7 +1,8 @@
 ---
-title: Driver | Windows
+title: Driver
+os: Windows
 published: 2025-03-10
-tags: [Easy, Windows, Password Guessing, SCF Malicious File PrintNightmare, OSCP, eJPT]
+tags: [Easy, Password Guessing, SCF Malicious File PrintNightmare, OSCP, eJPT]
 category: HackTheBox
 ---
 

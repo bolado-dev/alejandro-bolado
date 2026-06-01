@@ -1,7 +1,8 @@
 ---
-title: Active | Windows
+title: Active
+os: Windows
 published: 2025-09-06
-tags: [Easy, Windows, SMB Enum, Abusing GPP Passwords, gpp-decrypt, Kerberoastin Attack, GetUserSPNs.py, OSCP, OSEP, eCPPTv3, Active Directory]
+tags: [Easy, SMB Enum, Abusing GPP Passwords, gpp-decrypt, Kerberoastin Attack, GetUserSPNs.py, OSCP, OSEP, eCPPTv3, Active Directory]
 category: HackTheBox
 ---
 

@@ -1,7 +1,8 @@
 ---
-title: Trick | Linux
+title: Trick
+os: Linux
 published: 2025-10-04
-tags: [Easy, Linux, DNS Enum, Domain Zone Transfer Attack (AXFR), SQLi, LFI, LFI to RCE, Subdomain Discovery, Abusing Sudoers, eWPT, eWPTXv2, OSWE, OSCP]
+tags: [Easy, DNS Enum, Domain Zone Transfer Attack (AXFR), SQLi, LFI, LFI to RCE, Subdomain Discovery, Abusing Sudoers, eWPT, eWPTXv2, OSWE, OSCP]
 category: HackTheBox
 ---
 

@@ -1,7 +1,8 @@
 ---
-title: Postman | Linux
+title: Postman
+os: Linux
 published: 2025-08-11
-tags: [Easy, Linux, Information Leakage, PFsense, Abusing RRD Graphs, RCE, Evasion Techniques, eWPT, eWPTXv2, OSWE]
+tags: [Easy, Information Leakage, PFsense, Abusing RRD Graphs, RCE, Evasion Techniques, eWPT, eWPTXv2, OSWE]
 category: HackTheBox
 ---
 

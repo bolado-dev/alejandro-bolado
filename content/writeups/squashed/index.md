@@ -1,7 +1,8 @@
 ---
-title: Squashed | Linux
+title: Squashed
+os: Linux
 published: 2025-10-08
-tags: [Easy, Linux, NFS Enum, Abusing NFS, Web shell, Abusing .Xauthority, Pentesting X11, OSCP]
+tags: [Easy, NFS Enum, Abusing NFS, Web shell, Abusing .Xauthority, Pentesting X11, OSCP]
 category: HackTheBox
 ---
 

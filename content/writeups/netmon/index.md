@@ -1,7 +1,8 @@
 ---
-title: Netmon | Windows
+title: Netmon
+os: Windows
 published: 2025-09-20
-tags: [Easy, Windows, FTP Enum, Information Leakage, Abusing PRTG Network Monitor, RCE, eJPT, eWPT, OSCP]
+tags: [Easy, FTP Enum, Information Leakage, Abusing PRTG Network Monitor, RCE, eJPT, eWPT, OSCP]
 category: HackTheBox
 ---
 

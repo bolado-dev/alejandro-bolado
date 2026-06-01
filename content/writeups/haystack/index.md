@@ -1,7 +1,8 @@
 ---
-title: Haystack | Linux
+title: Haystack
+os: Linux
 published: 2025-06-10
-tags: [Easy, Linux, ElasticSearch, Information Leakage, Kibana, CVE-2018-17246, Abusing Logstash, eWPT, OSCP, OSWE]
+tags: [Easy, ElasticSearch, Information Leakage, Kibana, CVE-2018-17246, Abusing Logstash, eWPT, OSCP, OSWE]
 category: HackTheBox
 ---
 

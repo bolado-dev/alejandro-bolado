@@ -1,7 +1,8 @@
 ---
-title: Antique | Linux
+title: Antique
+os: Linux
 published: 2025-03-21
-tags: [Easy, SNMP Enum, Netowrk Printer Abuse, CVE-2012-5519, eJPT ]
+tags: [Easy, SNMP Enum, Netowrk Printer Abuse, CVE-2012-5519, eJPT]
 category: HackTheBox
 ---
 

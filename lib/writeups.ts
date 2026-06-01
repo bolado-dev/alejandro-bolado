@@ -79,7 +79,7 @@ async function parseFile(slug: string): Promise<{
     published,
     category: String(fm.category ?? "General"),
     difficulty: deriveDifficulty(tags),
-    os: osFor(slug, title),
+    os: fm.os ? String(fm.os) : osFor(slug, title),
     tags,
     image: avatarFor(slug) ?? (fm.image ? String(fm.image) : null),
     description: String(fm.description ?? ""),

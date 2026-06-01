@@ -1,7 +1,8 @@
 ---
-title: Nunchucks | Linux
+title: Nunchucks
+os: Linux
 published: 2025-03-01
-tags: [Easy, Linux, SSTI, AppArmor, eJPT, eWPT]
+tags: [Easy, SSTI, AppArmor, eJPT, eWPT]
 category: HackTheBox
 ---
 

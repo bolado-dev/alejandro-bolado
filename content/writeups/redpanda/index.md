@@ -1,7 +1,8 @@
 ---
-title: RedPanda | Linux
+title: RedPanda
+os: Linux
 published: 2025-10-06
-tags: [Easy, Linux, SSTI, RCE, XXE, eWPT, eWPTXv2, OSWE, OSCP]
+tags: [Easy, SSTI, RCE, XXE, eWPT, eWPTXv2, OSWE, OSCP]
 category: HackTheBox
 ---
 

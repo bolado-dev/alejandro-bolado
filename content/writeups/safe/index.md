@@ -1,7 +1,8 @@
 ---
-title: Safe | Linux
+title: Safe
+os: Linux
 published: 2025-08-14
-tags: [Easy, Linux, SNMP, Information Leakage, Port Forwarding, SQLi, RCE, CVE-2019-20224, PandoraFMS, PATH Hijacking, OSCP, eWPT]
+tags: [Easy, SNMP, Information Leakage, Port Forwarding, SQLi, RCE, CVE-2019-20224, PandoraFMS, PATH Hijacking, OSCP, eWPT]
 category: HackTheBox
 ---
 

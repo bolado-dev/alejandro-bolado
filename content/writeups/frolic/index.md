@@ -1,7 +1,8 @@
 ---
-title: Frolic | Linux
+title: Frolic
+os: Linux
 published: 2025-09-13
-tags: [Easy, Linux, Web Enum, Information Leakage, Esoteric languages, Cracking Zip Password, PlaySMS Exploitation, RCE, Buffer Overflow, eWPT]
+tags: [Easy, Web Enum, Information Leakage, Esoteric languages, Cracking Zip Password, PlaySMS Exploitation, RCE, Buffer Overflow, eWPT]
 category: HackTheBox
 ---
 

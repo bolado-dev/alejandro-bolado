@@ -1,7 +1,8 @@
 ---
-title: SteamCoud | Linux
+title: SteamCoud
+os: Linux
 published: 2025-03-13
-tags: [Easy, Linux, Kubernetes, YAML POD RCE, eWPTXv2, OSWE]
+tags: [Easy, Kubernetes, YAML POD RCE, eWPTXv2, OSWE]
 category: HackTheBox
 ---
 

@@ -1,7 +1,8 @@
 ---
-title: Horizontall | Linux
+title: Horizontall
+os: Linux
 published: 2025-02-26
-tags: [Easy, Linux, Information Leakage, Strapi CMS, Laravel, eJPT, eWPT]
+tags: [Easy, Information Leakage, Strapi CMS, Laravel, eJPT, eWPT]
 category: HackTheBox
 ---
 

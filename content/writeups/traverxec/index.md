@@ -1,7 +1,8 @@
 ---
-title: Traverxec | Linux
+title: Traverxec
+os: Linux
 published: 2025-06-10
-tags: [Easy, Linux, Nostromo, Exploiting Journalctl, eWPT, OSCP]
+tags: [Easy, Nostromo, Exploiting Journalctl, eWPT, OSCP]
 category: HackTheBox
 ---
 

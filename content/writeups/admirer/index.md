@@ -1,7 +1,8 @@
 ---
-title: Admirer | Linux
+title: Admirer
+os: Linux
 published: 2025-08-15
-tags: [Easy, Linux, Information Leakage, Admirer explotation, Abusing Sudoers Privilege, eWPT, OSWE, OSCP]
+tags: [Easy, Information Leakage, Admirer explotation, Abusing Sudoers Privilege, eWPT, OSWE, OSCP]
 category: HackTheBox
 ---
 

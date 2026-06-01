@@ -1,7 +1,8 @@
 ---
-title: Delivery | Linux
+title: Delivery
+os: Linux
 published: 2025-09-20
-tags: [Easy, Linux, VHOST Enum, MetterMost, Information Leakage, Database Enum, MySQL, Cracking hashes, Hashcat, eJPT, eWPT]
+tags: [Easy, VHOST Enum, MetterMost, Information Leakage, Database Enum, MySQL, Cracking hashes, Hashcat, eJPT, eWPT]
 category: HackTheBox
 ---
 

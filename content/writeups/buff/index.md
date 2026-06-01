@@ -1,7 +1,8 @@
 ---
-title: Buff | Windows
+title: Buff
+os: Windows
 published: 2025-08-12
-tags: [Easy, Windows, RCE, Buffer Overflow, Python Scripting, OSCP, eCPPTv3]
+tags: [Easy, RCE, Buffer Overflow, Python Scripting, OSCP, eCPPTv3]
 category: HackTheBox
 ---
 

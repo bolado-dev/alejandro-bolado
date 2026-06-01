@@ -1,7 +1,8 @@
 ---
-title: Shoppy | Linux
+title: Shoppy
+os: Linux
 published: 2025-10-19
-tags: [Easy, Linux, ]
+tags: [Easy]
 category: HackTheBox
 ---
 

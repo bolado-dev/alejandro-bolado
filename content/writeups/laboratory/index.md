@@ -1,7 +1,8 @@
 ---
-title: Laboratory | Linux
+title: Laboratory
+os: Linux
 published: 2025-09-14
-tags: [Easy, Linux, SSL Certificate Enumeration, Gitlab, Abusing gitlab-rails console, Information Leakage, Abusing SUID Binary, PATH Hijacking, eWPT, eWPTXv2, OSWE, OSCP]
+tags: [Easy, SSL Certificate Enumeration, Gitlab, Abusing gitlab-rails console, Information Leakage, Abusing SUID Binary, PATH Hijacking, eWPT, eWPTXv2, OSWE, OSCP]
 category: HackTheBox
 ---
 

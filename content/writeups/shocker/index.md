@@ -1,7 +1,8 @@
 ---
-title: Shocker | Linux
+title: Shocker
+os: Linux
 published: 2025-03-26
-tags: [Easy, Linux, ShellShock Attack, Abusing Sudoers, Perl, eJTP, eWPT]
+tags: [Easy, ShellShock Attack, Abusing Sudoers, Perl, eJTP, eWPT]
 category: HackTheBox
 ---
 
