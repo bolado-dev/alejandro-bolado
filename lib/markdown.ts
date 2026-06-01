@@ -187,6 +187,116 @@ function rehypePwnedBadge() {
   }
 }
 
+/**
+ * Convierte la sección inicial "Información Básica" (con sus sub-listas
+ * "Técnicas vistas" y "Preparación") en una tarjeta a dos columnas, en vez de
+ * un par de listas sueltas. Conserva los id de los encabezados (puestos antes
+ * por rehype-slug) para que el índice (TOC) siga funcionando.
+ */
+function rehypeInfoBox() {
+  const esc = (s: string) =>
+    s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+
+  type N = {
+    type: string
+    tagName?: string
+    value?: string
+    properties?: Record<string, unknown>
+    children?: N[]
+  }
+  const text = (n: N): string =>
+    n.type === "text" ? n.value ?? "" : (n.children ?? []).map(text).join("")
+  const isWS = (n: N) => n.type === "text" && !(n.value ?? "").trim()
+
+  const TERMINAL =
+    '<polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line>'
+  const AWARD =
+    '<circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>'
+  const CHECK = '<polyline points="20 6 9 17 4 12"></polyline>'
+  const svg = (inner: string, cls?: string) =>
+    `<svg ${cls ? `class="${cls}" ` : ""}viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`
+
+  interface Section {
+    title: string
+    id?: string
+    items: string[]
+  }
+
+  const column = (s: Section) => {
+    const isCert = /prepar|cert/i.test(s.title)
+    const head = `<h3${s.id ? ` id="${esc(s.id)}"` : ""} class="infobox-head">${svg(
+      isCert ? AWARD : TERMINAL
+    )}${esc(s.title)}</h3>`
+    const body = isCert
+      ? `<div class="infobox-certs">${s.items
+          .map((it) => `<span class="infobox-cert">${esc(it)}</span>`)
+          .join("")}</div>`
+      : `<ul class="infobox-tech">${s.items
+          .map(
+            (it) =>
+              `<li><span class="infobox-bullet">${svg(CHECK)}</span><span>${esc(
+                it
+              )}</span></li>`
+          )
+          .join("")}</ul>`
+    return `<div class="infobox-col">${head}${body}</div>`
+  }
+
+  const box = (title: string, id: string | undefined, sections: Section[]) =>
+    `<div class="infobox"><span${id ? ` id="${esc(id)}"` : ""} class="infobox-title">${esc(
+      title
+    )}</span><div class="infobox-grid">${sections.map(column).join("")}</div></div>`
+
+  return (tree: Parameters<typeof visit>[0]) => {
+    const root = tree as unknown as { children: N[] }
+    const kids = root.children
+    const i = kids.findIndex(
+      (n) =>
+        n.type === "element" &&
+        n.tagName === "h2" &&
+        text(n).trim().toLowerCase() === "información básica"
+    )
+    if (i === -1) return
+
+    const h2 = kids[i]
+    const sections: Section[] = []
+    let cur: Section | null = null
+    let j = i + 1
+    for (; j < kids.length; j++) {
+      const n = kids[j]
+      if (isWS(n) || n.type !== "element") continue
+      if (n.tagName === "h2" || n.tagName === "hr") break
+      if (n.tagName === "h3") {
+        cur = { title: text(n).trim(), id: n.properties?.id as string | undefined, items: [] }
+        sections.push(cur)
+      } else if ((n.tagName === "ul" || n.tagName === "ol") && cur) {
+        for (const li of n.children ?? []) {
+          if (li.type === "element" && li.tagName === "li") {
+            cur.items.push(text(li).trim())
+          }
+        }
+      }
+    }
+    if (!sections.length) return
+
+    // Incluye en el reemplazo el separador (***) que sigue a la sección.
+    let end = j
+    let k = j
+    while (k < kids.length && isWS(kids[k])) k++
+    if (kids[k]?.type === "element" && kids[k].tagName === "hr") end = k + 1
+
+    const raw = {
+      type: "raw",
+      value: box(text(h2).trim(), h2.properties?.id as string | undefined, sections),
+    }
+    kids.splice(i, end - i, raw as unknown as N)
+  }
+}
+
 let processor: ReturnType<typeof buildProcessor> | null = null
 function buildProcessor() {
   return unified()
@@ -209,6 +319,7 @@ function buildProcessor() {
     .use(rehypeKatex)
     .use(rehypeRelativeImages)
     .use(rehypeImageDims)
+    .use(rehypeInfoBox)
     .use(rehypePwnedBadge)
     .use(rehypeStringify, { allowDangerousHtml: true })
 }
