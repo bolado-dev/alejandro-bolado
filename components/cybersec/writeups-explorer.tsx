@@ -4,6 +4,7 @@ import * as React from "react"
 import { ArrowUpRight, Clock } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Explorer, ExplorerCard, type ExplorerFilter } from "@/components/cybersec/explorer"
+import { OsIcon } from "@/components/cybersec/os-icon"
 import { cn } from "@/lib/utils"
 import type { WriteupMeta } from "@/lib/writeups"
 
@@ -90,6 +91,12 @@ function WriteupCard({ w }: { w: WriteupMeta }) {
       }
       meta={
         <>
+          {w.os && (
+            <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+              <OsIcon os={w.os} className="h-3.5 w-3.5" />
+              {w.os}
+            </span>
+          )}
           {w.difficulty && (
             <span className={cn("font-medium", diffColor(w.difficulty))}>
               {w.difficulty}

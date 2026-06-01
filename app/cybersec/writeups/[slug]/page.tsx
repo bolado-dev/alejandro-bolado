@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { getWriteup, getWriteupSlugs, getAllWriteups } from "@/lib/writeups"
 import { Toc } from "@/components/cybersec/toc"
 import { TocMobile } from "@/components/cybersec/toc-mobile"
+import { OsIcon } from "@/components/cybersec/os-icon"
 import { Prose } from "@/components/cybersec/prose"
 
 const SITE = "https://alejandrobolado.es"
@@ -133,6 +134,12 @@ export default async function WriteupPage({
             </div>
 
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-muted-foreground">
+              {writeup.os && (
+                <span className="inline-flex items-center gap-1.5">
+                  <OsIcon os={writeup.os} className="h-3.5 w-3.5" />
+                  {writeup.os}
+                </span>
+              )}
               {writeup.difficulty && (
                 <span className={cn("font-medium", diffColor(writeup.difficulty))}>
                   {writeup.difficulty}

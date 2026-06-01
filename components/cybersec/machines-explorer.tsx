@@ -1,11 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { Check, Circle, ExternalLink, ArrowUpRight, Monitor } from "lucide-react"
-import { SiLinux } from "@icons-pack/react-simple-icons"
-import { WindowsIcon } from "@/components/icons/windows-icon"
+import { Check, Circle, ExternalLink, ArrowUpRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Explorer, ExplorerCard, type ExplorerFilter } from "@/components/cybersec/explorer"
+import { OsIcon } from "@/components/cybersec/os-icon"
 import { cn } from "@/lib/utils"
 import type { Machine, MachineStats } from "@/lib/machines"
 
@@ -22,12 +21,6 @@ function diffColor(d: string) {
     default:
       return "text-muted-foreground"
   }
-}
-
-function OsIcon({ os, className }: { os: string; className?: string }) {
-  if (os === "Linux") return <SiLinux className={className} />
-  if (os === "Windows") return <WindowsIcon className={className} />
-  return <Monitor className={className} />
 }
 
 export function MachinesExplorer({

@@ -3,9 +3,25 @@ import { promises as fs, existsSync } from "node:fs"
 import path from "node:path"
 import matter from "gray-matter"
 import { renderMarkdown, extractHeadings, readingTime, type Heading } from "@/lib/markdown"
+import machinesData from "@/content/machines.json"
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "writeups")
 const MACHINE_IMG_DIR = path.join(process.cwd(), "public", "machines")
+
+// OS autoritativo por slug, tomado del listado de máquinas (slug compartido).
+const OS_BY_SLUG: Record<string, string> = Object.fromEntries(
+  (machinesData.machines as { slug: string; os: string }[]).map((m) => [m.slug, m.os])
+)
+
+/** OS del writeup: 1º del listado de máquinas; si no, del título "Nombre | OS". */
+function osFor(slug: string, title: string): string | null {
+  if (OS_BY_SLUG[slug]) return OS_BY_SLUG[slug]
+  const fromTitle = title.split("|").pop()?.trim()
+  if (fromTitle && /^(linux|windows)$/i.test(fromTitle)) {
+    return fromTitle[0].toUpperCase() + fromTitle.slice(1).toLowerCase()
+  }
+  return null
+}
 
 /**
  * El logo de cada writeup es el avatar oficial de HTB de la máquina con el
@@ -24,6 +40,7 @@ export interface WriteupMeta {
   published: string // ISO
   category: string
   difficulty: string | null
+  os: string | null
   tags: string[]
   image: string | null
   description: string
@@ -55,12 +72,14 @@ async function parseFile(slug: string): Promise<{
       ? fm.published.toISOString()
       : new Date(String(fm.published ?? "1970-01-01")).toISOString()
 
+  const title = String(fm.title ?? slug)
   const meta: WriteupMeta = {
     slug,
-    title: String(fm.title ?? slug),
+    title,
     published,
     category: String(fm.category ?? "General"),
     difficulty: deriveDifficulty(tags),
+    os: osFor(slug, title),
     tags,
     image: avatarFor(slug) ?? (fm.image ? String(fm.image) : null),
     description: String(fm.description ?? ""),
