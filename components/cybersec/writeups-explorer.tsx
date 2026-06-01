@@ -2,8 +2,12 @@
 
 import * as React from "react"
 import { ArrowUpRight, Clock } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Explorer, ExplorerCard, type ExplorerFilter } from "@/components/cybersec/explorer"
+import {
+  Explorer,
+  ExplorerCard,
+  TagButton,
+  type ExplorerFilter,
+} from "@/components/cybersec/explorer"
 import { OsIcon } from "@/components/cybersec/os-icon"
 import { cn } from "@/lib/utils"
 import type { WriteupMeta } from "@/lib/writeups"
@@ -72,12 +76,18 @@ export function WriteupsExplorer({
       searchText={(w) =>
         [w.title, w.category, w.difficulty ?? "", ...w.tags].join(" ")
       }
-      renderCard={(w) => <WriteupCard w={w} />}
+      renderCard={(w, { search }) => <WriteupCard w={w} onSearch={search} />}
     />
   )
 }
 
-function WriteupCard({ w }: { w: WriteupMeta }) {
+function WriteupCard({
+  w,
+  onSearch,
+}: {
+  w: WriteupMeta
+  onSearch: (q: string) => void
+}) {
   const tags = w.tags.filter((t) => !DIFF_ORDER.includes(t)).slice(0, 3)
   return (
     <ExplorerCard
@@ -110,17 +120,13 @@ function WriteupCard({ w }: { w: WriteupMeta }) {
         </>
       }
       tags={
-        tags.length > 0 ? (
-          tags.map((tag) => (
-            <Badge
-              key={tag}
-              variant="outline"
-              className="rounded-full text-[10px] font-normal"
-            >
-              {tag}
-            </Badge>
-          ))
-        ) : undefined
+        tags.length > 0
+          ? tags.map((tag) => (
+              <TagButton key={tag} onClick={() => onSearch(tag)}>
+                {tag}
+              </TagButton>
+            ))
+          : undefined
       }
     />
   )

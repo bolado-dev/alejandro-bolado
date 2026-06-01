@@ -30,7 +30,7 @@ interface ExplorerProps<T> {
   /** Texto indexable de cada item para la búsqueda. */
   searchText: (item: T) => string
   filters: ExplorerFilter<T>[]
-  renderCard: (item: T) => React.ReactNode
+  renderCard: (item: T, api: { search: (q: string) => void }) => React.ReactNode
   itemKey: (item: T) => string
   noun: { one: string; many: string }
   searchPlaceholder?: string
@@ -185,7 +185,9 @@ export function Explorer<T>({
 
       <div className={gridClassName}>
         {visible.map((item) => (
-          <React.Fragment key={itemKey(item)}>{renderCard(item)}</React.Fragment>
+          <React.Fragment key={itemKey(item)}>
+            {renderCard(item, { search: setQuery })}
+          </React.Fragment>
         ))}
       </div>
 
@@ -199,6 +201,29 @@ export function Explorer<T>({
         <p className="py-20 text-center text-sm text-muted-foreground">{emptyText}</p>
       )}
     </div>
+  )
+}
+
+/** Chip de tag clicable: pone su texto en el buscador (sin navegar la tarjeta). */
+export function TagButton({
+  children,
+  onClick,
+}: {
+  children: React.ReactNode
+  onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        onClick()
+      }}
+      className="relative z-10 rounded-full border px-2 py-0.5 text-[10px] font-normal text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+    >
+      {children}
+    </button>
   )
 }
 

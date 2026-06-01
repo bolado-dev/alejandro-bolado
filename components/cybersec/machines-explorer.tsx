@@ -2,8 +2,12 @@
 
 import * as React from "react"
 import { Check, Circle, ExternalLink, ArrowUpRight } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Explorer, ExplorerCard, type ExplorerFilter } from "@/components/cybersec/explorer"
+import {
+  Explorer,
+  ExplorerCard,
+  TagButton,
+  type ExplorerFilter,
+} from "@/components/cybersec/explorer"
 import { OsIcon } from "@/components/cybersec/os-icon"
 import { cn } from "@/lib/utils"
 import type { Machine, MachineStats } from "@/lib/machines"
@@ -110,12 +114,18 @@ export function MachinesExplorer({
           </div>
         </div>
       }
-      renderCard={(m) => <MachineCard m={m} />}
+      renderCard={(m, { search }) => <MachineCard m={m} onSearch={search} />}
     />
   )
 }
 
-function MachineCard({ m }: { m: Machine }) {
+function MachineCard({
+  m,
+  onSearch,
+}: {
+  m: Machine
+  onSearch: (q: string) => void
+}) {
   return (
     <ExplorerCard
       href={m.writeup}
@@ -149,13 +159,9 @@ function MachineCard({ m }: { m: Machine }) {
         m.certs.length > 0 ? (
           <>
             {m.certs.slice(0, 3).map((c) => (
-              <Badge
-                key={c}
-                variant="outline"
-                className="rounded-full text-[10px] font-normal"
-              >
+              <TagButton key={c} onClick={() => onSearch(c)}>
                 {c}
-              </Badge>
+              </TagButton>
             ))}
             {m.certs.length > 3 && (
               <span className="self-center text-[10px] text-muted-foreground">
