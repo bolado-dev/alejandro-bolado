@@ -5,13 +5,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "node scripts/sync-writeup-images.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "sync:machines": "node scripts/sync-machines.mjs",
-    "sync:machine-images": "node scripts/sync-machine-images.mjs"
+    "sync:machine-images": "node scripts/sync-machine-images.mjs",
+    "sync:writeup-images": "node scripts/sync-writeup-images.mjs"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.13.0",

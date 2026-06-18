@@ -1,5 +1,6 @@
 // app/layout.tsx
-import { Geist_Mono, Manrope } from "next/font/google"
+import { Geist_Mono } from "next/font/google"
+import localFont from "next/font/local"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { DockComponent } from "@/components/dock"
@@ -15,7 +16,22 @@ export const metadata: Metadata = {
   },
 }
 
-const sans = Manrope({ subsets: ["latin"], variable: "--font-sans" })
+const sans = localFont({
+  variable: "--font-sans",
+  display: "swap",
+  src: [
+    {
+      path: "./fonts/GeneralSans-Variable.woff2",
+      weight: "200 700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/GeneralSans-VariableItalic.woff2",
+      weight: "200 700",
+      style: "italic",
+    },
+  ],
+})
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],

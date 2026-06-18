@@ -3,15 +3,20 @@
 import { useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowUpRight,
+  Camera,
+  Code2,
+  Film,
   Globe,
   Mail,
   MapPin,
   Radar,
   Send,
   ShieldAlert,
+  Smartphone,
   Target,
   Terminal,
 } from "lucide-react"
@@ -26,6 +31,13 @@ import {
   SiHackthebox,
   SiTryhackme,
   SiBurpsuite,
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiNodedotjs,
+  SiTailwindcss,
+  SiPostgresql,
+  SiDavinciresolve,
 } from "@icons-pack/react-simple-icons"
 
 import { Button } from "@/components/ui/button"
@@ -35,7 +47,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { Reveal, StaggerReveal } from "@/components/animated/reveal"
 import { SplitText } from "@/components/animated/split-text"
 import { Magnetic } from "@/components/animated/magnetic"
-import { Counter } from "@/components/animated/counter"
 import { SectionLabel } from "@/components/section-label"
 import { GithubIcon } from "@/components/icons/github-icon"
 import { LinkedinIcon } from "@/components/icons/linkedin-icon"
@@ -75,96 +86,102 @@ export function About() {
       <div className="container mx-auto max-w-4xl">
         <SectionLabel>Sobre mí</SectionLabel>
 
-        <div className="grid grid-cols-[140px_1fr] items-start gap-12">
-          <div className="relative">
+        <div className="grid items-start gap-10 md:grid-cols-[260px_1fr] md:gap-14">
+          <div className="relative w-48 md:w-full">
             <div
               ref={imgRef}
-              className="relative flex h-[140px] w-[140px] flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-muted"
+              className="relative aspect-square overflow-hidden rounded-2xl bg-muted"
             >
-              <img
-                src="/alejandro.png"
+              <Image
+                src="/alejandro.webp"
                 alt="Alejandro Bolado"
-                className="h-full w-full object-cover"
+                fill
+                sizes="(min-width: 768px) 260px, 192px"
+                className="object-cover"
               />
             </div>
             <Reveal delay={0.4} y={8}>
-              <span className="absolute -bottom-2 -right-2 flex items-center gap-1.5 rounded-full bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground shadow-sm ring-1 ring-border">
+              <span className="absolute -right-2 -bottom-2 flex items-center gap-1.5 rounded-full bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground shadow-sm ring-1 ring-border">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
                 </span>
-                Aprendiendo
+                Disponible
               </span>
             </Reveal>
           </div>
 
           <div>
             <SplitText
-              as="h1"
+              as="h2"
               stagger={0.05}
               duration={0.9}
-              className="mb-2 text-4xl font-medium tracking-tight"
+              className="text-4xl font-medium tracking-tight md:text-[2.75rem]"
             >
-              Alejandro Bolado
+              Entre el código y la cámara
             </SplitText>
             <Reveal delay={0.15} y={12}>
-              <p className="mb-7 flex items-center gap-1.5 text-[15px] text-muted-foreground">
+              <p className="mt-3 mb-7 flex items-center gap-1.5 text-[15px] text-muted-foreground">
                 <MapPin className="h-4 w-4" />
-                Ciberseguridad · Cantabria, España
+                Cantabria, España
               </p>
             </Reveal>
             <Reveal delay={0.25}>
               <p className="text-[17px] leading-[1.8] text-muted-foreground">
-                Me apasiona la seguridad ofensiva: pentesting, hacking ético y
-                retos estilo CTF. De forma autodidacta practico enumeración,
-                explotación y escalada de privilegios resolviendo máquinas en
-                plataformas como Hack The Box y TryHackMe.
-              </p>
-            </Reveal>
-            <Reveal delay={0.35}>
-              <p className="mt-5 text-[17px] leading-[1.8] text-muted-foreground">
-                Documento todo mi aprendizaje en{" "}
+                Soy <span className="text-foreground">Alejandro Bolado</span>, un
+                perfil técnico-creativo. Desarrollo aplicaciones web full-stack
+                de principio a fin y me apasiona la seguridad ofensiva:
+                pentesting, hacking ético y retos estilo CTF que documento en{" "}
                 <a
                   href="/cybersec"
                   className="text-foreground underline underline-offset-4"
                 >
                   writeups y un manual técnico
                 </a>
-                . Mi objetivo es ganar experiencia práctica y certificarme
-                (eJPT, OSCP).
+                .
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <p className="mt-5 text-[17px] leading-[1.8] text-muted-foreground">
+                Fuera de la terminal, cuento historias con la cámara: la{" "}
+                <a
+                  href="#photography"
+                  className="text-foreground underline underline-offset-4"
+                >
+                  fotografía
+                </a>{" "}
+                y el{" "}
+                <a
+                  href="#filmmaking"
+                  className="text-foreground underline underline-offset-4"
+                >
+                  filmmaking
+                </a>{" "}
+                son la otra mitad de lo que hago, con el mismo cuidado por el
+                detalle que pongo en el código.
               </p>
             </Reveal>
 
             <StaggerReveal
-              className="mt-12 grid grid-cols-3 gap-6"
-              selector="[data-stat]"
+              className="mt-10 flex flex-col gap-y-6 border-t pt-8 sm:flex-row sm:flex-wrap sm:gap-x-12"
+              selector="[data-fact]"
               stagger={0.1}
-              y={20}
+              y={16}
             >
-              <div data-stat>
-                <p className="text-4xl font-medium tracking-tight">
-                  <Counter to={42} />
-                </p>
-                <p className="mt-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
-                  Writeups
-                </p>
-              </div>
-              <div data-stat>
-                <p className="text-4xl font-medium tracking-tight">
-                  <Counter to={42} />
-                </p>
-                <p className="mt-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
-                  Máquinas HTB
-                </p>
-              </div>
-              <div data-stat>
-                <p className="text-4xl font-medium tracking-tight">
-                  <Counter to={10} suffix="+" />
-                </p>
-                <p className="mt-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
-                  Páginas de manual
-                </p>
-              </div>
+              {[
+                { k: "Disciplinas", v: "Web · Seguridad · Imagen" },
+                { k: "Enfoque", v: "Detalle y oficio" },
+                { k: "Ahora mismo", v: "Aprendiendo y creando" },
+              ].map((f) => (
+                <div key={f.k} data-fact>
+                  <p className="text-[11px] tracking-widest text-muted-foreground uppercase">
+                    {f.k}
+                  </p>
+                  <p className="mt-1.5 text-[15px] font-medium tracking-tight">
+                    {f.v}
+                  </p>
+                </div>
+              ))}
             </StaggerReveal>
           </div>
         </div>
@@ -179,6 +196,18 @@ type Skill = { name: string; Icon: IconCmp }
 
 // Técnicas reales extraídas de los writeups (HTB), agrupadas por área.
 const areas: { label: string; Icon: IconCmp; items: string[] }[] = [
+  {
+    label: "Desarrollo web",
+    Icon: Code2,
+    items: [
+      "React & Next.js",
+      "TypeScript",
+      "Node.js & APIs REST",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "Docker & despliegue",
+    ],
+  },
   {
     label: "Explotación web",
     Icon: Globe,
@@ -211,9 +240,27 @@ const areas: { label: string; Icon: IconCmp; items: string[] }[] = [
       "Enumeración de CMS",
     ],
   },
+  {
+    label: "Fotografía & vídeo",
+    Icon: Camera,
+    items: [
+      "Composición & luz",
+      "Retrato · calle · paisaje",
+      "Edición y color grading",
+      "Montaje y ritmo",
+    ],
+  },
 ]
 
 const tools: Skill[] = [
+  // Desarrollo
+  { name: "React", Icon: SiReact },
+  { name: "Next.js", Icon: SiNextdotjs },
+  { name: "TypeScript", Icon: SiTypescript },
+  { name: "Node.js", Icon: SiNodedotjs },
+  { name: "Tailwind CSS", Icon: SiTailwindcss },
+  { name: "PostgreSQL", Icon: SiPostgresql },
+  // Ciberseguridad
   { name: "Linux", Icon: SiLinux },
   { name: "Kali Linux", Icon: SiKalilinux },
   { name: "Bash", Icon: SiGnubash },
@@ -224,6 +271,10 @@ const tools: Skill[] = [
   { name: "Docker", Icon: SiDocker },
   { name: "Hack The Box", Icon: SiHackthebox },
   { name: "TryHackMe", Icon: SiTryhackme },
+  // Fotografía & vídeo
+  { name: "DaVinci Resolve", Icon: SiDavinciresolve },
+  { name: "Lightroom", Icon: Camera },
+  { name: "Premiere Pro", Icon: Film },
 ]
 
 function SkillChip({ skill }: { skill: Skill }) {
@@ -551,45 +602,149 @@ export function Education() {
 
 // ─── PROJECTS ─────────────────────────────────────────────────────────────────
 
+type Project = {
+  title: string
+  category: string
+  description: string
+  Icon: IconCmp
+  href?: string
+  repoLabel?: string
+  comingSoon?: boolean
+  /** Logo de marca en public/, p.ej. "/projects/spotted/logo.webp" */
+  logo?: string
+  /** El logo llena el tile (icono de app autónomo) en lugar de ir contenido */
+  logoFill?: boolean
+  /** Color de acento de la marca (hex/oklch) para el icono y los detalles */
+  accent?: string
+}
+
+const projects: Project[] = [
+  {
+    title: "Spotted",
+    category: "App móvil · React Native",
+    description:
+      "App para amantes del motor: fotografía los coches que te encuentras (los “spotteas”), guárdalos en tu garaje y descúbrelos en un mapa por ubicación.",
+    Icon: Smartphone,
+    comingSoon: true,
+    logo: "/projects/spotted/logo.webp",
+    logoFill: true,
+  },
+  {
+    title: "BoladoBSPWM",
+    category: "Entorno / Dotfiles",
+    description:
+      "Setup personalizado de escritorio sobre BSPWM orientado a hacking y desarrollo. Incluye Polybar, Rofi, Kitty, Picom y scripts propios para un entorno enfocado en ciberseguridad.",
+    Icon: Terminal,
+    href: "https://github.com/bolado-dev/BoladoBSPWM",
+    repoLabel: "bolado-dev/BoladoBSPWM",
+  },
+]
+
+function ProjectCard({ project }: { project: Project }) {
+  const { Icon } = project
+
+  const inner = (
+    <>
+      <span
+        className={cn(
+          "mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-background transition-colors group-hover:border-foreground/20",
+          project.logoFill && "border-transparent"
+        )}
+        style={project.accent ? { color: project.accent } : undefined}
+      >
+        {project.logo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={project.logo}
+            alt={project.title}
+            className={cn(
+              project.logoFill ? "h-full w-full object-cover" : "h-7 w-7 object-contain"
+            )}
+            onError={(e) => {
+              // Si aún no hay logo, mostramos el icono de respaldo.
+              e.currentTarget.style.display = "none"
+              e.currentTarget.nextElementSibling?.classList.remove("hidden")
+            }}
+          />
+        ) : null}
+        <Icon className={cn("h-5 w-5", project.logo && "hidden")} />
+      </span>
+
+      <div className="flex-1">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <p className="text-[11px] tracking-widest text-muted-foreground uppercase">
+                {project.category}
+              </p>
+              {project.comingSoon && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] font-medium tracking-widest text-muted-foreground uppercase">
+                  <span className="h-1.5 w-1.5 rounded-full bg-foreground/50" />
+                  Próximamente
+                </span>
+              )}
+            </div>
+            <h3 className="mt-1 text-xl font-medium tracking-tight">
+              {project.title}
+            </h3>
+          </div>
+          {project.href && (
+            <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+          )}
+        </div>
+        <p className="mt-3 text-[15px] leading-[1.7] text-muted-foreground">
+          {project.description}
+        </p>
+        {project.repoLabel && (
+          <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+            <GithubIcon className="h-4 w-4" />
+            <span>{project.repoLabel}</span>
+          </div>
+        )}
+      </div>
+    </>
+  )
+
+  const base =
+    "group flex h-full items-start gap-5 rounded-2xl border bg-card p-6 transition-all"
+
+  if (project.href) {
+    return (
+      <Link
+        href={project.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(base, "hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-sm")}
+      >
+        {inner}
+      </Link>
+    )
+  }
+
+  return (
+    <div className={cn(base, "cursor-default")} aria-disabled>
+      {inner}
+    </div>
+  )
+}
+
 export function Projects() {
   return (
     <section id="projects" className="border-b px-4 py-28 md:py-32">
       <div className="container mx-auto max-w-4xl">
         <SectionLabel>Proyectos</SectionLabel>
-        <Reveal>
-          <Link
-            href="https://github.com/bolado-dev/BoladoBSPWM"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-start gap-5 rounded-2xl border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-sm"
-          >
-            <span className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-background transition-colors group-hover:border-foreground/20">
-              <Terminal className="h-5 w-5" />
-            </span>
-            <div className="flex-1">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-[11px] uppercase tracking-widest text-muted-foreground">
-                    Entorno / Dotfiles
-                  </p>
-                  <h3 className="mt-1 text-xl font-medium tracking-tight">
-                    BoladoBSPWM
-                  </h3>
-                </div>
-                <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
-              </div>
-              <p className="mt-3 text-[15px] leading-[1.7] text-muted-foreground">
-                Setup personalizado de escritorio sobre BSPWM orientado a
-                hacking y desarrollo. Incluye Polybar, Rofi, Kitty, Picom y
-                scripts propios para un entorno enfocado en ciberseguridad.
-              </p>
-              <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
-                <GithubIcon className="h-4 w-4" />
-                <span>bolado-dev/BoladoBSPWM</span>
-              </div>
+        <StaggerReveal
+          className="grid gap-4 md:grid-cols-2"
+          selector="[data-project]"
+          stagger={0.1}
+          y={24}
+        >
+          {projects.map((project) => (
+            <div key={project.title} data-project>
+              <ProjectCard project={project} />
             </div>
-          </Link>
-        </Reveal>
+          ))}
+        </StaggerReveal>
       </div>
     </section>
   )

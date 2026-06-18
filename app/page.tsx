@@ -9,6 +9,9 @@ import {
   Education,
   Contact,
 } from "@/components/sections"
+import { Disciplines } from "@/components/sections/disciplines"
+import { Photography } from "@/components/sections/photography"
+import { Filmmaking } from "@/components/sections/filmmaking"
 import { WriteupsTeaser } from "@/components/sections/writeups-teaser"
 
 export default function Page() {
@@ -17,9 +20,12 @@ export default function Page() {
       <Grain />
       <Hero />
       <About />
-      <WriteupsTeaser />
+      <Disciplines />
       <Skills />
       <Projects />
+      <WriteupsTeaser />
+      <Photography />
+      <Filmmaking />
       <Experience />
       <Education />
       <Contact />

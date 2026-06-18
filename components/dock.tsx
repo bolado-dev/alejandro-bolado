@@ -10,8 +10,8 @@ import {
   User,
   Mail,
   Sun,
-  Briefcase,
-  GraduationCap,
+  Camera,
+  Clapperboard,
   ChevronDown,
   Monitor,
   Terminal,
@@ -155,9 +155,9 @@ export { Dock }
 
 const navItems = [
   { label: "Sobre mí", href: "#about", icon: User },
-  { label: "Habilidades", href: "#skills", icon: Code },
-  { label: "Trabajo", href: "#experience", icon: Briefcase },
-  { label: "Educación", href: "#education", icon: GraduationCap },
+  { label: "Desarrollo", href: "#projects", icon: Code },
+  { label: "Fotografía", href: "#photography", icon: Camera },
+  { label: "Filmmaking", href: "#filmmaking", icon: Clapperboard },
   { label: "Contacto", href: "#contact", icon: Mail },
 ]
 
@@ -173,18 +173,27 @@ export function DockComponent() {
   }, [])
 
   React.useEffect(() => {
-    const handleScroll = () => {
-      const sections = navItems.map((item) => item.href.slice(1))
-      for (const section of sections.reverse()) {
-        const el = document.getElementById(section)
-        if (el && el.offsetTop <= window.scrollY + 100) {
-          setActiveSection(section)
-          break
+    const ids = navItems.map((item) => item.href.slice(1))
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null)
+    if (!els.length) return
+
+    const visible = new Set<string>()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) visible.add(entry.target.id)
+          else visible.delete(entry.target.id)
         }
-      }
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+        const current = ids.find((id) => visible.has(id))
+        if (current) setActiveSection(current)
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    )
+
+    els.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
   }, [])
 
   const scrollToSection = (href: string) => {

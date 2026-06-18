@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
-import { motion, AnimatePresence } from "framer-motion"
 
 interface BottomBlurProps {
   className?: string
@@ -19,59 +18,42 @@ export function BottomBlur({
 
   const heights = {
     sm: "h-16",
-    md: "h-32",
-    lg: "h-48",
+    md: "h-24",
+    lg: "h-32",
   }
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop
+    let ticking = false
 
-      setIsVisible(scrollTop > 50)
-
-      const scrollHeight = document.documentElement.scrollHeight
-      const clientHeight = document.documentElement.clientHeight
+    const update = () => {
+      ticking = false
+      const scrollTop = window.scrollY
+      const { scrollHeight, clientHeight } = document.documentElement
       const isAtBottom = scrollTop + clientHeight >= scrollHeight - offset
       setIsVisible(!isAtBottom && scrollTop > 50)
     }
 
-    window.addEventListener("scroll", handleScroll)
-    handleScroll()
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(update)
+    }
 
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    update()
+
+    return () => window.removeEventListener("scroll", onScroll)
   }, [offset])
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div
-            className={cn(
-              "pointer-events-none fixed right-0 bottom-0 left-0 z-[100]",
-              heights[size],
-              className
-            )}
-            style={{
-              backdropFilter: "blur(12px)",
-              maskImage: "linear-gradient(to bottom, transparent, black 80%)",
-              WebkitMaskImage:
-                "linear-gradient(to bottom, transparent, black 80%)",
-            }}
-          />
-          <div
-            className={cn(
-              "pointer-events-none fixed right-0 bottom-0 left-0 z-[101] h-20 bg-gradient-to-t from-background via-background/50 to-transparent",
-              className
-            )}
-          />
-        </motion.div>
+    <div
+      aria-hidden
+      className={cn(
+        "pointer-events-none fixed right-0 bottom-0 left-0 z-[100] bg-gradient-to-t from-background via-background/70 to-transparent transition-opacity duration-300",
+        heights[size],
+        isVisible ? "opacity-100" : "opacity-0",
+        className
       )}
-    </AnimatePresence>
+    />
   )
 }
