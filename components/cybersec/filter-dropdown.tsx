@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { Check, ChevronDown } from "lucide-react"
+import { Check, ChevronDown } from "@/components/icons/solar"
 import { cn } from "@/lib/utils"
 
 interface FilterDropdownProps {

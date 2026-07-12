@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { Clock, ChevronRight, ArrowLeft, ArrowRight } from "lucide-react"
+import { Clock, ChevronRight, ArrowLeft, ArrowRight } from "@/components/icons/solar"
 import { getManualPage, getAllManualParams } from "@/lib/manual"
 import { Toc } from "@/components/cybersec/toc"
 import { TocMobile } from "@/components/cybersec/toc-mobile"

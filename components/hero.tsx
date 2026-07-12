@@ -2,17 +2,82 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { AnimatePresence, motion, type Variants } from "framer-motion"
+import { ArrowRight } from "@/components/icons/solar"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
 
+// Las cuatro disciplinas, todas con el mismo peso visual: ninguna prevalece
+// sobre las demás. Se alternan en bucle lento sobre el mismo rótulo.
+const DISCIPLINES = ["Desarrollo full-stack", "Ciberseguridad", "Fotografía", "Filmmaking"]
+
+const containerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  },
+}
+
+const HEADLINE_CLASS =
+  "block text-[clamp(2.75rem,8vw,6rem)] font-medium leading-[1.02] tracking-tighter text-foreground"
+
+function RotatingHeadline({ reduced }: { reduced: boolean }) {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    if (reduced) return
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % DISCIPLINES.length)
+    }, 2600)
+    return () => clearInterval(id)
+  }, [reduced])
+
+  return (
+    <div>
+      <p className="mb-2 text-[11px] uppercase tracking-widest text-muted-foreground">
+        <span className="mr-2 inline-block h-2 w-2 translate-y-px rounded-full bg-brand" />
+        Perfil técnico-creativo
+      </p>
+
+      {reduced ? (
+        <span className={HEADLINE_CLASS}>{DISCIPLINES[index]}</span>
+      ) : (
+        <span className="block overflow-hidden pb-[0.12em]">
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={DISCIPLINES[index]}
+              initial={{ y: "110%" }}
+              animate={{ y: "0%" }}
+              exit={{ y: "-110%" }}
+              transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
+              className={HEADLINE_CLASS}
+            >
+              {DISCIPLINES[index]}
+            </motion.span>
+          </AnimatePresence>
+        </span>
+      )}
+    </div>
+  )
+}
+
 export function Hero() {
   const [mounted, setMounted] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
   const { resolvedTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
+    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches)
   }, [])
 
   return (
@@ -28,46 +93,65 @@ export function Hero() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/25 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/30 to-background/5" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-transparent" />
         </div>
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
         className="relative z-20 mx-auto w-full max-w-6xl"
       >
-        <div className="flex max-w-xl flex-col items-start gap-7 text-left">
-          <div className="h-14">
+        <div className="flex max-w-xl flex-col items-start gap-8 text-left">
+          {/* Lockup de marca: logo + nombre, pequeños y en la misma línea */}
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center gap-2.5"
+          >
             {mounted && (
               <img
                 src={resolvedTheme === "dark" ? "/Logo ICON-02.png" : "/Logo ICON-01.png"}
-                alt="Alejandro Bolado"
-                className="h-14 w-auto object-contain"
+                alt=""
+                className="h-8 w-auto object-contain md:h-9"
               />
             )}
-          </div>
-
-          <div className="space-y-4">
-            <h1 className="text-5xl font-semibold tracking-tighter md:text-6xl lg:text-7xl">
-              Alejandro
-              <br />
-              Bolado
+            <h1 className="text-lg font-medium tracking-tight md:text-xl">
+              Alejandro Bolado
             </h1>
+          </motion.div>
 
-            <p className="text-base text-muted-foreground md:text-lg">
-              Full-stack · Ciberseguridad · Fotografía · Filmmaking
-            </p>
-          </div>
+          {/* Titular protagonista: las disciplinas, en grande y animadas */}
+          <motion.div variants={itemVariants}>
+            {mounted ? (
+              <RotatingHeadline reduced={reducedMotion} />
+            ) : (
+              <div>
+                <p className="mb-2 text-[11px] uppercase tracking-widest text-muted-foreground">
+                  <span className="mr-2 inline-block h-2 w-2 translate-y-px rounded-full bg-brand" />
+                  Perfil técnico-creativo
+                </p>
+                <span className={HEADLINE_CLASS}>{DISCIPLINES[0]}</span>
+              </div>
+            )}
+          </motion.div>
 
-          <div className="mt-1 flex items-center gap-6">
-            <Button
-              asChild
-              size="lg"
-              className="h-12 rounded-full px-7 font-medium"
-            >
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center gap-4 text-[11px] uppercase tracking-widest text-muted-foreground"
+          >
+            <span>Cantabria, España</span>
+            <span className="h-3 w-px bg-border" />
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+              Disponible
+            </span>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="mt-1 flex items-center gap-6">
+            <Button asChild size="lg" className="h-12 rounded-full px-7 font-medium">
               <a href="#disciplines">
                 Ver mi trabajo
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -78,10 +162,10 @@ export function Hero() {
               href="#contact"
               className="group inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Contacto
+              Hablemos
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
             </a>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
 

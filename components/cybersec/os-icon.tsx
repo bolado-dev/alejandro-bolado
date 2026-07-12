@@ -1,4 +1,4 @@
-import { Monitor } from "lucide-react"
+import { Monitor } from "@/components/icons/solar"
 import { SiLinux } from "@icons-pack/react-simple-icons"
 import { WindowsIcon } from "@/components/icons/windows-icon"
 

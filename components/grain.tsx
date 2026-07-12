@@ -1,8 +1,8 @@
-export function Grain({ opacity = 0.06 }: { opacity?: number }) {
+export function Grain({ opacity = 0.035 }: { opacity?: number }) {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-[100] mix-blend-overlay"
+      className="pointer-events-none fixed inset-0 z-[100]"
       style={{
         opacity,
         backgroundImage:

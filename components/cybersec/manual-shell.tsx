@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { usePathname } from "next/navigation"
-import { PanelLeft, X } from "lucide-react"
+import { PanelLeft, X } from "@/components/icons/solar"
 import { ManualSidebar } from "@/components/cybersec/manual-sidebar"
 import type { ManualSection } from "@/lib/manual"
 

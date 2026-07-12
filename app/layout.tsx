@@ -1,6 +1,5 @@
 // app/layout.tsx
-import { Geist_Mono } from "next/font/google"
-import localFont from "next/font/local"
+import { Geist_Mono, Outfit } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { DockComponent } from "@/components/dock"
@@ -14,23 +13,40 @@ export const metadata: Metadata = {
     default: "Alejandro Bolado",
     template: "%s",
   },
+  description:
+    "Portfolio de Alejandro Bolado: desarrollo full-stack, ciberseguridad y pentesting, fotografía y filmmaking. Entre el código y la cámara.",
+  keywords: [
+    "Alejandro Bolado",
+    "desarrollo full-stack",
+    "ciberseguridad",
+    "pentesting",
+    "hacking ético",
+    "fotografía",
+    "filmmaking",
+    "portfolio",
+    "desarrollador",
+    "Next.js",
+  ],
+  openGraph: {
+    title: "Alejandro Bolado",
+    description:
+      "Portfolio de Alejandro Bolado: desarrollo full-stack, ciberseguridad y pentesting, fotografía y filmmaking. Entre el código y la cámara.",
+    type: "website",
+    locale: "es_ES",
+    url: "https://alejandrobolado.es",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alejandro Bolado",
+    description:
+      "Portfolio de Alejandro Bolado: desarrollo full-stack, ciberseguridad y pentesting, fotografía y filmmaking. Entre el código y la cámara.",
+  },
 }
 
-const sans = localFont({
+const sans = Outfit({
+  subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-  src: [
-    {
-      path: "./fonts/GeneralSans-Variable.woff2",
-      weight: "200 700",
-      style: "normal",
-    },
-    {
-      path: "./fonts/GeneralSans-VariableItalic.woff2",
-      weight: "200 700",
-      style: "italic",
-    },
-  ],
 })
 
 const fontMono = Geist_Mono({
@@ -54,7 +70,7 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

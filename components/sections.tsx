@@ -19,7 +19,7 @@ import {
   Smartphone,
   Target,
   Terminal,
-} from "lucide-react"
+} from "@/components/icons/solar"
 import {
   SiLinux,
   SiKalilinux,
@@ -103,8 +103,8 @@ export function About() {
             <Reveal delay={0.4} y={8}>
               <span className="absolute -right-2 -bottom-2 flex items-center gap-1.5 rounded-full bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground shadow-sm ring-1 ring-border">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  <span className="bg-brand absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
+                  <span className="bg-brand relative inline-flex h-1.5 w-1.5 rounded-full" />
                 </span>
                 Disponible
               </span>
@@ -116,49 +116,44 @@ export function About() {
               as="h2"
               stagger={0.05}
               duration={0.9}
-              className="text-4xl font-medium tracking-tight md:text-[2.75rem]"
+              className="text-[clamp(2.5rem,6vw,5rem)] font-medium leading-[0.95] tracking-tight"
             >
               Entre el código y la cámara
             </SplitText>
             <Reveal delay={0.15} y={12}>
-              <p className="mt-3 mb-7 flex items-center gap-1.5 text-[15px] text-muted-foreground">
-                <MapPin className="h-4 w-4" />
+              <p className="mt-4 mb-7 flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
+                <MapPin className="h-3.5 w-3.5" />
                 Cantabria, España
               </p>
             </Reveal>
             <Reveal delay={0.25}>
               <p className="text-[17px] leading-[1.8] text-muted-foreground">
                 Soy <span className="text-foreground">Alejandro Bolado</span>, un
-                perfil técnico-creativo. Desarrollo aplicaciones web full-stack
-                de principio a fin y me apasiona la seguridad ofensiva:
-                pentesting, hacking ético y retos estilo CTF que documento en{" "}
+                perfil técnico-creativo. Desarrollo aplicaciones web
+                full-stack y me apasiona la{" "}
+                <span className="text-brand">seguridad ofensiva</span>:
+                pentesting, hacking ético y retos CTF que documento en{" "}
                 <a
                   href="/cybersec"
-                  className="text-foreground underline underline-offset-4"
+                  className="decoration-brand text-foreground underline underline-offset-4 hover:text-brand"
                 >
                   writeups y un manual técnico
                 </a>
-                .
-              </p>
-            </Reveal>
-            <Reveal delay={0.3}>
-              <p className="mt-5 text-[17px] leading-[1.8] text-muted-foreground">
-                Fuera de la terminal, cuento historias con la cámara: la{" "}
+                . Fuera de la terminal, cuento historias con la cámara: la{" "}
                 <a
                   href="#photography"
-                  className="text-foreground underline underline-offset-4"
+                  className="decoration-brand text-foreground underline underline-offset-4 hover:text-brand"
                 >
                   fotografía
                 </a>{" "}
                 y el{" "}
                 <a
                   href="#filmmaking"
-                  className="text-foreground underline underline-offset-4"
+                  className="decoration-brand text-foreground underline underline-offset-4 hover:text-brand"
                 >
                   filmmaking
                 </a>{" "}
-                son la otra mitad de lo que hago, con el mismo cuidado por el
-                detalle que pongo en el código.
+                son la otra mitad de lo que hago.
               </p>
             </Reveal>
 
@@ -279,8 +274,8 @@ const tools: Skill[] = [
 
 function SkillChip({ skill }: { skill: Skill }) {
   return (
-    <div className="group flex items-center gap-3 rounded-xl border bg-card px-4 py-3 text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:text-foreground hover:shadow-sm">
-      <skill.Icon className="h-5 w-5 transition-transform group-hover:scale-110" />
+    <div className="group flex items-center gap-3 rounded-xl border bg-card px-4 py-3 text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:text-foreground hover:shadow-sm">
+      <skill.Icon className="h-5 w-5 transition-transform group-hover:scale-110 group-hover:text-brand" />
       <span className="text-[15px] font-medium">{skill.name}</span>
     </div>
   )
@@ -312,7 +307,7 @@ export function Skills() {
                     key={it}
                     className="flex items-start gap-2.5 text-[15px] leading-snug text-muted-foreground"
                   >
-                    <span className="mt-[7px] h-1 w-1 flex-shrink-0 rounded-full bg-foreground/40" />
+                    <span className="bg-brand/60 mt-[7px] h-1 w-1 flex-shrink-0 rounded-full" />
                     {it}
                   </li>
                 ))}
@@ -403,8 +398,8 @@ function TimelineRow({
     if (content)
       tl.fromTo(
         content,
-        { opacity: 0, y: 16, filter: "blur(4px)" },
-        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 },
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.8 },
         0.12,
       )
   }, [])
@@ -427,9 +422,9 @@ function TimelineRow({
       <span
         data-dot
         aria-hidden
-        className="absolute left-0 top-2 h-[7px] w-[7px] rounded-full bg-foreground ring-4 ring-background"
+        className="bg-brand absolute left-0 top-2 h-[7px] w-[7px] rounded-full ring-4 ring-background"
       />
-      <p data-period className="pt-1 font-mono text-sm text-muted-foreground">
+      <p data-period className="pt-1 text-sm text-muted-foreground">
         {item.period}
       </p>
       <div data-content>
@@ -533,8 +528,8 @@ function EduItem({
     if (desc)
       tl.fromTo(
         desc,
-        { opacity: 0, y: 10, filter: "blur(4px)" },
-        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.7 },
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.7 },
         0.42,
       )
 
@@ -553,7 +548,7 @@ function EduItem({
       <span
         data-accent
         aria-hidden
-        className="absolute left-0 top-0 block h-[60%] w-px bg-foreground"
+        className="bg-brand absolute left-0 top-0 block h-[60%] w-px"
       />
       <div data-eu-title className="flex items-center gap-2">
         <Icon className="h-4 w-4 text-muted-foreground" />
@@ -640,15 +635,25 @@ const projects: Project[] = [
   },
 ]
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectRow({
+  project,
+  index,
+}: {
+  project: Project
+  index: number
+}) {
   const { Icon } = project
 
   const inner = (
     <>
+      <p className="text-sm text-muted-foreground tabular-nums">
+        {String(index + 1).padStart(2, "0")}
+      </p>
+
       <span
         className={cn(
-          "mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-background transition-colors group-hover:border-foreground/20",
-          project.logoFill && "border-transparent"
+          "mt-1 flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-background text-muted-foreground transition-colors group-hover:border-brand/40 group-hover:text-brand",
+          project.logoFill && "border-transparent",
         )}
         style={project.accent ? { color: project.accent } : undefined}
       >
@@ -658,7 +663,9 @@ function ProjectCard({ project }: { project: Project }) {
             src={project.logo}
             alt={project.title}
             className={cn(
-              project.logoFill ? "h-full w-full object-cover" : "h-7 w-7 object-contain"
+              project.logoFill
+                ? "h-full w-full object-cover"
+                : "h-6 w-6 object-contain",
             )}
             onError={(e) => {
               // Si aún no hay logo, mostramos el icono de respaldo.
@@ -670,29 +677,27 @@ function ProjectCard({ project }: { project: Project }) {
         <Icon className={cn("h-5 w-5", project.logo && "hidden")} />
       </span>
 
-      <div className="flex-1">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2">
-              <p className="text-[11px] tracking-widest text-muted-foreground uppercase">
-                {project.category}
-              </p>
-              {project.comingSoon && (
-                <span className="inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] font-medium tracking-widest text-muted-foreground uppercase">
-                  <span className="h-1.5 w-1.5 rounded-full bg-foreground/50" />
-                  Próximamente
-                </span>
-              )}
-            </div>
-            <h3 className="mt-1 text-xl font-medium tracking-tight">
-              {project.title}
-            </h3>
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+          <h3 className="text-[clamp(1.5rem,3.5vw,2.25rem)] font-medium leading-tight tracking-tight transition-transform group-hover:translate-x-1">
+            {project.title}
+          </h3>
+          <div className="flex items-center gap-2.5">
+            <p className="text-[11px] tracking-widest text-muted-foreground uppercase">
+              {project.category}
+            </p>
+            {project.comingSoon && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] tracking-widest text-muted-foreground uppercase">
+                <span className="bg-brand h-1.5 w-1.5 rounded-full" />
+                Próximamente
+              </span>
+            )}
+            {project.href && (
+              <ArrowUpRight className="text-brand h-4 w-4 shrink-0 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+            )}
           </div>
-          {project.href && (
-            <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
-          )}
         </div>
-        <p className="mt-3 text-[15px] leading-[1.7] text-muted-foreground">
+        <p className="mt-3 max-w-2xl text-[16px] leading-[1.7] text-muted-foreground">
           {project.description}
         </p>
         {project.repoLabel && (
@@ -706,7 +711,7 @@ function ProjectCard({ project }: { project: Project }) {
   )
 
   const base =
-    "group flex h-full items-start gap-5 rounded-2xl border bg-card p-6 transition-all"
+    "group flex items-start gap-5 border-t py-8 transition-colors first:border-t-0 md:gap-8"
 
   if (project.href) {
     return (
@@ -714,7 +719,7 @@ function ProjectCard({ project }: { project: Project }) {
         href={project.href}
         target="_blank"
         rel="noopener noreferrer"
-        className={cn(base, "hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-sm")}
+        className={cn(base, "hover:bg-muted/40 -mx-4 px-4")}
       >
         {inner}
       </Link>
@@ -733,15 +738,10 @@ export function Projects() {
     <section id="projects" className="border-b px-4 py-28 md:py-32">
       <div className="container mx-auto max-w-4xl">
         <SectionLabel>Proyectos</SectionLabel>
-        <StaggerReveal
-          className="grid gap-4 md:grid-cols-2"
-          selector="[data-project]"
-          stagger={0.1}
-          y={24}
-        >
-          {projects.map((project) => (
+        <StaggerReveal selector="[data-project]" stagger={0.1} y={24}>
+          {projects.map((project, i) => (
             <div key={project.title} data-project>
-              <ProjectCard project={project} />
+              <ProjectRow project={project} index={i} />
             </div>
           ))}
         </StaggerReveal>
@@ -781,7 +781,7 @@ export function Contact() {
               as="h2"
               stagger={0.05}
               duration={1}
-              className="mb-4 text-4xl font-medium leading-tight tracking-tight"
+              className="mb-4 text-[clamp(2.25rem,4.5vw,3.5rem)] font-medium leading-[0.98] tracking-tight"
             >
               ¿Hablamos de seguridad?
             </SplitText>
@@ -802,7 +802,7 @@ export function Contact() {
                   key={label}
                   data-link
                   href={href}
-                  className="group inline-flex items-center gap-2.5 text-[15px] text-muted-foreground transition-colors hover:text-foreground"
+                  className="group hover:text-brand inline-flex items-center gap-2.5 text-[15px] text-muted-foreground transition-colors"
                 >
                   <Icon className="h-4 w-4" />
                   {label}
@@ -837,7 +837,7 @@ export function Contact() {
             </div>
             <div data-field>
               <Magnetic strength={0.2} className="w-full">
-                <Button className="w-full gap-2">
+                <Button className="bg-brand text-brand-foreground hover:bg-brand/85 w-full gap-2">
                   Enviar mensaje
                   <Send className="h-3.5 w-3.5" />
                 </Button>

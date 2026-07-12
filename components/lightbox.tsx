@@ -3,7 +3,7 @@
 import { useCallback, useEffect } from "react"
 import { createPortal } from "react-dom"
 import { AnimatePresence, motion } from "framer-motion"
-import { X, ChevronLeft, ChevronRight } from "lucide-react"
+import { X, ChevronLeft, ChevronRight } from "@/components/icons/solar"
 
 export type LightboxItem = {
   type: "image" | "video"

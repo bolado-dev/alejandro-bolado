@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ChevronRight } from "lucide-react"
+import { ChevronRight } from "@/components/icons/solar"
 import { cn } from "@/lib/utils"
 import type { ManualSection } from "@/lib/manual"
 

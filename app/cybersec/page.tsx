@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { FileText, BookOpen, Server, ArrowUpRight, Terminal } from "lucide-react"
+import { FileText, BookOpen, Server, ArrowUpRight, Terminal } from "@/components/icons/solar"
 import { getAllWriteups } from "@/lib/writeups"
 import { getManualNav } from "@/lib/manual"
 import { getMachines, getMachineStats } from "@/lib/machines"

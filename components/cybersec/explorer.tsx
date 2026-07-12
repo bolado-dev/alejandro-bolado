@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Search, X } from "lucide-react"
+import { Search, X } from "@/components/icons/solar"
 import { Input } from "@/components/ui/input"
 import { FilterDropdown } from "@/components/cybersec/filter-dropdown"
 import { cn } from "@/lib/utils"

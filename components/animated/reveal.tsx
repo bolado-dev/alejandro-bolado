@@ -42,11 +42,10 @@ export function Reveal({
 
       gsap.fromTo(
         el,
-        { y, opacity: 0, filter: "blur(6px)" },
+        { y, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          filter: "blur(0px)",
           duration,
           delay,
           ease: "power3.out",

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ArrowUpRight, Clock } from "lucide-react"
+import { ArrowUpRight, Clock } from "@/components/icons/solar"
 import {
   Explorer,
   ExplorerCard,

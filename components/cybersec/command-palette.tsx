@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import { createPortal } from "react-dom"
-import { Search, FileText, BookOpen, Server, CornerDownLeft } from "lucide-react"
+import { Search, FileText, BookOpen, Server, CornerDownLeft } from "@/components/icons/solar"
 import { cn } from "@/lib/utils"
 
 export interface PaletteItem {

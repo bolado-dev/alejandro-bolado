@@ -1,4 +1,4 @@
-import { ListTree } from "lucide-react"
+import { ListTree } from "@/components/icons/solar"
 import type { Heading } from "@/lib/markdown"
 
 export function TocMobile({

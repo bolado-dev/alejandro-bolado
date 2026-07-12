@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
-import { FileText, BookOpen, Server, ArrowLeft, Menu, X, Search } from "lucide-react"
+import { FileText, BookOpen, Server, ArrowLeft, Menu, X, Search } from "@/components/icons/solar"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "@/components/mode-toggle"
 

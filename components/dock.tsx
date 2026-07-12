@@ -15,7 +15,7 @@ import {
   ChevronDown,
   Monitor,
   Terminal,
-} from "lucide-react"
+} from "@/components/icons/solar"
 import { useTheme } from "next-themes"
 import { GithubIcon } from "@/components/icons/github-icon"
 
@@ -154,7 +154,7 @@ Dock.displayName = "Dock"
 export { Dock }
 
 const navItems = [
-  { label: "Sobre mí", href: "#about", icon: User },
+  { label: "Sobre mí", href: "/sobre-mi", icon: User },
   { label: "Desarrollo", href: "#projects", icon: Code },
   { label: "Fotografía", href: "#photography", icon: Camera },
   { label: "Filmmaking", href: "#filmmaking", icon: Clapperboard },
@@ -339,19 +339,30 @@ export function DockComponent() {
                 </div>
                 {navItems.map((item, index) => (
                   <React.Fragment key={item.href}>
-                    <motion.button
-                      onClick={() => {
-                        scrollToSection(item.href)
-                        setIsOpen(false)
-                      }}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-3 text-left hover:bg-secondary"
-                    >
-                      <item.icon className="h-5 w-5" />
-                      <span>{item.label}</span>
-                    </motion.button>
+                    {item.href.startsWith("/") ? (
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-3 text-left hover:bg-secondary"
+                      >
+                        <item.icon className="h-5 w-5" />
+                        <span>{item.label}</span>
+                      </Link>
+                    ) : (
+                      <motion.button
+                        onClick={() => {
+                          scrollToSection(item.href)
+                          setIsOpen(false)
+                        }}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        className="flex w-full cursor-pointer items-center gap-3 rounded-lg px-4 py-3 text-left hover:bg-secondary"
+                      >
+                        <item.icon className="h-5 w-5" />
+                        <span>{item.label}</span>
+                      </motion.button>
+                    )}
                     {/* Cybersec entre "Sobre mí" y "Habilidades" */}
                     {index === 0 && (
                       <Link

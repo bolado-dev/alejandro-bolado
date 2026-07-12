@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Check, Circle, ExternalLink, ArrowUpRight } from "lucide-react"
+import { Check, Circle, ExternalLink, ArrowUpRight } from "@/components/icons/solar"
 import {
   Explorer,
   ExplorerCard,
