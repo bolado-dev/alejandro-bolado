@@ -620,7 +620,7 @@ const projects: Project[] = [
     description:
       "App para amantes del motor: fotografía los coches que te encuentras (los “spotteas”), guárdalos en tu garaje y descúbrelos en un mapa por ubicación.",
     Icon: Smartphone,
-    comingSoon: true,
+    href: "https://spotted.es",
     logo: "/projects/spotted/logo.webp",
     logoFill: true,
   },
