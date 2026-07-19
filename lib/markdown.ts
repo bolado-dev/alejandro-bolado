@@ -48,6 +48,10 @@ function remarkAdmonitionStyles() {
     important: "important",
     warning: "warning",
     caution: "caution",
+    // remark-github-admonitions-to-directives mapea [!IMPORTANT]→"info" y
+    // [!CAUTION]→"danger"; los reconducimos a las clases CSS que ya existen.
+    info: "important",
+    danger: "caution",
   }
   return (tree: Parameters<typeof visit>[0]) => {
     visit(tree, (node) => {

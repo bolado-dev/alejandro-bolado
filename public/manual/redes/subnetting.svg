@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="430" viewBox="0 0 820 430" font-family="ui-sans-serif, system-ui, sans-serif">
+  <rect x="0" y="0" width="820" height="430" rx="16" fill="#f8fafc"/>
+  <text x="410" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Subnetting · 192.168.1.0/26</text>
+  <text x="410" y="60" text-anchor="middle" font-size="13" fill="#475569">La máscara /26 marca 26 bits de red; quedan 6 bits de host</text>
+
+  <!-- 32-bit strip: 4 octets -->
+  <g font-size="12" fill="#1e293b" text-anchor="middle">
+    <!-- octet blocks -->
+    <rect x="60"  y="90" width="170" height="46" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <rect x="240" y="90" width="170" height="46" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <rect x="420" y="90" width="170" height="46" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <!-- 4th octet split: 2 net bits + 6 host bits -->
+    <rect x="600" y="90" width="42"  height="46" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <rect x="642" y="90" width="118" height="46" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="145" y="119" font-weight="700">11000000</text>
+    <text x="325" y="119" font-weight="700">10101000</text>
+    <text x="505" y="119" font-weight="700">00000001</text>
+    <text x="621" y="119" font-weight="700">00</text>
+    <text x="701" y="119" font-weight="700">000000</text>
+    <text x="145" y="153">192</text>
+    <text x="325" y="153">168</text>
+    <text x="505" y="153">1</text>
+    <text x="701" y="153" font-size="11">host</text>
+  </g>
+  <text x="360" y="182" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1d4ed8">◄──────── 26 bits de RED ────────►</text>
+  <text x="701" y="182" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b91c1c">6 bits HOST</text>
+
+  <!-- formulas -->
+  <rect x="60" y="205" width="700" height="60" rx="10" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="80" y="230" font-size="13" fill="#334155">Hosts por subred = 2^(bits host) − 2  =  2^6 − 2  =  <tspan font-weight="700" fill="#0f172a">62 hosts útiles</tspan></text>
+  <text x="80" y="252" font-size="13" fill="#334155">Tamaño de bloque = 256 − 192 (máscara 255.255.255.<tspan font-weight="700">192</tspan>)  =  <tspan font-weight="700" fill="#0f172a">64 direcciones</tspan></text>
+
+  <!-- 4 subredes -->
+  <text x="60" y="298" font-size="14" font-weight="700" fill="#0f172a">Un /24 se parte en cuatro /26 (bloques de 64):</text>
+  <g font-size="11.5">
+    <rect x="60"  y="312" width="165" height="86" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+    <rect x="238" y="312" width="165" height="86" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+    <rect x="416" y="312" width="165" height="86" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+    <rect x="594" y="312" width="165" height="86" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="142" y="332" text-anchor="middle" font-weight="700" fill="#1d4ed8">.0/26</text>
+    <text x="320" y="332" text-anchor="middle" font-weight="700" fill="#1d4ed8">.64/26</text>
+    <text x="498" y="332" text-anchor="middle" font-weight="700" fill="#1d4ed8">.128/26</text>
+    <text x="676" y="332" text-anchor="middle" font-weight="700" fill="#1d4ed8">.192/26</text>
+    <text x="142" y="354" text-anchor="middle" fill="#475569">Red:  .0</text>
+    <text x="320" y="354" text-anchor="middle" fill="#475569">Red:  .64</text>
+    <text x="498" y="354" text-anchor="middle" fill="#475569">Red:  .128</text>
+    <text x="676" y="354" text-anchor="middle" fill="#475569">Red:  .192</text>
+    <text x="142" y="372" text-anchor="middle" fill="#475569">Hosts: .1–.62</text>
+    <text x="320" y="372" text-anchor="middle" fill="#475569">Hosts: .65–.126</text>
+    <text x="498" y="372" text-anchor="middle" fill="#475569">Hosts: .129–.190</text>
+    <text x="676" y="372" text-anchor="middle" fill="#475569">Hosts: .193–.254</text>
+    <text x="142" y="390" text-anchor="middle" fill="#b91c1c">Bcast: .63</text>
+    <text x="320" y="390" text-anchor="middle" fill="#b91c1c">Bcast: .127</text>
+    <text x="498" y="390" text-anchor="middle" fill="#b91c1c">Bcast: .191</text>
+    <text x="676" y="390" text-anchor="middle" fill="#b91c1c">Bcast: .255</text>
+  </g>
+</svg>

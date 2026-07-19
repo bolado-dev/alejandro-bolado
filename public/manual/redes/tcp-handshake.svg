@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="440" viewBox="0 0 820 440" font-family="ui-sans-serif, system-ui, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="820" height="440" rx="16" fill="#f8fafc"/>
+  <text x="410" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">TCP · 3-way handshake</text>
+
+  <!-- actors -->
+  <rect x="120" y="66" width="150" height="34" rx="8" fill="#2563eb"/>
+  <text x="195" y="88" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Cliente (Kali)</text>
+  <rect x="550" y="66" width="150" height="34" rx="8" fill="#16a34a"/>
+  <text x="625" y="88" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Servidor :80</text>
+
+  <!-- lifelines -->
+  <line x1="195" y1="100" x2="195" y2="410" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+  <line x1="625" y1="100" x2="625" y2="410" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+
+  <!-- 1 SYN -->
+  <text x="410" y="140" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b">1) SYN</text>
+  <line x1="195" y1="150" x2="618" y2="168" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="410" y="188" text-anchor="middle" font-size="12" fill="#475569">Seq = 1000 · "abramos conexión"</text>
+
+  <!-- 2 SYN/ACK -->
+  <text x="410" y="238" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b">2) SYN, ACK</text>
+  <line x1="625" y1="248" x2="202" y2="266" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="410" y="286" text-anchor="middle" font-size="12" fill="#475569">Seq = 5000 · Ack = 1001 · "ok, y sincronizo yo"</text>
+
+  <!-- 3 ACK -->
+  <text x="410" y="336" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b">3) ACK</text>
+  <line x1="195" y1="346" x2="618" y2="364" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="410" y="384" text-anchor="middle" font-size="12" fill="#475569">Seq = 1001 · Ack = 5001 · "confirmado"</text>
+
+  <rect x="250" y="398" width="320" height="30" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="410" y="418" text-anchor="middle" font-size="13" font-weight="700" fill="#15803d">CONEXIÓN ESTABLECIDA → fluyen datos</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="440" viewBox="0 0 820 440" font-family="ui-sans-serif, system-ui, sans-serif">
+  <rect x="0" y="0" width="820" height="440" rx="16" fill="#f8fafc"/>
+  <text x="410" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Encapsulación de datos</text>
+  <text x="410" y="60" text-anchor="middle" font-size="13" fill="#475569">Cada capa envuelve a la de arriba añadiendo su propia cabecera</text>
+
+  <!-- Nested boxes -->
+  <!-- L2 Frame -->
+  <rect x="60" y="90" width="700" height="150" rx="10" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+  <rect x="72" y="110" width="120" height="110" rx="6" fill="#0891b2"/>
+  <text x="132" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Cabecera</text>
+  <text x="132" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Ethernet</text>
+  <text x="132" y="190" text-anchor="middle" font-size="11" fill="#cffafe">MAC orig/dest</text>
+  <text x="620" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#0e7490">Capa 2 · Enlace → TRAMA (Frame)</text>
+
+  <!-- L3 Packet -->
+  <rect x="204" y="120" width="544" height="108" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <rect x="216" y="138" width="110" height="72" rx="6" fill="#2563eb"/>
+  <text x="271" y="170" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Cabecera</text>
+  <text x="271" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">IP</text>
+  <text x="271" y="205" text-anchor="middle" font-size="10" fill="#dbeafe">IP orig/dest</text>
+  <text x="600" y="135" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">Capa 3 · Red → PAQUETE (Packet)</text>
+
+  <!-- L4 Segment -->
+  <rect x="338" y="150" width="398" height="66" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <rect x="350" y="162" width="104" height="42" rx="6" fill="#16a34a"/>
+  <text x="402" y="180" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Cabecera</text>
+  <text x="402" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">TCP/UDP</text>
+  <text x="600" y="146" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">Capa 4 · Transporte → SEGMENTO</text>
+
+  <!-- L7 Data -->
+  <rect x="466" y="168" width="258" height="34" rx="6" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <text x="595" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#854d0e">DATOS (HTTP, DNS, SMB…)</text>
+
+  <!-- Mapping table -->
+  <text x="60" y="288" font-size="14" font-weight="700" fill="#0f172a">Mapa de capas</text>
+  <line x1="60" y1="298" x2="760" y2="298" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="60"  y="322" font-size="12.5" fill="#334155" font-weight="700">OSI (7)</text>
+  <text x="430" y="322" font-size="12.5" fill="#334155" font-weight="700">TCP/IP (4)</text>
+  <text x="60"  y="346" font-size="12" fill="#475569">7 Aplicación · 6 Presentación · 5 Sesión</text>
+  <text x="430" y="346" font-size="12" fill="#475569">Aplicación</text>
+  <text x="60"  y="368" font-size="12" fill="#475569">4 Transporte  (TCP/UDP, puertos)</text>
+  <text x="430" y="368" font-size="12" fill="#475569">Transporte</text>
+  <text x="60"  y="390" font-size="12" fill="#475569">3 Red  (IP, routing)</text>
+  <text x="430" y="390" font-size="12" fill="#475569">Internet</text>
+  <text x="60"  y="412" font-size="12" fill="#475569">2 Enlace (MAC/ARP) · 1 Física</text>
+  <text x="430" y="412" font-size="12" fill="#475569">Acceso a la red</text>
+</svg>
