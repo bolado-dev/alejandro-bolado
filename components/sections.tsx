@@ -719,6 +719,7 @@ function ProjectRow({
         href={project.href}
         target="_blank"
         rel="noopener noreferrer"
+        data-cursor-label="Ver proyecto"
         className={cn(base, "hover:bg-muted/40 -mx-4 px-4")}
       >
         {inner}
@@ -837,7 +838,10 @@ export function Contact() {
             </div>
             <div data-field>
               <Magnetic strength={0.2} className="w-full">
-                <Button className="bg-brand text-brand-foreground hover:bg-brand/85 w-full gap-2">
+                <Button
+                  data-cursor-label="Enviar"
+                  className="bg-brand text-brand-foreground hover:bg-brand/85 w-full gap-2"
+                >
                   Enviar mensaje
                   <Send className="h-3.5 w-3.5" />
                 </Button>

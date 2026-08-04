@@ -270,6 +270,7 @@ export function ExplorerCard({
           href={href}
           className="absolute inset-0 z-0 rounded-xl"
           aria-label={linkLabel ?? title}
+          data-cursor-label={linkLabel ?? "Ver"}
         />
       )}
 

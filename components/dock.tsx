@@ -247,8 +247,9 @@ export function DockComponent() {
     navItems.find((item) => item.href.slice(1) === activeSection) || navItems[0]
   const CurrentIcon = currentItem?.icon || User
 
-  // El dock del portfolio no aparece en la sección cybersec (tiene su propio header)
-  if (pathname?.startsWith("/cybersec")) return null
+  // El dock del portfolio no aparece en cybersec ni en visuals (tienen su propio header)
+  if (pathname?.startsWith("/cybersec") || pathname?.startsWith("/visuals"))
+    return null
 
   const dockItems = [
     {
@@ -277,6 +278,12 @@ export function DockComponent() {
       icon: <Terminal className="h-5 w-5" />,
       label: "Cybersec",
       href: "/cybersec",
+    },
+    // Bolado Visuals (submarca de fotografía & filmmaking)
+    {
+      icon: <Camera className="h-5 w-5" />,
+      label: "Visuals",
+      href: "/visuals",
     },
     // resto: Habilidades, Educación, Contacto
     ...navItems.slice(1).map((item) => ({
@@ -363,16 +370,26 @@ export function DockComponent() {
                         <span>{item.label}</span>
                       </motion.button>
                     )}
-                    {/* Cybersec entre "Sobre mí" y "Habilidades" */}
+                    {/* Cybersec y Visuals entre "Sobre mí" y "Habilidades" */}
                     {index === 0 && (
-                      <Link
-                        href="/cybersec"
-                        onClick={() => setIsOpen(false)}
-                        className="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-3 hover:bg-secondary"
-                      >
-                        <Terminal className="h-5 w-5" />
-                        <span>Cybersec</span>
-                      </Link>
+                      <>
+                        <Link
+                          href="/cybersec"
+                          onClick={() => setIsOpen(false)}
+                          className="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-3 hover:bg-secondary"
+                        >
+                          <Terminal className="h-5 w-5" />
+                          <span>Cybersec</span>
+                        </Link>
+                        <Link
+                          href="/visuals"
+                          onClick={() => setIsOpen(false)}
+                          className="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-3 hover:bg-secondary"
+                        >
+                          <Camera className="h-5 w-5" />
+                          <span>Visuals</span>
+                        </Link>
+                      </>
                     )}
                   </React.Fragment>
                 ))}

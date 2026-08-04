@@ -22,6 +22,7 @@ const socialLinks = [
 
 const internalLinks = [
   { label: "Cybersec", href: "/cybersec" },
+  { label: "Bolado Visuals", href: "/visuals" },
   { label: "Sobre mí", href: "/sobre-mi" },
 ]
 
@@ -75,7 +76,11 @@ export function Footer() {
           </Reveal>
 
           <Reveal y={40} duration={1.1} delay={0.05}>
-            <a href={`mailto:${EMAIL}`} className="group block w-fit">
+            <a
+              href={`mailto:${EMAIL}`}
+              data-cursor-label="Escríbeme"
+              className="group block w-fit"
+            >
               <span
                 className={cn(
                   "block text-[clamp(3rem,12vw,9rem)] font-medium leading-[0.95] tracking-tight",
@@ -109,6 +114,7 @@ export function Footer() {
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noreferrer" : undefined}
+                data-cursor-label={label}
                 className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-brand"
               >
                 <Icon className="h-3.5 w-3.5" />
@@ -119,6 +125,7 @@ export function Footer() {
               <Link
                 key={item.href}
                 href={item.href}
+                data-cursor-label={item.label}
                 className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-brand"
               >
                 {item.label}

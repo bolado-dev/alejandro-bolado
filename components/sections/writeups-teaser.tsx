@@ -110,6 +110,7 @@ export async function WriteupsTeaser() {
               key={w.slug}
               href={`/cybersec/writeups/${w.slug}`}
               data-row
+              data-cursor-label="Leer writeup"
               className="group relative flex items-center gap-5 border-b py-5 transition-colors"
             >
               <span
@@ -169,6 +170,7 @@ export async function WriteupsTeaser() {
         <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Link
             href="/cybersec/maquinas"
+            data-cursor-label="Roadmap"
             className="group inline-flex items-center gap-2 text-[11px] uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
           >
             Ver roadmap de máquinas
@@ -177,6 +179,7 @@ export async function WriteupsTeaser() {
 
           <Link
             href="/cybersec"
+            data-cursor-label="Entrar al lab"
             className="group inline-flex items-center gap-2 text-[11px] uppercase tracking-widest"
           >
             <span className="border-b border-brand pb-0.5 transition-colors group-hover:text-brand">

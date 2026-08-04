@@ -79,6 +79,7 @@ export function Photography() {
             <button
               key={p.src}
               onClick={() => setIndex(i)}
+              data-cursor-label="Ampliar"
               className="group relative block w-full overflow-hidden bg-muted"
               style={{ aspectRatio: `${p.width} / ${p.height}` }}
             >

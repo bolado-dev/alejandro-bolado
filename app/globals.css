@@ -518,3 +518,49 @@ button:focus-visible {
 .text-glow-brand {
   text-shadow: 0 0 12px color-mix(in oklch, var(--brand), transparent 55%);
 }
+
+/* ─── Cursor personalizado global ───────────────────────────────────────── */
+/* Cuando está activo (puntero fino), oculta el cursor nativo en todo el sitio */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* ─── Bolado Visuals: identidad de la submarca ──────────────────────────── */
+/* Solo dentro de /visuals. Estética editorial (estilo studio): Outfit,       */
+/* lienzo BLANCO fijo (independiente del tema global), neutros zinc y el azul  */
+/* de marca como color de acción. Radios amplios, todo plano.                 */
+.visuals-scope {
+  color-scheme: light;
+  /* Tipografía: hereda Outfit del portfolio (--font-sans global) */
+  /* Lienzo blanco + neutros zinc (fijos, ganan al .dark heredado) */
+  --background: #ffffff;
+  --foreground: #0a0a0b;
+  --card: #ffffff;
+  --card-foreground: #0a0a0b;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0b;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #1354f4;
+  /* Acento de marca */
+  --brand: #1354f4;
+  --brand-foreground: #ffffff;
+  --radius: 1rem;
+}
+
+/* Titulares de marca: peso medio (Outfit) y tracking ajustado */
+.visuals-scope .visuals-display {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.visuals-scope ::selection {
+  background-color: #0a0a0b;
+  color: #ffffff;
+}

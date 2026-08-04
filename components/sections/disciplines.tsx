@@ -81,6 +81,7 @@ export function Disciplines() {
                 key={d.title}
                 href={d.href}
                 data-row
+                data-cursor-label={`Ver ${d.title}`}
                 className="group relative flex flex-col gap-4 border-b py-8 transition-colors sm:flex-row sm:items-center sm:gap-8 md:py-10"
               >
                 <span

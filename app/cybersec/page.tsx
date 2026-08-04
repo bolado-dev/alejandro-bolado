@@ -69,6 +69,7 @@ export default async function CybersecLanding() {
           href="https://github.com/bolado-dev/BoladoBSPWM"
           target="_blank"
           rel="noopener noreferrer"
+          data-cursor-label="Ver repo"
           className="group mt-6 flex w-full items-center justify-between gap-6 rounded-xl border border-dashed bg-card px-6 py-5 text-left transition-colors hover:bg-secondary"
         >
           <div className="flex items-center gap-4">
@@ -123,6 +124,7 @@ function LandingCard({
   return (
     <Link
       href={href}
+      data-cursor-label="Entrar"
       className="group flex flex-col justify-between rounded-xl border bg-card p-6 transition-colors hover:bg-secondary"
     >
       <div>

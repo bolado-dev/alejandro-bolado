@@ -3,6 +3,7 @@ import { Geist_Mono, Outfit } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { DockComponent } from "@/components/dock"
+import { CustomCursor } from "@/components/custom-cursor"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
@@ -75,6 +76,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SmoothScroll />
+          <CustomCursor />
           <DockComponent />
           <main>{children}</main>
         </ThemeProvider>

@@ -25,7 +25,11 @@ export function CyberHeader() {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-4 px-4">
-        <Link href="/cybersec" className="flex items-center gap-3.5">
+        <Link
+          href="/cybersec"
+          data-cursor-label="Cybersec"
+          className="flex items-center gap-3.5"
+        >
           {mounted && (
             <img
               src={theme === "dark" ? "/Logo ICON-02.png" : "/Logo ICON-01.png"}
@@ -73,6 +77,7 @@ export function CyberHeader() {
           </button>
           <Link
             href="/"
+            data-cursor-label="Portfolio"
             className="hidden items-center gap-1.5 rounded-full border px-4 py-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground sm:flex"
           >
             <ArrowLeft className="h-3.5 w-3.5" />

@@ -12,6 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE}/`, priority: 1 },
+    { url: `${SITE}/visuals`, priority: 0.8 },
     { url: `${SITE}/cybersec`, priority: 0.8 },
     { url: `${SITE}/cybersec/maquinas`, priority: 0.8 },
     { url: `${SITE}/cybersec/writeups`, priority: 0.8 },

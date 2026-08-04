@@ -44,6 +44,7 @@ export function Filmmaking() {
           <Reveal y={24} className="mb-4">
             <button
               onClick={() => setIndex(0)}
+              data-cursor-label="Reproducir"
               className="group relative block aspect-video w-full overflow-hidden bg-muted"
             >
               <span className="absolute inset-0 flex items-center justify-center text-[11px] tracking-widest text-muted-foreground/40 uppercase">
@@ -85,6 +86,7 @@ export function Filmmaking() {
             <button
               key={f.title}
               data-film
+              data-cursor-label="Reproducir"
               onClick={() => setIndex((showreel ? 1 : 0) + i)}
               className="group relative block aspect-video w-full overflow-hidden bg-muted text-left"
             >
