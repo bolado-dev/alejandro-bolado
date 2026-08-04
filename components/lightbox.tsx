@@ -59,7 +59,7 @@ export function Lightbox({ items, index, onClose, onIndexChange }: LightboxProps
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[300] flex items-center justify-center bg-background/95 p-4 backdrop-blur-md sm:p-8"
+          className="fixed inset-0 z-[300] flex items-center justify-center bg-background p-4 sm:p-8"
           onClick={onClose}
         >
           <button
