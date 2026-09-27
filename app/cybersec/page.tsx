@@ -4,6 +4,7 @@ import { getAllWriteups } from "@/lib/writeups"
 import { getManualNav } from "@/lib/manual"
 import { getMachines, getMachineStats } from "@/lib/machines"
 import { GithubIcon } from "@/components/icons/github-icon"
+import { CyberHero } from "@/components/cybersec/cyber-hero"
 
 export default async function CybersecLanding() {
   const [writeups, manual, machineList] = await Promise.all([
@@ -15,30 +16,14 @@ export default async function CybersecLanding() {
   const manualPages = manual.reduce((acc, s) => acc + s.pages.length, 0)
 
   return (
-    <main className="px-4 pt-24 pb-28">
+    <main className="px-4 pt-8 pb-28">
+      <CyberHero
+        writeups={writeups.length}
+        machines={machineStats}
+        manualPages={manualPages}
+      />
       <div className="container mx-auto flex max-w-3xl flex-col items-center text-center">
-        <p className="mb-4 text-[11px] tracking-widest text-muted-foreground uppercase">
-          Ciberseguridad
-        </p>
-        <h1 className="text-4xl font-bold tracking-tighter md:text-5xl">
-          Hacking ético & writeups
-        </h1>
-        <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-          Una sección dedicada a la seguridad ofensiva: resoluciones de máquinas
-          de Hack The Box y un manual técnico de referencia. Enumeración,
-          explotación, post-explotación y escalada de privilegios.
-        </p>
-
-        <div className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-3">
-          <Stat value={writeups.length} label="Writeups" />
-          <Stat
-            value={`${machineStats.done}/${machineStats.total}`}
-            label="Máquinas resueltas"
-          />
-          <Stat value={manualPages} label="Páginas de manual" />
-        </div>
-
-        <div className="mt-14 grid w-full gap-4 text-left sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-2 grid w-full gap-4 text-left sm:grid-cols-2 lg:grid-cols-3">
           <LandingCard
             href="/cybersec/maquinas"
             icon={<Server className="h-5 w-5" />}
@@ -94,15 +79,6 @@ export default async function CybersecLanding() {
         </Link>
       </div>
     </main>
-  )
-}
-
-function Stat({ value, label }: { value: number | string; label: string }) {
-  return (
-    <div className="flex items-baseline gap-2">
-      <span className="text-2xl font-medium">{value}</span>
-      <span className="text-sm text-muted-foreground">{label}</span>
-    </div>
   )
 }
 

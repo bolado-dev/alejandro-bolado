@@ -38,7 +38,7 @@ export function VisualsHero() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Magnetic>
               <button
-                onClick={() => scrollTo("#portfolio")}
+                onClick={() => scrollTo("#disciplinas")}
                 data-cursor-label="Ver trabajos"
                 className="group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-medium text-brand-foreground transition-colors hover:opacity-90"
               >

@@ -19,6 +19,8 @@ type RevealProps = {
   duration?: number
   stagger?: number
   start?: string
+  end?: string
+  /** `true` = solo entrada (se queda visible). Por defecto también sale al perderse de vista. */
   once?: boolean
 }
 
@@ -30,7 +32,8 @@ export function Reveal({
   y = 32,
   duration = 0.9,
   start = "top 85%",
-  once = true,
+  end = "bottom 15%",
+  once = false,
 }: RevealProps) {
   const Tag = (as ?? "div") as ElementType
   const ref = useRef<HTMLElement>(null)
@@ -52,12 +55,15 @@ export function Reveal({
           scrollTrigger: {
             trigger: el,
             start,
-            toggleActions: once ? "play none none none" : "play none none reverse",
+            end,
+            toggleActions: once
+              ? "play none none none"
+              : "play reverse play reverse",
           },
         },
       )
     },
-    [y, duration, delay, start, once],
+    [y, duration, delay, start, end, once],
   )
 
   return (
@@ -76,6 +82,8 @@ type StaggerProps = {
   stagger?: number
   duration?: number
   start?: string
+  end?: string
+  once?: boolean
 }
 
 export function StaggerReveal({
@@ -87,6 +95,8 @@ export function StaggerReveal({
   stagger = 0.08,
   duration = 0.8,
   start = "top 85%",
+  end = "bottom 15%",
+  once = false,
 }: StaggerProps) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -112,12 +122,15 @@ export function StaggerReveal({
           scrollTrigger: {
             trigger: el,
             start,
-            toggleActions: "play none none none",
+            end,
+            toggleActions: once
+              ? "play none none none"
+              : "play reverse play reverse",
           },
         },
       )
     },
-    [selector, y, stagger, duration, delay, start],
+    [selector, y, stagger, duration, delay, start, end, once],
   )
 
   return (

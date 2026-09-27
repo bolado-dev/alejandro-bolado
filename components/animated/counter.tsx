@@ -16,6 +16,8 @@ type CounterProps = {
   suffix?: string
   prefix?: string
   className?: string
+  /** `true` = solo cuenta una vez. Por defecto vuelve a 0 al perderse de vista. */
+  once?: boolean
 }
 
 export function Counter({
@@ -24,6 +26,7 @@ export function Counter({
   suffix,
   prefix,
   className,
+  once = false,
 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null)
 
@@ -32,20 +35,27 @@ export function Counter({
     if (!el) return
     const obj = { val: 0 }
 
-    gsap.to(obj, {
-      val: to,
-      duration,
-      ease: "power2.out",
-      onUpdate: () => {
-        el.textContent = Math.round(obj.val).toString()
+    gsap.fromTo(
+      obj,
+      { val: 0 },
+      {
+        val: to,
+        duration,
+        ease: "power2.out",
+        onUpdate: () => {
+          el.textContent = Math.round(obj.val).toString()
+        },
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          end: "bottom 10%",
+          toggleActions: once
+            ? "play none none none"
+            : "play reverse play reverse",
+        },
       },
-      scrollTrigger: {
-        trigger: el,
-        start: "top 90%",
-        toggleActions: "play none none none",
-      },
-    })
-  }, [to, duration])
+    )
+  }, [to, duration, once])
 
   return (
     <span className={cn("tabular-nums", className)}>

@@ -9,9 +9,10 @@ import {
 } from "framer-motion"
 import { useEffect, useState } from "react"
 
-// Cursor personalizado global: punto + anillo con mezcla "difference" (invierte
-// el color del fondo) y una etiqueta contextual leída de `data-cursor-label`.
-// Se activa solo en punteros finos y respeta prefers-reduced-motion.
+// Cursor personalizado global: un punto que sigue al puntero al instante, con
+// mezcla "difference" para invertir el color del fondo, y una etiqueta
+// contextual leída de `data-cursor-label`. Se activa solo en punteros finos y
+// respeta prefers-reduced-motion.
 export function CustomCursor() {
   const reduce = useReducedMotion()
   const [enabled, setEnabled] = useState(false)
@@ -20,8 +21,8 @@ export function CustomCursor() {
 
   const x = useMotionValue(-100)
   const y = useMotionValue(-100)
-  const ringX = useSpring(x, { stiffness: 350, damping: 28, mass: 0.5 })
-  const ringY = useSpring(y, { stiffness: 350, damping: 28, mass: 0.5 })
+  const labelX = useSpring(x, { stiffness: 350, damping: 28, mass: 0.5 })
+  const labelY = useSpring(y, { stiffness: 350, damping: 28, mass: 0.5 })
 
   useEffect(() => {
     if (reduce) return
@@ -61,32 +62,23 @@ export function CustomCursor() {
 
   return (
     <>
-      {/* Punto + anillo. La mezcla "difference" va en el contenedor para que se
-          invierta contra la página en cualquier fondo (claro u oscuro). */}
+      {/* Punto: sigue al puntero al instante, con mezcla "difference" para
+          que se invierta contra la página en cualquier fondo. */}
       <div
         className="pointer-events-none fixed inset-0 z-[10000]"
         style={{ mixBlendMode: "difference" }}
         aria-hidden
       >
         <motion.div
-          style={{ x: ringX, y: ringY, willChange: "transform" }}
+          style={{ x, y, willChange: "transform" }}
           className="absolute top-0 left-0"
         >
           <motion.div
             animate={{
               scale: label ? 0 : hovering ? 2.6 : 1,
-              opacity: label ? 0 : hovering ? 0.5 : 1,
+              opacity: label ? 0 : 1,
             }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="-mt-4 -ml-4 h-8 w-8 rounded-full border border-white"
-          />
-        </motion.div>
-        <motion.div
-          style={{ x, y, willChange: "transform" }}
-          className="absolute top-0 left-0"
-        >
-          <motion.div
-            animate={{ scale: label ? 0 : 1 }}
             className="-mt-1 -ml-1 h-2 w-2 rounded-full bg-white"
           />
         </motion.div>
@@ -94,7 +86,7 @@ export function CustomCursor() {
 
       {/* Etiqueta contextual (usa --brand: se adapta a cada sección) */}
       <motion.div
-        style={{ x: ringX, y: ringY }}
+        style={{ x: labelX, y: labelY }}
         className="pointer-events-none fixed top-0 left-0 z-[10000]"
         aria-hidden
       >

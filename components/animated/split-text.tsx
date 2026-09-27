@@ -20,6 +20,9 @@ type SplitTextProps = {
   y?: string | number
   trigger?: "load" | "scroll"
   start?: string
+  end?: string
+  /** `true` = solo entrada (se queda visible). Por defecto también sale al perderse de vista. */
+  once?: boolean
 }
 
 export function SplitText({
@@ -32,6 +35,8 @@ export function SplitText({
   y = "110%",
   trigger = "scroll",
   start = "top 85%",
+  end = "bottom 15%",
+  once = false,
 }: SplitTextProps) {
   const Tag = (as ?? "h2") as ElementType
   const ref = useRef<HTMLElement>(null)
@@ -62,12 +67,15 @@ export function SplitText({
           scrollTrigger: {
             trigger: el,
             start,
-            toggleActions: "play none none none",
+            end,
+            toggleActions: once
+              ? "play none none none"
+              : "play reverse play reverse",
           },
         })
       }
     },
-    [children, delay, duration, stagger, y, trigger, start],
+    [children, delay, duration, stagger, y, trigger, start, end, once],
   )
 
   return (

@@ -23,7 +23,7 @@ export function CyberHeader() {
   React.useEffect(() => setMounted(true), [])
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b bg-background">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-4 px-4">
         <Link
           href="/cybersec"

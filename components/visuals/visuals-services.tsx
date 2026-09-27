@@ -11,7 +11,13 @@ import { Reveal, StaggerReveal } from "@/components/animated/reveal"
 import { Magnetic } from "@/components/animated/magnetic"
 import { SectionHeading } from "@/components/visuals/section-heading"
 
-const services = [
+type VisualsService = {
+  icon: typeof User
+  title: string
+  desc: string
+}
+
+const photoServices: VisualsService[] = [
   {
     icon: User,
     title: "Retrato & Personal branding",
@@ -27,6 +33,9 @@ const services = [
     title: "Comercial & Producto",
     desc: "Fotografía de producto, espacios y marca para catálogos, e-commerce y campañas publicitarias.",
   },
+]
+
+const filmServices: VisualsService[] = [
   {
     icon: Clapperboard,
     title: "Filmmaking & Reels",
@@ -34,12 +43,20 @@ const services = [
   },
 ]
 
+const allServices: VisualsService[] = [...photoServices, ...filmServices]
+
 function scrollTo(href: string) {
   const el = document.getElementById(href.replace("#", ""))
   if (el) el.scrollIntoView({ behavior: "smooth" })
 }
 
-export function VisualsServices() {
+export function VisualsServices({
+  variant = "all",
+}: {
+  variant?: "all" | "foto" | "video"
+}) {
+  const services =
+    variant === "foto" ? photoServices : variant === "video" ? filmServices : allServices
   return (
     <section id="servicios" className="px-6 py-24 md:py-32">
       <div className="mx-auto max-w-6xl">
@@ -47,7 +64,7 @@ export function VisualsServices() {
           <SectionHeading
             eyebrow="Servicios"
             title="Qué puedo hacer por ti"
-            description="Fotografía y vídeo a medida. Cada proyecto empieza con una conversación para entender qué quieres contar."
+            description="Cada proyecto empieza con una conversación para entender qué quieres contar."
           />
         </Reveal>
 

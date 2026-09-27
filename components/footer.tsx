@@ -1,157 +1,127 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import Link from "next/link"
+import { useEffect, useState, type ReactNode } from "react"
+import { useTheme } from "next-themes"
+import { motion, useReducedMotion } from "framer-motion"
 import { ArrowUp, ArrowUpRight, Mail } from "@/components/icons/solar"
-import { Reveal, StaggerReveal } from "@/components/animated/reveal"
 import { GithubIcon } from "@/components/icons/github-icon"
 import { LinkedinIcon } from "@/components/icons/linkedin-icon"
-import { cn } from "@/lib/utils"
 
 const EMAIL = "a.bolado.dev@gmail.com"
 
-const socialLinks = [
-  { label: "GitHub", href: "https://github.com/bolado-dev", Icon: GithubIcon },
+const links = [
+  { title: "Sobre mí", href: "/#about" },
+  { title: "Proyectos", href: "/#projects" },
+  { title: "Cybersec", href: "/cybersec" },
+  { title: "Visuals", href: "/visuals" },
+  { title: "GitHub", href: "https://github.com/bolado-dev", Icon: GithubIcon },
   {
-    label: "LinkedIn",
+    title: "LinkedIn",
     href: "https://linkedin.com/in/alejandrobolado",
     Icon: LinkedinIcon,
   },
-  { label: "Email", href: `mailto:${EMAIL}`, Icon: Mail },
 ]
 
-const internalLinks = [
-  { label: "Cybersec", href: "/cybersec" },
-  { label: "Bolado Visuals", href: "/visuals" },
-  { label: "Sobre mí", href: "/sobre-mi" },
-]
+function AnimatedContainer({
+  delay = 0.1,
+  children,
+  className,
+}: {
+  delay?: number
+  children: ReactNode
+  className?: string
+}) {
+  const reduce = useReducedMotion()
 
-function LocalClock() {
-  const [mounted, setMounted] = useState(false)
-  const [time, setTime] = useState("")
-
-  useEffect(() => {
-    setMounted(true)
-
-    const update = () => {
-      setTime(
-        new Date().toLocaleTimeString("es-ES", {
-          timeZone: "Europe/Madrid",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        }),
-      )
-    }
-
-    update()
-    const id = setInterval(update, 1000)
-    return () => clearInterval(id)
-  }, [])
+  if (reduce) {
+    return <div className={className}>{children}</div>
+  }
 
   return (
-    <span className="inline-flex items-center gap-2 tabular-nums">
-      <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
-      Cantabria, España · {mounted ? time : "--:--:--"}
-    </span>
+    <motion.div
+      initial={{ filter: "blur(4px)", y: -8, opacity: 0 }}
+      whileInView={{ filter: "blur(0px)", y: 0, opacity: 1 }}
+      viewport={{ once: false, amount: 0.4 }}
+      transition={{ delay, duration: 0.7 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
   )
 }
 
 export function Footer() {
-  const year = new Date().getFullYear()
+  const [year, setYear] = useState(2025)
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setYear(new Date().getFullYear())
+    setMounted(true)
+  }, [])
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" })
 
   return (
-    <footer className="relative border-t border-border">
-      {/* Bloque final a sangre */}
-      <section id="contact" className="px-4 py-28 md:py-40">
-        <div className="container mx-auto max-w-6xl">
-          <Reveal y={20} duration={0.8}>
-            <p className="mb-6 text-[11px] uppercase tracking-widest text-muted-foreground">
-              ¿Hablamos?
-            </p>
-          </Reveal>
-
-          <Reveal y={40} duration={1.1} delay={0.05}>
-            <a
-              href={`mailto:${EMAIL}`}
-              data-cursor-label="Escríbeme"
-              className="group block w-fit"
-            >
-              <span
-                className={cn(
-                  "block text-[clamp(3rem,12vw,9rem)] font-medium leading-[0.95] tracking-tight",
-                  "transition-colors duration-500 group-hover:text-brand",
-                )}
-              >
-                Hablemos
-              </span>
-            </a>
-          </Reveal>
-
-          <Reveal y={16} duration={0.9} delay={0.2}>
-            <a
-              href={`mailto:${EMAIL}`}
-              className="group mt-8 inline-flex items-center gap-2 text-base text-muted-foreground transition-colors duration-300 hover:text-brand md:text-lg"
-            >
-              {EMAIL}
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </a>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Fila de enlaces */}
-      <div className="border-t border-border px-4 py-10">
-        <div className="container mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
-          <StaggerReveal className="flex flex-wrap items-center gap-x-8 gap-y-3 text-xs uppercase tracking-widest text-muted-foreground">
-            {socialLinks.map(({ label, href, Icon }) => (
+    <footer
+      id="contact"
+      className="relative h-[600px] w-full"
+      style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
+    >
+      <div className="fixed bottom-0 h-[600px] w-full">
+        <div className="sticky top-[calc(100vh-600px)] h-full overflow-y-auto">
+          <div className="flex size-full flex-col items-center justify-between gap-10 border-t px-4 py-12 text-center">
+            <AnimatedContainer className="flex flex-col items-center gap-5">
+              {mounted && (
+                <img
+                  src={theme === "dark" ? "/Logo ICON-02.png" : "/Logo ICON-01.png"}
+                  alt="Alejandro Bolado"
+                  className="h-9 w-auto object-contain"
+                />
+              )}
+              <p className="max-w-md text-base text-muted-foreground">
+                Desarrollo full-stack, ciberseguridad y fotografía. Entre el
+                código y la cámara.
+              </p>
               <a
-                key={label}
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noreferrer" : undefined}
-                data-cursor-label={label}
-                className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-brand"
+                href={`mailto:${EMAIL}`}
+                data-cursor-label="Escríbeme"
+                className="group inline-flex items-center gap-2 text-lg font-medium text-foreground transition-colors hover:text-brand"
               >
-                <Icon className="h-3.5 w-3.5" />
-                {label}
+                {EMAIL}
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
-            ))}
-            {internalLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                data-cursor-label={item.label}
-                className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-brand"
+            </AnimatedContainer>
+
+            <AnimatedContainer delay={0.15}>
+              <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-base text-muted-foreground">
+                {links.map(({ title, href, Icon }) => (
+                  <a
+                    key={title}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noreferrer" : undefined}
+                    data-cursor-label={title}
+                    className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
+                  >
+                    {Icon && <Icon className="h-4 w-4" />}
+                    {title}
+                  </a>
+                ))}
+              </nav>
+            </AnimatedContainer>
+
+            <div className="flex w-full max-w-md flex-col items-center justify-between gap-3 border-t pt-6 text-sm text-muted-foreground sm:flex-row">
+              <span>© {year} Alejandro Bolado</span>
+              <button
+                type="button"
+                onClick={scrollToTop}
+                className="group inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
               >
-                {item.label}
-              </Link>
-            ))}
-          </StaggerReveal>
-
-          <div className="flex items-center gap-6 text-xs uppercase tracking-widest text-muted-foreground">
-            <LocalClock />
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="group inline-flex items-center gap-2 transition-colors duration-300 hover:text-brand"
-            >
-              Volver arriba
-              <ArrowUp className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-1" />
-            </button>
+                Volver arriba
+                <ArrowUp className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
-
-      {/* Pie */}
-      <div className="border-t border-border px-4 py-6 pb-24 md:pb-6">
-        <div className="container mx-auto flex max-w-6xl flex-col gap-2 text-[11px] text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <span>© {year} Alejandro Bolado</span>
-          <span>Diseñado y construido con Next.js, Tailwind &amp; GSAP</span>
         </div>
       </div>
     </footer>

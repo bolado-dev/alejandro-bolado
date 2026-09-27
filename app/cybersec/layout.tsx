@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
 import { CyberHeader } from "@/components/cybersec/cyber-header"
+import { CyberFooter } from "@/components/cybersec/cyber-footer"
 import {
   CommandPalette,
   type PaletteItem,
 } from "@/components/cybersec/command-palette"
 import { getAllWriteups } from "@/lib/writeups"
 import { getManualNav } from "@/lib/manual"
-import { getMachines } from "@/lib/machines"
+import { getMachines, getMachineStats } from "@/lib/machines"
 
 export const metadata: Metadata = {
   title: {
@@ -61,10 +62,18 @@ export default async function CybersecLayout({
     ),
   ]
 
+  const machineStats = getMachineStats(machines)
+  const manualPages = manual.reduce((acc, s) => acc + s.pages.length, 0)
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen cybersec-scope">
       <CyberHeader />
       {children}
+      <CyberFooter
+        writeupsCount={writeups.length}
+        machineStats={machineStats}
+        manualPages={manualPages}
+      />
       <CommandPalette items={items} />
     </div>
   )

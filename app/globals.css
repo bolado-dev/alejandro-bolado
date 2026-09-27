@@ -564,3 +564,54 @@ html.has-custom-cursor * {
   background-color: #0a0a0b;
   color: #ffffff;
 }
+
+/* ─── Cybersec: identidad de la subweb ──────────────────────────────────── */
+/* Solo dentro de /cybersec (y el teaser que enlaza a ella desde la home).   */
+/* Blanco y negro puro, sin saturación: sin acento de color, bordes finos    */
+/* de baja opacidad. Radios iguales a los de la landing (mismo --radius      */
+/* base que :root) para mantener la misma estética redondeada del resto     */
+/* del sitio. Sigue soportando claro/oscuro (ModeToggle) a diferencia de     */
+/* .visuals-scope, que fuerza siempre claro.                                */
+.cybersec-scope {
+  --background: #ffffff;
+  --foreground: #050505;
+  --card: #ffffff;
+  --card-foreground: #050505;
+  --popover: #ffffff;
+  --popover-foreground: #050505;
+  --primary: #050505;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #050505;
+  --muted: #f5f5f5;
+  --muted-foreground: #6b6b6b;
+  --accent: #f0f0f0;
+  --accent-foreground: #050505;
+  --border: rgb(0 0 0 / 14%);
+  --input: rgb(0 0 0 / 14%);
+  --ring: #050505;
+  --brand: #050505;
+  --brand-foreground: #ffffff;
+}
+
+.dark .cybersec-scope {
+  --background: #050505;
+  --foreground: #ffffff;
+  --card: #0d0d0d;
+  --card-foreground: #ffffff;
+  --popover: #0d0d0d;
+  --popover-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #050505;
+  --secondary: #111111;
+  --secondary-foreground: #ffffff;
+  --muted: #111111;
+  --muted-foreground: #9a9a9a;
+  --accent: #161616;
+  --accent-foreground: #ffffff;
+  --border: rgb(255 255 255 / 14%);
+  --input: rgb(255 255 255 / 14%);
+  --ring: #ffffff;
+  --brand: #ffffff;
+  --brand-foreground: #050505;
+}
