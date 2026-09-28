@@ -48,6 +48,15 @@ const projects: Project[] = [
     href: "https://github.com/bolado-dev/BoladoBSPWM",
     repoLabel: "bolado-dev/BoladoBSPWM",
   },
+  {
+    title: "MEDION 14 S1 OLED — Linux fixes",
+    category: "Kernel driver + ACPI · C / Python / Bash",
+    description:
+      "Driver serio a medida para el teclado interno (scancodes corruptos + LED de Bloq Mayús nunca implementado) y parche de la tabla ACPI DSDT que arregla que la batería nunca reportase \"Charging\", cargado en caliente vía initrd sin flashear la BIOS.",
+    href: "https://github.com/bolado-dev/medion-14-s1-oled-linux",
+    repoLabel: "bolado-dev/medion-14-s1-oled-linux",
+    image: "/projects/medion-linux-fixes/laptop.webp",
+  },
 ]
 
 function TerminalPreview() {
