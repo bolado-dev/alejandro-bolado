@@ -615,3 +615,105 @@ html.has-custom-cursor * {
   --brand: #ffffff;
   --brand-foreground: #050505;
 }
+
+/* ─── Home: superficie oscura propia ──────────────────────────────────────────
+   La home replica un sistema de diseño distinto al del resto del sitio: solo
+   oscuro, Hanken Grotesk + Instrument Serif, texto con tinte azul en vez de
+   blanco puro. Se aplica bajo [data-surface="ink"] para que /cybersec y
+   /visuals conserven su paleta y su toggle claro/oscuro intactos. */
+[data-surface="ink"] {
+    --ink-bg: #0a0a0a;
+    --ink-fg: oklch(0.872 0.01 258.338);
+    --ink-fg-strong: #ffffff;
+    --ink-fg-dim: oklch(0.708 0 0);
+    --ink-accent: rgb(0, 111, 238);
+    --ink-ok: oklch(0.696 0.17 162.48);
+    --ink-line: rgb(255 255 255 / 0.07);
+    --ink-line-strong: rgb(255 255 255 / 0.1);
+    --ink-surface: rgb(255 255 255 / 0.04);
+    --ink-surface-hi: rgb(255 255 255 / 0.1);
+
+    /* Además de sus propios --ink-*, la superficie redefine los tokens de
+       shadcn. Así todo lo que ya existe debajo (exploradores, tarjetas,
+       prosa) adopta la paleta sin tocar una clase, y el radio base sube para
+       que el redondeo generoso sea el defecto. */
+    --background: #0a0a0a;
+    --foreground: #d1d5dc;
+    --card: #0f0f10;
+    --card-foreground: #d1d5dc;
+    --popover: #141416;
+    --popover-foreground: #d1d5dc;
+    --primary: #ffffff;
+    --primary-foreground: #0a0a0a;
+    --secondary: rgb(255 255 255 / 0.06);
+    --secondary-foreground: #ffffff;
+    --muted: rgb(255 255 255 / 0.05);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: rgb(255 255 255 / 0.08);
+    --accent-foreground: #ffffff;
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: rgb(255 255 255 / 0.1);
+    --input: rgb(255 255 255 / 0.14);
+    --ring: rgb(255 255 255 / 0.35);
+    --brand: #ffffff;
+    --brand-foreground: #0a0a0a;
+    --radius: 1rem;
+
+    background-color: var(--ink-bg);
+    color: var(--ink-fg);
+    font-family: var(--font-ui), var(--font-sans), ui-sans-serif, system-ui,
+        sans-serif;
+    font-weight: 400;
+}
+
+[data-surface="ink"] .font-display {
+    font-family: var(--font-serif), ui-serif, Georgia, serif;
+    font-weight: 400;
+}
+
+/* Raíles verticales punteados del contenedor, con marcas + en los cortes */
+[data-surface="ink"] .ink-rail {
+    position: relative;
+}
+[data-surface="ink"] .ink-rail::before,
+[data-surface="ink"] .ink-rail::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-image: linear-gradient(
+        to bottom,
+        var(--ink-line) 0 4px,
+        transparent 4px 8px
+    );
+    background-size: 1px 8px;
+    pointer-events: none;
+}
+[data-surface="ink"] .ink-rail::before {
+    left: 0;
+}
+[data-surface="ink"] .ink-rail::after {
+    right: 0;
+}
+
+/* Línea horizontal punteada de separación entre secciones */
+[data-surface="ink"] .ink-hr {
+    height: 1px;
+    background-image: linear-gradient(
+        to right,
+        var(--ink-line) 0 4px,
+        transparent 4px 8px
+    );
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
+}
+
+/* El footer halftone trae su propio inset horizontal. Dentro del contenedor
+   de 1008px se pone a cero para que su texto caiga en x=248 igual que el de
+   las demás secciones. Se hace por custom property y no sobrescribiendo
+   padding/margin: el componente inyecta su propio <style> y esa vía acaba en
+   una pelea de cascada que no gana. */
+[data-surface="ink"] .hwf-inset {
+    --hwf-inset: 0px;
+}

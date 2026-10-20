@@ -1,5 +1,11 @@
+import { InkContainer, InkDivider } from "@/components/ink"
 import type { MachineStats } from "@/lib/machines"
 
+/**
+ * Portada de la sección, en el mismo lenguaje que la del portfolio: rótulo
+ * pequeño, titular en serif itálica, prosa a 18px y las cifras en una fila
+ * monoespaciada, todo dentro de los raíles de 1008px.
+ */
 export function CyberHero({
   writeups,
   machines,
@@ -10,27 +16,29 @@ export function CyberHero({
   manualPages: number
 }) {
   return (
-    <div className="container mx-auto flex max-w-3xl flex-col items-center pt-8 pb-16 text-center">
-      <p className="mb-6 text-[11px] tracking-widest text-muted-foreground uppercase">
-        Ciberseguridad
-      </p>
-      <h1 className="text-[clamp(2.5rem,6.5vw,5.5rem)] font-medium leading-[0.95] tracking-tight">
-        Del recon
-        <br />a root.
-      </h1>
-      <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-        Una sección dedicada a la seguridad ofensiva: resoluciones de máquinas
-        de Hack The Box y un manual técnico de referencia. Enumeración,
-        explotación, post-explotación y escalada de privilegios.
-      </p>
+    <>
+      <InkContainer className="pb-10 pt-14">
+        <p className="text-[13px] text-[var(--ink-fg-dim)]">Ciberseguridad</p>
+        <h1 className="font-display mt-1 text-4xl italic tracking-[0.01em] text-[var(--ink-fg-strong)]">
+          Del recon a root
+        </h1>
+        <p className="mt-5 max-w-[62ch] text-[18px] leading-[1.625]">
+          Seguridad ofensiva: resoluciones de máquinas de Hack The Box y un
+          manual técnico de referencia. Enumeración, explotación,
+          post-explotación y escalada de privilegios.
+        </p>
+      </InkContainer>
 
-      <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-2 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-        <span>Writeups {writeups}</span>
-        <span>
-          Máquinas {machines.done}/{machines.total}
-        </span>
-        <span>Manual {manualPages} páginas</span>
-      </div>
-    </div>
+      <InkDivider />
+      <InkContainer className="py-5">
+        <div className="flex flex-wrap gap-x-10 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--ink-fg-dim)]">
+          <span>Writeups {writeups}</span>
+          <span>
+            Máquinas {machines.done}/{machines.total}
+          </span>
+          <span>Manual {manualPages} páginas</span>
+        </div>
+      </InkContainer>
+    </>
   )
 }

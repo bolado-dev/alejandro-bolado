@@ -3,10 +3,17 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useTheme } from "next-themes"
-import { FileText, BookOpen, Server, ArrowLeft, Menu, X, Search } from "@/components/icons/solar"
+
+import {
+  ArrowLeft,
+  BookOpen,
+  FileText,
+  Menu,
+  Search,
+  Server,
+  X,
+} from "@/components/icons/solar"
 import { cn } from "@/lib/utils"
-import { ModeToggle } from "@/components/mode-toggle"
 
 const NAV = [
   { href: "/cybersec/maquinas", label: "Máquinas", icon: Server },
@@ -14,31 +21,34 @@ const NAV = [
   { href: "/cybersec/manual", label: "Manual", icon: BookOpen },
 ]
 
+/**
+ * Cabecera de la sección. Alineada a los raíles de 1008px del portfolio, con
+ * las mismas píldoras y el mismo filete punteado.
+ *
+ * Sin selector de tema: la superficie ink es solo oscura, así que el logo es
+ * siempre la variante blanca y el toggle no tendría nada que alternar.
+ */
 export function CyberHeader() {
   const pathname = usePathname()
-  const { theme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
   const [open, setOpen] = React.useState(false)
 
-  React.useEffect(() => setMounted(true), [])
-
   return (
-    <header className="sticky top-0 z-50 border-b bg-background">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-4 px-4">
+    <header className="sticky top-0 z-50 border-b border-[var(--ink-line)] bg-[var(--ink-bg)]/85 backdrop-blur-md">
+      <div className="mx-auto flex h-16 w-full max-w-[1008px] items-center justify-between gap-4 px-8">
         <Link
           href="/cybersec"
           data-cursor-label="Cybersec"
-          className="flex items-center gap-3.5"
+          className="flex items-center gap-3"
         >
-          {mounted && (
-            <img
-              src={theme === "dark" ? "/Logo ICON-02.png" : "/Logo ICON-01.png"}
-              alt="Alejandro Bolado"
-              className="h-5 w-auto object-contain"
-            />
-          )}
-          <span className="text-sm font-semibold tracking-tight">
-            Alejandro Bolado
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/Logo ICON-02.png"
+            alt=""
+            aria-hidden
+            className="h-5 w-auto object-contain"
+          />
+          <span className="font-display text-lg italic text-[var(--ink-fg-strong)]">
+            Cybersec
           </span>
         </Link>
 
@@ -50,13 +60,13 @@ export function CyberHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-2 rounded-full px-4 py-1.5 text-sm transition-colors",
+                  "flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] transition-colors",
                   active
-                    ? "bg-secondary text-foreground"
-                    : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                    ? "bg-[var(--ink-surface-hi)] text-[var(--ink-fg-strong)]"
+                    : "text-[var(--ink-fg-dim)] hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)]",
                 )}
               >
-                <item.icon className="h-3.5 w-3.5" />
+                <item.icon className="size-3.5" />
                 {item.label}
               </Link>
             )
@@ -68,57 +78,59 @@ export function CyberHeader() {
             onClick={() =>
               window.dispatchEvent(new Event("open-command-palette"))
             }
-            className="hidden items-center gap-2 rounded-full border px-3 py-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground md:flex"
+            className="hidden items-center gap-2 rounded-full border border-[var(--ink-line-strong)] px-3 py-1.5 text-[13px] text-[var(--ink-fg-dim)] transition-colors hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)] md:flex"
             aria-label="Buscar"
           >
-            <Search className="h-3.5 w-3.5" />
+            <Search className="size-3.5" />
             <span>Buscar</span>
-            <kbd className="rounded border px-1.5 py-0.5 text-[10px]">⌘K</kbd>
+            <kbd className="rounded-full border border-[var(--ink-line-strong)] px-1.5 py-0.5 text-[10px]">
+              ⌘K
+            </kbd>
           </button>
           <Link
             href="/"
             data-cursor-label="Portfolio"
-            className="hidden items-center gap-1.5 rounded-full border px-4 py-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground sm:flex"
+            className="hidden items-center gap-1.5 rounded-full border border-[var(--ink-line-strong)] px-3.5 py-1.5 text-[13px] text-[var(--ink-fg-dim)] transition-colors hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)] sm:flex"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
+            <ArrowLeft className="size-3.5" />
             Portfolio
           </Link>
-          <ModeToggle />
           <button
             onClick={() => setOpen((v) => !v)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border sm:hidden"
+            className="flex size-9 items-center justify-center rounded-full border border-[var(--ink-line-strong)] sm:hidden"
             aria-label="Menú"
+            aria-expanded={open}
           >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
         </div>
       </div>
 
-      {open && (
-        <div className="border-t px-4 py-3 sm:hidden">
+      {open ? (
+        <div className="border-t border-[var(--ink-line)] px-8 py-3 sm:hidden">
           <div className="flex flex-col gap-1">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
+                className="flex items-center gap-2 rounded-full px-3 py-2 text-[14px] text-[var(--ink-fg-dim)] hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)]"
               >
-                <item.icon className="h-4 w-4" />
+                <item.icon className="size-4" />
                 {item.label}
               </Link>
             ))}
             <Link
               href="/"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
+              className="flex items-center gap-2 rounded-full px-3 py-2 text-[14px] text-[var(--ink-fg-dim)] hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)]"
             >
-              <ArrowLeft className="h-4 w-4" />
-              Volver al Portfolio
+              <ArrowLeft className="size-4" />
+              Volver al portfolio
             </Link>
           </div>
         </div>
-      )}
+      ) : null}
     </header>
   )
 }

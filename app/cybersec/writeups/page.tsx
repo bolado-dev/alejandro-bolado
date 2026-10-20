@@ -16,15 +16,15 @@ export default async function WriteupsPage({
   const [writeups, { q }] = await Promise.all([getAllWriteups(), searchParams])
 
   return (
-    <main className="px-4 pt-16 pb-28">
-      <div className="container mx-auto max-w-4xl">
-        <p className="mb-4 text-[11px] tracking-widest text-muted-foreground uppercase">
+    <main className="pt-14 pb-24">
+      <div className="ink-rail mx-auto w-full max-w-[1008px] px-8">
+        <p className="text-[13px] text-[var(--ink-fg-dim)]">
           Hack The Box · Apuntes
         </p>
-        <h1 className="text-4xl font-bold tracking-tighter md:text-5xl">
+        <h1 className="font-display mt-1 text-4xl italic tracking-[0.01em] text-[var(--ink-fg-strong)]">
           Writeups
         </h1>
-        <p className="mt-4 mb-12 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+        <p className="mt-5 mb-12 max-w-[62ch] text-[18px] leading-[1.625]">
           Resoluciones documentadas paso a paso. Enumeración, explotación,
           post-explotación y escalada de privilegios.
         </p>

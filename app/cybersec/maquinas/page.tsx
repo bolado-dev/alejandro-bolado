@@ -13,15 +13,15 @@ export default async function MachinesPage() {
   const stats = getMachineStats(machines)
 
   return (
-    <main className="px-4 pt-16 pb-28">
-      <div className="container mx-auto max-w-5xl">
-        <p className="mb-4 text-[11px] tracking-widest text-muted-foreground uppercase">
+    <main className="pt-14 pb-24">
+      <div className="ink-rail mx-auto w-full max-w-[1008px] px-8">
+        <p className="text-[13px] text-[var(--ink-fg-dim)]">
           Hack The Box · Roadmap
         </p>
-        <h1 className="text-4xl font-bold tracking-tighter md:text-5xl">
+        <h1 className="font-display mt-1 text-4xl italic tracking-[0.01em] text-[var(--ink-fg-strong)]">
           Máquinas
         </h1>
-        <p className="mt-4 mb-12 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+        <p className="mt-5 mb-12 max-w-[62ch] text-[18px] leading-[1.625]">
           El listado completo que estoy trabajando: las que ya he resuelto
           enlazan a mi writeup, las pendientes marcan el camino. Filtra por
           estado, sistema operativo, dificultad, certificación o busca por

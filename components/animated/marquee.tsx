@@ -11,6 +11,8 @@ type MarqueeProps = {
   speed?: number
   direction?: "left" | "right"
   pauseOnHover?: boolean
+  /** Color de los degradados de los bordes. Por defecto el token global. */
+  fadeFrom?: string
 }
 
 export function Marquee({
@@ -19,6 +21,7 @@ export function Marquee({
   speed = 40,
   direction = "left",
   pauseOnHover = true,
+  fadeFrom = "from-background",
 }: MarqueeProps) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -65,8 +68,18 @@ export function Marquee({
 
   return (
     <div ref={ref} className={cn("relative overflow-hidden", className)}>
-      <div className="absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-      <div className="absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
+      <div
+        className={cn(
+          "absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r to-transparent",
+          fadeFrom,
+        )}
+      />
+      <div
+        className={cn(
+          "absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l to-transparent",
+          fadeFrom,
+        )}
+      />
       <div data-marquee-track className="flex w-max">
         <div data-marquee-inner className="flex w-max items-center">
           {children}

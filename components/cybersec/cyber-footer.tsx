@@ -1,50 +1,24 @@
 import Link from "next/link"
-import { Mail } from "@/components/icons/solar"
+
 import { GithubIcon } from "@/components/icons/github-icon"
 import { LinkedinIcon } from "@/components/icons/linkedin-icon"
+import { ArrowLeft, Mail } from "@/components/icons/solar"
+import { InkContainer, InkDivider } from "@/components/ink"
+import HalftoneWordmarkFooter from "@/components/ui/halftone-wordmark-footer"
+import { fontMono, fontUi } from "@/lib/fonts"
+import { PROFILE } from "@/lib/home-data"
 import type { MachineStats } from "@/lib/machines"
 
-const EMAIL = "a.bolado.dev@gmail.com"
-
-const EXPLORE_LINKS = [
-  { label: "Máquinas", href: "/cybersec/maquinas" },
-  { label: "Writeups", href: "/cybersec/writeups" },
-  { label: "Manual", href: "/cybersec/manual" },
+const CONNECT = [
+  { label: "GitHub", href: PROFILE.github, Icon: GithubIcon },
+  { label: "LinkedIn", href: PROFILE.linkedin, Icon: LinkedinIcon },
+  { label: "Correo", href: `mailto:${PROFILE.email}`, Icon: Mail },
 ]
 
-const CONNECT_LINKS = [
-  { label: "GitHub", href: "https://github.com/bolado-dev", Icon: GithubIcon },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/alejandrobolado",
-    Icon: LinkedinIcon,
-  },
-  { label: "Email", href: `mailto:${EMAIL}`, Icon: Mail },
-]
-
-const PORTFOLIO_LINKS = [
-  { label: "Inicio", href: "/" },
-  { label: "Sobre mí", href: "/#about" },
-  { label: "Visuals", href: "/visuals" },
-]
-
-function FooterColumn({
-  title,
-  children,
-}: {
-  title: string
-  children: React.ReactNode
-}) {
-  return (
-    <div>
-      <p className="mb-4 text-[11px] uppercase tracking-widest text-muted-foreground">
-        {title}
-      </p>
-      <ul className="flex flex-col gap-2.5 text-sm">{children}</ul>
-    </div>
-  )
-}
-
+/**
+ * Pie de la sección: franja de cifras, bloque de contacto y el mismo footer
+ * halftone del portfolio, aquí con el wordmark "cybersec".
+ */
 export function CyberFooter({
   writeupsCount,
   machineStats,
@@ -54,84 +28,60 @@ export function CyberFooter({
   machineStats: MachineStats
   manualPages: number
 }) {
-  const year = new Date().getFullYear()
-
   return (
-    <footer className="border-t px-4 py-16">
-      <div className="mx-auto max-w-5xl">
-        <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
-          <div>
-            <span className="text-sm font-semibold tracking-tight">
-              Cybersec
-            </span>
-            <p className="mt-4 max-w-[20ch] text-sm text-muted-foreground">
-              Hacking ético, writeups de Hack The Box y un manual técnico de
-              referencia.
-            </p>
-          </div>
-
-          <FooterColumn title="Explorar">
-            {EXPLORE_LINKS.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </FooterColumn>
-
-          <FooterColumn title="Conecta">
-            {CONNECT_LINKS.map(({ label, href, Icon }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noreferrer" : undefined}
-                  className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <Icon className="h-3.5 w-3.5" />
-                  {label}
-                </a>
-              </li>
-            ))}
-          </FooterColumn>
-
-          <FooterColumn title="Portfolio">
-            {PORTFOLIO_LINKS.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </FooterColumn>
-        </div>
-
-        {/* Franja de diagnostics: mismos datos reales del hero */}
-        <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-2 border-t pt-6 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+    <>
+      <InkDivider />
+      <InkContainer className="py-5">
+        <div className="flex flex-wrap gap-x-10 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--ink-fg-dim)]">
           <span>Writeups {writeupsCount}</span>
           <span>
             Máquinas {machineStats.done}/{machineStats.total}
           </span>
           <span>Manual {manualPages} páginas</span>
         </div>
+      </InkContainer>
 
-        <div className="mt-8 flex flex-col gap-2 text-[11px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span>© {year} Alejandro Bolado</span>
+      <InkDivider />
+      <InkContainer className="py-12">
+        <h2 className="font-display text-xl italic">Conectemos</h2>
+        <div className="mt-4 flex flex-wrap gap-2.5">
+          {CONNECT.map(({ label, href, Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noreferrer" : undefined}
+              className="flex items-center gap-2 rounded-full border border-[var(--ink-line-strong)] px-3 py-2 text-[14px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
+            >
+              <Icon className="size-4" /> {label}
+            </a>
+          ))}
           <Link
             href="/"
-            className="transition-colors hover:text-foreground"
+            className="flex items-center gap-2 rounded-full border border-[var(--ink-line-strong)] px-3 py-2 text-[14px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
           >
-            Volver al portfolio
+            <ArrowLeft className="size-4" /> Portfolio
           </Link>
         </div>
+      </InkContainer>
+
+      <InkDivider />
+      {/* Las familias van por nombre real y no por var(--font-ui): el canvas
+          del wordmark no resuelve variables CSS en ctx.font. */}
+      <div className="ink-rail mx-auto w-full max-w-[1008px] px-8">
+        <HalftoneWordmarkFooter
+          className="hwf-inset"
+          wordmark="cybersec"
+          label="Cybersec · Alejandro Bolado"
+          meta={`©${new Date().getFullYear()} · ${PROFILE.location}`}
+          columns={[]}
+          palette={{ background: "#0a0a0a", ink: "#d1d5dc", warm: "#ffffff" }}
+          crop={-0.08}
+          fontFamily={fontUi.style.fontFamily}
+          monoFamily={fontMono.style.fontFamily}
+          height="420px"
+        />
       </div>
-    </footer>
+    </>
   )
 }

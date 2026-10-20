@@ -72,7 +72,14 @@ export function Navbar() {
   }
 
   // Cybersec y Visuals tienen su propia cabecera
-  if (pathname?.startsWith("/cybersec") || pathname?.startsWith("/visuals")) return null
+  // La home trae su propia navegación en la portada y el pie, igual que
+  // cybersec y visuals traen las suyas.
+  if (
+    pathname === "/" ||
+    pathname?.startsWith("/cybersec") ||
+    pathname?.startsWith("/visuals")
+  )
+    return null
 
   return (
     <header
