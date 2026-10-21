@@ -10,6 +10,7 @@ import {
   Terminal,
 } from "@/components/icons/solar"
 import { InkSection } from "@/components/ink"
+import { InkStagger } from "@/components/ink-reveal"
 import { getMachines, getMachineStats } from "@/lib/machines"
 import { getManualNav } from "@/lib/manual"
 import { getAllWriteups } from "@/lib/writeups"
@@ -31,8 +32,8 @@ export default async function CybersecLanding() {
         manualPages={manualPages}
       />
 
-      <InkSection title="Secciones">
-        <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+      <InkSection title="Secciones" revealContent={false}>
+        <InkStagger className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3" step={90}>
           <LandingCard
             href="/cybersec/maquinas"
             icon={<Server className="size-[18px]" />}
@@ -57,7 +58,7 @@ export default async function CybersecLanding() {
             desc="Apuntes técnicos de referencia. Conceptos, protecciones y técnicas de explotación."
             meta={`${manual.length} ${manual.length === 1 ? "sección" : "secciones"}`}
           />
-        </div>
+        </InkStagger>
       </InkSection>
 
       <InkSection title="Entorno">

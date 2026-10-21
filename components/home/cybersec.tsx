@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ArrowUpRight, BookOpen, FileText, Server } from "@/components/icons/solar"
 import { InkSection } from "@/components/ink"
+import { InkStagger } from "@/components/ink-reveal"
 import { getMachines, getMachineStats } from "@/lib/machines"
 import { getManualNav } from "@/lib/manual"
 import { getAllWriteups } from "@/lib/writeups"
@@ -60,7 +61,7 @@ export async function Cybersec() {
         <ArrowUpRight className="size-5 shrink-0 text-[var(--ink-fg-dim)] opacity-0 transition-opacity group-hover:opacity-100" />
       </Link>
 
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <InkStagger className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3" delay={120}>
         {tiles.map(({ href, icon: Icon, title, meta }) => (
           <Link
             key={href}
@@ -80,7 +81,7 @@ export async function Cybersec() {
             </span>
           </Link>
         ))}
-      </div>
+      </InkStagger>
     </InkSection>
   )
 }

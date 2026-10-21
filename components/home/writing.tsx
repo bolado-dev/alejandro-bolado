@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { InkSection, MoreLink } from "@/components/ink"
+import { InkStagger } from "@/components/ink-reveal"
 import { getAllWriteups } from "@/lib/writeups"
 
 const DATE = new Intl.DateTimeFormat("es-ES", {
@@ -15,8 +16,8 @@ export async function Writing() {
   if (writeups.length === 0) return null
 
   return (
-    <InkSection title="Escritos">
-      <ul className="divide-y divide-[var(--ink-line)]">
+    <InkSection title="Escritos" revealContent={false}>
+      <InkStagger as="ul" className="divide-y divide-[var(--ink-line)]">
         {writeups.map((w) => (
           <li key={w.slug}>
             <Link
@@ -39,7 +40,7 @@ export async function Writing() {
             </Link>
           </li>
         ))}
-      </ul>
+      </InkStagger>
       <MoreLink href="/cybersec/writeups">Todos los escritos</MoreLink>
     </InkSection>
   )

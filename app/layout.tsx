@@ -61,6 +61,14 @@ export default function RootLayout({
         fontSerif.variable,
       )}
     >
+      <head>
+        {/* Sin JS no hay IntersectionObserver que conmute data-shown, y el
+            estado inicial de las entradas vive en CSS: sin esto el contenido
+            se quedaría invisible para siempre. */}
+        <noscript>
+          <style>{`[data-surface="ink"] .ink-reveal,[data-surface="ink"] .ink-stagger > *{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+      </head>
       <body
         className={cn("bg-background font-sans text-foreground antialiased")}
       >

@@ -1,3 +1,4 @@
+import { InkReveal } from "@/components/ink-reveal"
 import { cn } from "@/lib/utils"
 
 /**
@@ -50,6 +51,11 @@ type InkSectionProps = {
   id?: string
   /** `false` quita la línea superior (solo la portada la necesita). */
   divider?: boolean
+  /**
+   * `false` cuando el contenido trae su propia cascada (InkStagger): evita
+   * que se anime el bloque entero y además cada hijo.
+   */
+  revealContent?: boolean
 }
 
 export function InkSection({
@@ -59,21 +65,30 @@ export function InkSection({
   className,
   id,
   divider = true,
+  revealContent = true,
 }: InkSectionProps) {
   return (
     <>
       {divider ? <InkDivider /> : null}
       <section id={id} className="relative">
         <div className={cn(CONTAINER, "ink-rail py-12", className)}>
-          {eyebrow ? (
-            <p className="mb-1 text-[13px] text-[var(--ink-fg-dim)]">
-              {eyebrow}
-            </p>
+          {eyebrow || title ? (
+            <InkReveal>
+              {eyebrow ? (
+                <p className="mb-1 text-[13px] text-[var(--ink-fg-dim)]">
+                  {eyebrow}
+                </p>
+              ) : null}
+              {title ? (
+                <h2 className="font-display mb-7 text-xl italic">{title}</h2>
+              ) : null}
+            </InkReveal>
           ) : null}
-          {title ? (
-            <h2 className="font-display mb-7 text-xl italic">{title}</h2>
-          ) : null}
-          {children}
+          {revealContent ? (
+            <InkReveal delay={eyebrow || title ? 90 : 0}>{children}</InkReveal>
+          ) : (
+            children
+          )}
         </div>
       </section>
     </>

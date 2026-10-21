@@ -29,6 +29,7 @@ import {
   StatusDot,
 } from "@/components/ink"
 import { Highlighted } from "@/components/home/prose"
+import { InkReveal, InkStagger } from "@/components/ink-reveal"
 import { GithubIcon } from "@/components/icons/github-icon"
 import { LinkedinIcon } from "@/components/icons/linkedin-icon"
 import { ArrowUpRight, Camera, Mail } from "@/components/icons/solar"
@@ -72,12 +73,14 @@ export function Intro() {
   return (
     <>
       <InkDivider />
-      <InkContainer className="space-y-5 py-10 text-[18px] leading-[1.625]">
-        {INTRO.map((p, i) => (
-          <p key={i}>
-            <Highlighted text={p.text} strong={p.strong} />
-          </p>
-        ))}
+      <InkContainer className="py-10 text-[18px] leading-[1.625]">
+        <InkStagger className="space-y-5" step={90}>
+          {INTRO.map((p, i) => (
+            <p key={i}>
+              <Highlighted text={p.text} strong={p.strong} />
+            </p>
+          ))}
+        </InkStagger>
       </InkContainer>
     </>
   )
@@ -87,8 +90,8 @@ export function Intro() {
 
 export function SelectedWork() {
   return (
-    <InkSection title="Trabajo seleccionado">
-      <div className="grid grid-cols-1 gap-7 sm:grid-cols-2">
+    <InkSection title="Trabajo seleccionado" revealContent={false}>
+      <InkStagger className="grid grid-cols-1 gap-7 sm:grid-cols-2" step={90}>
         {PROJECTS.map((p) => (
           <article key={p.title} className="flex flex-col">
             {p.image ? (
@@ -152,7 +155,7 @@ export function SelectedWork() {
             ) : null}
           </article>
         ))}
-      </div>
+      </InkStagger>
       <MoreLink href="/#proyectos">Ver todos</MoreLink>
     </InkSection>
   )
@@ -162,8 +165,11 @@ export function SelectedWork() {
 
 export function AboutMe() {
   return (
-    <InkSection eyebrow="Sobre mí" title="Mí">
-      <div className="grid grid-cols-1 gap-7 sm:grid-cols-[218px_1fr]">
+    <InkSection eyebrow="Sobre mí" title="Mí" revealContent={false}>
+      <InkStagger
+        className="grid grid-cols-1 gap-7 sm:grid-cols-[218px_1fr]"
+        step={120}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={PROFILE.portrait}
@@ -203,7 +209,7 @@ export function AboutMe() {
             })}
           </div>
         </div>
-      </div>
+      </InkStagger>
     </InkSection>
   )
 }
@@ -247,8 +253,8 @@ export function Stack() {
 
 export function Archive() {
   return (
-    <InkSection title="Archivo">
-      <ul className="divide-y divide-[var(--ink-line)]">
+    <InkSection title="Archivo" revealContent={false}>
+      <InkStagger as="ul" className="divide-y divide-[var(--ink-line)]">
         {ARCHIVE.map((a) => (
           <li key={a.href}>
             <Link
@@ -269,7 +275,7 @@ export function Archive() {
             </Link>
           </li>
         ))}
-      </ul>
+      </InkStagger>
     </InkSection>
   )
 }
@@ -281,6 +287,7 @@ export function Closing() {
     <>
       <InkDivider />
       <InkContainer className="py-14">
+        <InkStagger step={110}>
         <p className="font-display text-center text-[21px] italic text-[var(--ink-fg-strong)]">
           Si has llegado hasta aquí, igual te interesa lo que hago.
         </p>
@@ -316,10 +323,12 @@ export function Closing() {
             </figcaption>
           ) : null}
         </figure>
+        </InkStagger>
       </InkContainer>
 
       <InkDivider />
       <InkContainer className="py-12">
+        <InkReveal>
         <h2 className="font-display text-xl italic">Conectemos</h2>
         <p className="mt-5 text-[15px] text-[var(--ink-fg-strong)]">
           Me encuentras aquí
@@ -340,8 +349,8 @@ export function Closing() {
               <Icon className="size-4" /> {label}
             </a>
           ))}
-        </div>
-
+          </div>
+        </InkReveal>
       </InkContainer>
     </>
   )

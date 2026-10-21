@@ -79,7 +79,7 @@ export function CyberFooter({
           crop={-0.08}
           fontFamily={fontUi.style.fontFamily}
           monoFamily={fontMono.style.fontFamily}
-          height="420px"
+          height="clamp(240px,29vw,420px)"
         />
       </div>
     </>

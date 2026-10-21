@@ -1,4 +1,5 @@
 import { InkContainer, InkDivider } from "@/components/ink"
+import { InkReveal, InkStagger } from "@/components/ink-reveal"
 import type { MachineStats } from "@/lib/machines"
 
 /**
@@ -18,6 +19,7 @@ export function CyberHero({
   return (
     <>
       <InkContainer className="pb-10 pt-14">
+        <InkStagger step={110}>
         <p className="text-[13px] text-[var(--ink-fg-dim)]">Ciberseguridad</p>
         <h1 className="font-display mt-1 text-4xl italic tracking-[0.01em] text-[var(--ink-fg-strong)]">
           Del recon a root
@@ -27,17 +29,18 @@ export function CyberHero({
           manual técnico de referencia. Enumeración, explotación,
           post-explotación y escalada de privilegios.
         </p>
+        </InkStagger>
       </InkContainer>
 
       <InkDivider />
       <InkContainer className="py-5">
-        <div className="flex flex-wrap gap-x-10 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--ink-fg-dim)]">
+        <InkReveal className="flex flex-wrap gap-x-10 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--ink-fg-dim)]">
           <span>Writeups {writeups}</span>
           <span>
             Máquinas {machines.done}/{machines.total}
           </span>
           <span>Manual {manualPages} páginas</span>
-        </div>
+        </InkReveal>
       </InkContainer>
     </>
   )

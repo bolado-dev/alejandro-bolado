@@ -18,6 +18,8 @@ export const PROFILE = {
   linkedin: "https://linkedin.com/in/alejandrobolado",
   banner: "/hero.webp",
   avatar: "/alejandro.webp",
+  /** Variante solo-icono en blanco, la que sirve sobre #0a0a0a. */
+  logo: "/Logo ICON-02.png",
   portrait: "/alejandro-bw.webp",
 } as const
 

@@ -3,6 +3,7 @@
 import { useState } from "react"
 
 import { InkSection } from "@/components/ink"
+import { InkStagger } from "@/components/ink-reveal"
 import { ChevronDown } from "@/components/icons/solar"
 import { EXPERIENCE } from "@/lib/home-data"
 import { cn } from "@/lib/utils"
@@ -16,14 +17,14 @@ export function Experience() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <InkSection title="Experiencia">
-      <ul className="divide-y divide-[var(--ink-line)]">
+    <InkSection title="Experiencia" revealContent={false}>
+      <InkStagger as="ul" className="divide-y divide-[var(--ink-line)]">
         {EXPERIENCE.map((e, i) => {
           const expandable = Boolean(e.bullets?.length)
           const isOpen = open === i
 
           const row = (
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
               <span className="flex size-[38px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] text-[15px] text-[var(--ink-fg-dim)]">
                 {e.logo ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -41,7 +42,7 @@ export function Experience() {
                 <h3 className="text-[18px] font-medium text-[var(--ink-fg-strong)]">
                   {e.company}
                 </h3>
-                <p className="mt-0.5 truncate text-[13px] text-[var(--ink-fg-dim)]">
+                <p className="mt-0.5 text-[13px] text-[var(--ink-fg-dim)]">
                   {e.role}
                   {e.status ? ` · ${e.status}` : null}
                 </p>
@@ -105,7 +106,7 @@ export function Experience() {
             </li>
           )
         })}
-      </ul>
+      </InkStagger>
     </InkSection>
   )
 }

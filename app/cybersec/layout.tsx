@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { BottomBlur } from "@/components/bottom-blur"
+import { InkRain } from "@/components/ink-rain"
 import { CyberHeader } from "@/components/cybersec/cyber-header"
 import { CyberFooter } from "@/components/cybersec/cyber-footer"
 import {
@@ -70,14 +71,17 @@ export default async function CybersecLayout({
     // Misma superficie que el portfolio: la paleta ink redefine también los
     // tokens de shadcn, así que los exploradores que hay debajo la adoptan
     // sin tocarles una clase.
-    <div data-surface="ink" className="min-h-screen">
-      <CyberHeader />
-      {children}
-      <CyberFooter
-        writeupsCount={writeups.length}
-        machineStats={machineStats}
-        manualPages={manualPages}
-      />
+    <div data-surface="ink" className="relative min-h-screen">
+      <InkRain />
+      <div className="relative z-10">
+        <CyberHeader />
+        {children}
+        <CyberFooter
+          writeupsCount={writeups.length}
+          machineStats={machineStats}
+          manualPages={manualPages}
+        />
+      </div>
       <CommandPalette items={items} />
       <BottomBlur size="md" strength={18} hideWithin={460} />
     </div>
