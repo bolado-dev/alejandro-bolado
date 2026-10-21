@@ -29,10 +29,9 @@ import {
   StatusDot,
 } from "@/components/ink"
 import { Highlighted } from "@/components/home/prose"
-import { InkReveal, InkStagger } from "@/components/ink-reveal"
+import { InkStagger } from "@/components/ink-reveal"
 import { GithubIcon } from "@/components/icons/github-icon"
-import { LinkedinIcon } from "@/components/icons/linkedin-icon"
-import { ArrowUpRight, Camera, Mail } from "@/components/icons/solar"
+import { ArrowUpRight, Camera } from "@/components/icons/solar"
 import {
   ABOUT,
   ARCHIVE,
@@ -107,7 +106,7 @@ export function SelectedWork() {
                 aria-hidden
                 className="mb-3 flex aspect-[16/10] w-full items-center justify-center rounded-3xl border border-[var(--ink-line)] bg-[var(--ink-surface)]"
               >
-                <span className="font-display text-5xl italic text-[var(--ink-line-strong)]">
+                <span className="font-display text-5xl text-[var(--ink-line-strong)] italic">
                   {p.title.slice(0, 2)}
                 </span>
               </div>
@@ -177,7 +176,7 @@ export function AboutMe() {
           className="w-full rounded-3xl border border-[var(--ink-line)] bg-[var(--ink-surface)] object-cover"
         />
         <div>
-          <h3 className="font-display text-3xl italic text-[var(--ink-fg-strong)]">
+          <h3 className="font-display text-3xl text-[var(--ink-fg-strong)] italic">
             {PROFILE.name}
           </h3>
           <div className="mt-3 space-y-3 text-[14px] leading-[1.65]">
@@ -288,69 +287,42 @@ export function Closing() {
       <InkDivider />
       <InkContainer className="py-14">
         <InkStagger step={110}>
-        <p className="font-display text-center text-[21px] italic text-[var(--ink-fg-strong)]">
-          Si has llegado hasta aquí, igual te interesa lo que hago.
-        </p>
-        <div className="mt-6 flex justify-center">
-          <a
-            href={`mailto:${PROFILE.email}`}
-            className="flex items-center gap-2 rounded-full border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] py-1.5 pl-1.5 pr-4 text-[14px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={PROFILE.avatar}
-              alt=""
-              aria-hidden
-              className="size-6 rounded-full object-cover"
-            />
-            Hablemos
-          </a>
-        </div>
-
-        <figure className="mx-auto mt-12 max-w-[226px] rounded-3xl border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] p-5">
-          <span
-            aria-hidden
-            className="font-display block text-2xl leading-none text-[var(--ink-fg-dim)]"
-          >
-            &rdquo;
-          </span>
-          <blockquote className="font-display mt-2 text-center text-[15px] italic text-[var(--ink-fg-strong)]">
-            {QUOTE.text}
-          </blockquote>
-          {QUOTE.author ? (
-            <figcaption className="font-display mt-3 text-right text-[14px] italic text-[var(--ink-fg-dim)]">
-              — {QUOTE.author}
-            </figcaption>
-          ) : null}
-        </figure>
-        </InkStagger>
-      </InkContainer>
-
-      <InkDivider />
-      <InkContainer className="py-12">
-        <InkReveal>
-        <h2 className="font-display text-xl italic">Conectemos</h2>
-        <p className="mt-5 text-[15px] text-[var(--ink-fg-strong)]">
-          Me encuentras aquí
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2.5">
-          {[
-            { href: PROFILE.github, label: "GitHub", Icon: GithubIcon },
-            { href: PROFILE.linkedin, label: "LinkedIn", Icon: LinkedinIcon },
-            { href: `mailto:${PROFILE.email}`, label: "Correo", Icon: Mail },
-          ].map(({ href, label, Icon }) => (
+          <p className="font-display text-center text-[21px] text-[var(--ink-fg-strong)] italic">
+            Si has llegado hasta aquí, igual te interesa lo que hago.
+          </p>
+          <div className="mt-6 flex justify-center">
             <a
-              key={label}
-              href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel={href.startsWith("http") ? "noreferrer" : undefined}
-              className="flex items-center gap-2 rounded-full border border-[var(--ink-line-strong)] px-3 py-2 text-[14px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
+              href={`mailto:${PROFILE.email}`}
+              className="flex items-center gap-2 rounded-full border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] py-1.5 pr-4 pl-1.5 text-[14px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
             >
-              <Icon className="size-4" /> {label}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={PROFILE.avatar}
+                alt=""
+                aria-hidden
+                className="size-6 rounded-full object-cover"
+              />
+              Hablemos
             </a>
-          ))}
           </div>
-        </InkReveal>
+
+          <figure className="mx-auto mt-12 max-w-[226px] rounded-3xl border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] p-5">
+            <span
+              aria-hidden
+              className="font-display block text-2xl leading-none text-[var(--ink-fg-dim)]"
+            >
+              &rdquo;
+            </span>
+            <blockquote className="font-display mt-2 text-center text-[15px] text-[var(--ink-fg-strong)] italic">
+              {QUOTE.text}
+            </blockquote>
+            {QUOTE.author ? (
+              <figcaption className="font-display mt-3 text-right text-[14px] text-[var(--ink-fg-dim)] italic">
+                — {QUOTE.author}
+              </figcaption>
+            ) : null}
+          </figure>
+        </InkStagger>
       </InkContainer>
     </>
   )

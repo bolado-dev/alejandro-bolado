@@ -4,8 +4,7 @@ import { GithubIcon } from "@/components/icons/github-icon"
 import { LinkedinIcon } from "@/components/icons/linkedin-icon"
 import { ArrowLeft, Mail } from "@/components/icons/solar"
 import { InkContainer, InkDivider } from "@/components/ink"
-import HalftoneWordmarkFooter from "@/components/ui/halftone-wordmark-footer"
-import { fontMono, fontUi } from "@/lib/fonts"
+import { SiteFooter } from "@/components/ui/site-footer"
 import { PROFILE } from "@/lib/home-data"
 import type { MachineStats } from "@/lib/machines"
 
@@ -32,7 +31,7 @@ export function CyberFooter({
     <>
       <InkDivider />
       <InkContainer className="py-5">
-        <div className="flex flex-wrap gap-x-10 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--ink-fg-dim)]">
+        <div className="flex flex-wrap gap-x-10 gap-y-2 font-mono text-[11px] tracking-[0.18em] text-[var(--ink-fg-dim)] uppercase">
           <span>Writeups {writeupsCount}</span>
           <span>
             Máquinas {machineStats.done}/{machineStats.total}
@@ -65,23 +64,7 @@ export function CyberFooter({
         </div>
       </InkContainer>
 
-      <InkDivider />
-      {/* Las familias van por nombre real y no por var(--font-ui): el canvas
-          del wordmark no resuelve variables CSS en ctx.font. */}
-      <div className="ink-rail mx-auto w-full max-w-[1008px] px-8">
-        <HalftoneWordmarkFooter
-          className="hwf-inset"
-          wordmark="cybersec"
-          label="Cybersec · Alejandro Bolado"
-          meta={`©${new Date().getFullYear()} · ${PROFILE.location}`}
-          columns={[]}
-          palette={{ background: "#0a0a0a", ink: "#d1d5dc", warm: "#ffffff" }}
-          crop={-0.08}
-          fontFamily={fontUi.style.fontFamily}
-          monoFamily={fontMono.style.fontFamily}
-          height="clamp(240px,29vw,420px)"
-        />
-      </div>
+      <SiteFooter wordmark="cybersec" />
     </>
   )
 }
