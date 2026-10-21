@@ -25,11 +25,11 @@ type Props = {
   background?: string
   /** Color de los glifos. */
   ink?: string
-  /** Opacidad máxima de un glifo, 0–1. Por defecto `0.22`. */
+  /** Opacidad máxima de un glifo, 0–1. Por defecto `0.14`. */
   intensity?: number
   /** Separación entre columnas en px. Por defecto `16`. */
   cell?: number
-  /** Fracción de columnas activas a la vez, 0–1. Por defecto `0.62`. */
+  /** Fracción de columnas activas a la vez, 0–1. Por defecto `0.5`. */
   density?: number
 }
 
@@ -37,9 +37,9 @@ export function InkRain({
   className,
   background = "#0a0a0a",
   ink = "#d1d5dc",
-  intensity = 0.22,
+  intensity = 0.14,
   cell = 16,
-  density = 0.62,
+  density = 0.5,
 }: Props) {
   const ref = useRef<HTMLCanvasElement | null>(null)
 
@@ -110,7 +110,7 @@ export function InkRain({
       last = now
 
       // Velo del color del fondo: desvanece lo dibujado antes y deja el rastro
-      ctx.globalAlpha = 0.055
+      ctx.globalAlpha = 0.075
       ctx.fillStyle = background
       ctx.fillRect(0, 0, w, h)
       ctx.globalAlpha = 1
