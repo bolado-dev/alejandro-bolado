@@ -33,7 +33,7 @@ export function CyberHeader() {
   const [open, setOpen] = React.useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--ink-line)] bg-[var(--ink-bg)]/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[var(--ink-line)] bg-[var(--ink-bg)]">
       <div className="mx-auto flex h-16 w-full max-w-[1008px] items-center justify-between gap-4 px-8">
         <Link
           href="/cybersec"

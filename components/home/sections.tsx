@@ -29,6 +29,11 @@ import {
   StatusDot,
 } from "@/components/ink"
 import { Highlighted } from "@/components/home/prose"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { InkStagger } from "@/components/ink-reveal"
 import { GithubIcon } from "@/components/icons/github-icon"
 import { ArrowUpRight, Camera } from "@/components/icons/solar"
@@ -193,17 +198,21 @@ export function AboutMe() {
             {TOOLS.map((t) => {
               const Icon = ICONS[t.slug]
               return (
-                <span
-                  key={t.name}
-                  title={t.name}
-                  className="flex size-8 items-center justify-center rounded-full border border-[var(--ink-line-strong)] bg-[var(--ink-surface)]"
-                >
-                  {Icon ? (
-                    <Icon className="size-[17px]" />
-                  ) : (
-                    <span className="text-[11px]">{t.name[0]}</span>
-                  )}
-                </span>
+                <Tooltip key={t.name}>
+                  <TooltipTrigger asChild>
+                    <span
+                      tabIndex={0}
+                      className="flex size-8 cursor-default items-center justify-center rounded-full border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] transition-colors hover:bg-[var(--ink-surface-hi)] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-current"
+                    >
+                      {Icon ? (
+                        <Icon className="size-[17px]" />
+                      ) : (
+                        <span className="text-[11px]">{t.name[0]}</span>
+                      )}
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>{t.name}</TooltipContent>
+                </Tooltip>
               )
             })}
           </div>

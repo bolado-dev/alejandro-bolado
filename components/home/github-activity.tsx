@@ -10,7 +10,9 @@ import { InkSection } from "@/components/ink"
 
 type Day = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 }
 
-const LEVEL_ALPHA = [0.05, 0.25, 0.45, 0.7, 1] as const
+// Rampa opaca. Equivale a blanco al 5/25/45/70/100% sobre el fondo del panel
+// (#141414), pero sin alfa: nada en esta superficie es semitransparente.
+const LEVEL_COLOR = ["#202020", "#4f4f4f", "#7e7e7e", "#b8b8b8", "#ffffff"] as const
 
 async function getContributions(user: string): Promise<Day[] | null> {
   try {
@@ -48,9 +50,7 @@ export async function GithubActivity({ user }: { user: string }) {
                     key={d.date}
                     title={`${d.count} contribuciones · ${d.date}`}
                     className="size-[10px] rounded-full"
-                    style={{
-                      backgroundColor: `rgb(255 255 255 / ${LEVEL_ALPHA[d.level]})`,
-                    }}
+                    style={{ backgroundColor: LEVEL_COLOR[d.level] }}
                   />
                 ))}
               </div>
