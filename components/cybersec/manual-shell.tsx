@@ -26,7 +26,7 @@ export function ManualShell({
       <div className="lg:grid lg:grid-cols-[240px_1fr] lg:gap-10">
         {/* Sidebar desktop */}
         <aside className="hidden lg:block">
-          <div className="sticky top-16 max-h-[calc(100vh-5rem)] overflow-y-auto py-8 pr-2">
+          <div className="sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto py-8 pr-2">
             <ManualSidebar nav={nav} />
           </div>
         </aside>

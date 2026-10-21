@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { BottomBlur } from "@/components/bottom-blur"
 import { InkRain } from "@/components/ink-rain"
-import { CyberHeader } from "@/components/cybersec/cyber-header"
 import { CyberFooter } from "@/components/cybersec/cyber-footer"
 import {
   CommandPalette,
@@ -74,7 +73,6 @@ export default async function CybersecLayout({
     <div data-surface="ink" className="relative min-h-screen">
       <InkRain />
       <div className="relative z-10">
-        <CyberHeader />
         {children}
         <CyberFooter
           writeupsCount={writeups.length}
