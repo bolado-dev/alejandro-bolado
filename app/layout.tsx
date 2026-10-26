@@ -1,7 +1,6 @@
 // app/layout.tsx
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Navbar } from "@/components/navbar"
 import { CustomCursor } from "@/components/custom-cursor"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { fontMono, fontSans, fontSerif, fontUi } from "@/lib/fonts"
@@ -80,7 +79,6 @@ export default function RootLayout({
         >
           <SmoothScroll />
           <CustomCursor />
-          <Navbar />
           <main>{children}</main>
         </ThemeProvider>
       </body>
