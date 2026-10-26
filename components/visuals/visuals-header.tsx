@@ -32,7 +32,7 @@ export function VisualsHeader() {
     <div className="fixed inset-x-0 top-4 z-50 px-4">
       <nav
         className={cn(
-          "mx-auto flex max-w-4xl items-center justify-between gap-4 rounded-full border border-border/70 bg-background/70 py-2 pr-2 pl-5 backdrop-blur-md transition-all duration-500",
+          "mx-auto flex max-w-4xl items-center justify-between gap-4 rounded-sm border border-border bg-background py-2 pr-2 pl-5 transition-all duration-500",
           scrolled ? "shadow-lg shadow-zinc-900/5" : "shadow-sm"
         )}
       >
@@ -76,14 +76,14 @@ export function VisualsHeader() {
             <button
               onClick={() => scrollTo("#contacto")}
               data-cursor-label="Hablemos"
-              className="rounded-full bg-brand px-5 py-2 text-sm font-medium text-brand-foreground transition-colors hover:opacity-90"
+              className="rounded-sm bg-brand px-5 py-2 text-sm font-medium text-brand-foreground transition-colors hover:opacity-90"
             >
               Hablemos
             </button>
           </Magnetic>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-sm border md:hidden"
             aria-label="Menú"
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -92,7 +92,7 @@ export function VisualsHeader() {
       </nav>
 
       {open && (
-        <div className="mx-auto mt-2 max-w-4xl rounded-3xl border border-border/70 bg-background/95 p-3 backdrop-blur-md md:hidden">
+        <div className="mx-auto mt-2 max-w-4xl rounded-3xl border border-border bg-background p-3 md:hidden">
           <div className="flex flex-col">
             {NAV.map((item) => (
               <button

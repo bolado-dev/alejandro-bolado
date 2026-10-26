@@ -37,8 +37,8 @@ function TooltipTrigger({
 
 const tooltipVariants = cva(
   [
-    // Píldora: el redondeo generoso es el del resto de la superficie.
-    "z-50 max-w-[32ch] rounded-full px-3 py-1.5 text-xs",
+    // Esquinas vivas, como el resto de la superficie.
+    "z-50 max-w-[32ch] rounded-sm px-3 py-1.5 text-xs",
     // Entrada y salida cortas. Las de scroll van a 0.5s, pero un tooltip a esa
     // velocidad se siente pesado: aquí manda la respuesta al puntero.
     "duration-150 ease-[cubic-bezier(0,0,0.2,1)]",

@@ -34,7 +34,7 @@ export function ManualShell({
         {/* Toggle móvil */}
         <button
           onClick={() => setOpen(true)}
-          className="mt-6 mb-2 flex items-center gap-2 rounded-full border px-4 py-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground lg:hidden"
+          className="mt-6 mb-2 flex items-center gap-2 rounded-sm border px-4 py-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground lg:hidden"
         >
           <PanelLeft className="h-3.5 w-3.5" />
           Índice del manual

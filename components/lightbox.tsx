@@ -65,7 +65,7 @@ export function Lightbox({ items, index, onClose, onIndexChange }: LightboxProps
           <button
             aria-label="Cerrar"
             onClick={onClose}
-            className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border bg-card text-muted-foreground transition-colors hover:text-foreground"
+            className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-sm border bg-card text-muted-foreground transition-colors hover:text-foreground"
           >
             <X className="h-5 w-5" />
           </button>
@@ -141,7 +141,7 @@ function NavButton({
     <button
       aria-label={side === "left" ? "Anterior" : "Siguiente"}
       onClick={onClick}
-      className={`absolute top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border bg-card text-muted-foreground transition-colors hover:text-foreground ${
+      className={`absolute top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-sm border bg-card text-muted-foreground transition-colors hover:text-foreground ${
         side === "left" ? "left-4" : "right-4"
       }`}
     >

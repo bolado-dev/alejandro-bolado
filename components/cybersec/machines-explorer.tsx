@@ -106,9 +106,9 @@ export function MachinesExplorer({
             </div>
             <span className="text-3xl font-semibold tabular-nums">{pct}%</span>
           </div>
-          <div className="mt-4 h-2 overflow-hidden rounded-full bg-secondary">
+          <div className="mt-4 h-2 overflow-hidden rounded-sm bg-secondary">
             <div
-              className="h-full rounded-full bg-foreground transition-[width] duration-700"
+              className="h-full rounded-sm bg-foreground transition-[width] duration-700"
               style={{ width: `${pct}%` }}
             />
           </div>
@@ -201,12 +201,12 @@ function MachineCard({
 
 function StatusPill({ done }: { done: boolean }) {
   return done ? (
-    <span className="inline-flex flex-shrink-0 items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+    <span className="inline-flex flex-shrink-0 items-center gap-1 rounded-sm bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
       <Check className="h-3 w-3" />
       Hecha
     </span>
   ) : (
-    <span className="inline-flex flex-shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+    <span className="inline-flex flex-shrink-0 items-center gap-1 rounded-sm border px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
       <Circle className="h-2.5 w-2.5" />
       Pendiente
     </span>

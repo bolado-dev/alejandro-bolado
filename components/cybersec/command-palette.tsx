@@ -131,7 +131,7 @@ export function CommandPalette({ items }: { items: PaletteItem[] }) {
               onClick={() => go(it.href)}
               className={cn(
                 "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors",
-                i === active ? "bg-secondary" : "hover:bg-secondary/60"
+                i === active ? "bg-secondary" : "hover:bg-secondary"
               )}
             >
               <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md border bg-background text-muted-foreground">

@@ -97,7 +97,7 @@ export function CustomCursor() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 22 }}
-              className="-translate-x-1/2 -translate-y-1/2 rounded-full bg-brand px-4 py-2 text-xs font-medium whitespace-nowrap text-brand-foreground"
+              className="-translate-x-1/2 -translate-y-1/2 rounded-sm bg-brand px-4 py-2 text-xs font-medium whitespace-nowrap text-brand-foreground"
             >
               {label}
             </motion.div>

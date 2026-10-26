@@ -42,13 +42,18 @@
     --color-background: var(--background);
     --color-brand: var(--brand);
     --color-brand-foreground: var(--brand-foreground);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
+    /* Escala plana a propósito: el sitio es de esquinas vivas, así que los
+       pasos grandes (2xl/3xl/4xl, los que usan Card y Button) apenas suben
+       sobre el radio base en vez de multiplicarlo. --radius sigue siendo el
+       único mando por scope. */
+    --radius-xs: calc(var(--radius) * 0.5);
+    --radius-sm: calc(var(--radius) * 0.75);
+    --radius-md: var(--radius);
     --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
+    --radius-xl: calc(var(--radius) * 1.25);
+    --radius-2xl: calc(var(--radius) * 1.5);
+    --radius-3xl: calc(var(--radius) * 1.5);
+    --radius-4xl: calc(var(--radius) * 1.5);
 }
 
 :root {
@@ -75,7 +80,7 @@
     --chart-3: oklch(0.439 0 0);
     --chart-4: oklch(0.371 0 0);
     --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
+    --radius: 0.125rem;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -149,7 +154,7 @@
 
   ::-webkit-scrollbar-thumb {
     background: color-mix(in oklch, var(--muted-foreground), transparent 70%);
-    border-radius: 20px;
+    border-radius: 0;
     border: 2px solid transparent;
     background-clip: content-box;
   }
@@ -224,7 +229,7 @@ html.lenis { height: auto; }
   margin: 1.5rem 0 2.5rem;
   padding: 1.3rem 1.4rem 1.5rem;
   border: 1px solid var(--border);
-  border-radius: 1rem;
+  border-radius: var(--radius-lg);
   background: var(--card);
 }
 .writeup-prose .infobox-title {
@@ -281,7 +286,7 @@ html.lenis { height: auto; }
   width: 1.15rem;
   height: 1.15rem;
   margin-top: 0.1rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-xs);
   background: color-mix(in oklab, #10b981 18%, transparent);
   color: #10b981;
 }
@@ -297,7 +302,7 @@ html.lenis { height: auto; }
   align-items: center;
   padding: 0.22rem 0.65rem;
   border: 1px solid var(--border);
-  border-radius: 9999px;
+  border-radius: var(--radius-sm);
   font-size: 0.72rem;
   color: var(--muted-foreground);
 }
@@ -310,7 +315,7 @@ html.lenis { height: auto; }
   gap: 1rem;
   padding: 0.85rem 1.1rem;
   border: 1px solid var(--border);
-  border-radius: 0.9rem;
+  border-radius: var(--radius-lg);
   background: var(--card);
   color: var(--foreground);
   text-decoration: none;
@@ -328,7 +333,7 @@ html.lenis { height: auto; }
   flex: none;
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 0.7rem;
+  border-radius: var(--radius-sm);
   background: #9fef00;
   color: #0b0f0a;
 }
@@ -529,7 +534,7 @@ html.has-custom-cursor * {
 /* ─── Bolado Visuals: identidad de la submarca ──────────────────────────── */
 /* Solo dentro de /visuals. Estética editorial (estilo studio): Outfit,       */
 /* lienzo BLANCO fijo (independiente del tema global), neutros zinc y el azul  */
-/* de marca como color de acción. Radios amplios, todo plano.                 */
+/* de marca como color de acción. Esquinas vivas, todo plano.                 */
 .visuals-scope {
   color-scheme: light;
   /* Tipografía: hereda Outfit del portfolio (--font-sans global) */
@@ -552,7 +557,7 @@ html.has-custom-cursor * {
   /* Acento de marca */
   --brand: #1354f4;
   --brand-foreground: #ffffff;
-  --radius: 1rem;
+  --radius: 0.125rem;
 }
 
 /* Titulares de marca: peso medio (Outfit) y tracking ajustado */
@@ -568,9 +573,9 @@ html.has-custom-cursor * {
 /* ─── Cybersec: identidad de la subweb ──────────────────────────────────── */
 /* Solo dentro de /cybersec (y el teaser que enlaza a ella desde la home).   */
 /* Blanco y negro puro, sin saturación: sin acento de color, bordes finos    */
-/* de baja opacidad. Radios iguales a los de la landing (mismo --radius      */
-/* base que :root) para mantener la misma estética redondeada del resto     */
-/* del sitio. Sigue soportando claro/oscuro (ModeToggle) a diferencia de     */
+/* de baja opacidad. Hereda el --radius de :root, así que comparte las       */
+/* esquinas vivas del resto del sitio. Sigue soportando claro/oscuro         */
+/* (ModeToggle) a diferencia de                                              */
 /* .visuals-scope, que fuerza siempre claro.                                */
 .cybersec-scope {
   --background: #ffffff;
@@ -635,8 +640,7 @@ html.has-custom-cursor * {
 
     /* Además de sus propios --ink-*, la superficie redefine los tokens de
        shadcn. Así todo lo que ya existe debajo (exploradores, tarjetas,
-       prosa) adopta la paleta sin tocar una clase, y el radio base sube para
-       que el redondeo generoso sea el defecto. */
+       prosa) adopta la paleta sin tocar una clase. */
     --background: #0a0a0a;
     --foreground: #d1d5dc;
     --card: #0f0f10;
@@ -657,7 +661,7 @@ html.has-custom-cursor * {
     --ring: #606060;
     --brand: #ffffff;
     --brand-foreground: #0a0a0a;
-    --radius: 1rem;
+    --radius: 0.125rem;
 
     background-color: var(--ink-bg);
     color: var(--ink-fg);

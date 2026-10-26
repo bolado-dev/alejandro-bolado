@@ -25,7 +25,7 @@ export function Experience() {
 
           const row = (
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <span className="flex size-[38px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] text-[15px] text-[var(--ink-fg-dim)]">
+              <span className="flex size-[38px] shrink-0 items-center justify-center overflow-hidden rounded-sm border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] text-[15px] text-[var(--ink-fg-dim)]">
                 {e.logo ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -47,7 +47,7 @@ export function Experience() {
                   {e.status ? ` · ${e.status}` : null}
                 </p>
               </div>
-              <span className="shrink-0 rounded-full border border-[var(--ink-line-strong)] px-2.5 py-1 text-[13px] text-[var(--ink-fg-dim)]">
+              <span className="shrink-0 rounded-sm border border-[var(--ink-line-strong)] px-2.5 py-1 text-[13px] text-[var(--ink-fg-dim)]">
                 {e.period}
               </span>
               {expandable ? (

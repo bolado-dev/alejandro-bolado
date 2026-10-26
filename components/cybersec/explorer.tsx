@@ -220,7 +220,7 @@ export function TagButton({
         e.stopPropagation()
         onClick()
       }}
-      className="relative z-10 rounded-full border px-2 py-0.5 text-[10px] font-normal text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+      className="relative z-10 rounded-sm border px-2 py-0.5 text-[10px] font-normal text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
     >
       {children}
     </button>
@@ -276,7 +276,7 @@ export function ExplorerCard({
 
       <div className="flex items-start justify-between gap-2">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border bg-muted">
+          <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-sm border bg-muted">
             {image ? (
               <Image
                 src={image}

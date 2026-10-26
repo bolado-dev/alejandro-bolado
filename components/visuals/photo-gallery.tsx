@@ -50,7 +50,7 @@ export function PhotoGallery() {
               />
               <span className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 {p.category && (
-                  <span className="rounded-full bg-background/90 px-3 py-1 text-[11px] font-medium tracking-widest uppercase backdrop-blur">
+                  <span className="rounded-sm bg-background px-3 py-1 text-[11px] font-medium tracking-widest uppercase">
                     {p.category}
                   </span>
                 )}

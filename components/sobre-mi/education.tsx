@@ -42,7 +42,7 @@ const objetivos: Item[] = [
 function EduItem({ item }: { item: Item }) {
   return (
     <div className="group flex items-start gap-4">
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-secondary text-foreground transition-colors duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-secondary text-foreground transition-colors duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
         <item.Icon className="h-5 w-5" />
       </span>
       <div className="min-w-0">

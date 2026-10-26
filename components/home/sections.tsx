@@ -140,7 +140,7 @@ export function SelectedWork() {
                     href={p.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 rounded-full border border-[var(--ink-line-strong)] px-2.5 py-1.5 text-[13px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
+                    className="flex items-center gap-1.5 rounded-sm border border-[var(--ink-line-strong)] px-2.5 py-1.5 text-[13px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
                   >
                     Live <ArrowUpRight className="size-3" />
                   </a>
@@ -150,7 +150,7 @@ export function SelectedWork() {
                     href={p.repo}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 rounded-full border border-[var(--ink-line-strong)] px-2.5 py-1.5 text-[13px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
+                    className="flex items-center gap-1.5 rounded-sm border border-[var(--ink-line-strong)] px-2.5 py-1.5 text-[13px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
                   >
                     <GithubIcon className="size-3.5" /> GitHub
                   </a>
@@ -202,7 +202,7 @@ export function AboutMe() {
                   <TooltipTrigger asChild>
                     <span
                       tabIndex={0}
-                      className="flex size-8 cursor-default items-center justify-center rounded-full border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] transition-colors hover:bg-[var(--ink-surface-hi)] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-current"
+                      className="flex size-8 cursor-default items-center justify-center rounded-sm border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] transition-colors hover:bg-[var(--ink-surface-hi)] focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-current"
                     >
                       {Icon ? (
                         <Icon className="size-[17px]" />
@@ -302,14 +302,14 @@ export function Closing() {
           <div className="mt-6 flex justify-center">
             <a
               href={`mailto:${PROFILE.email}`}
-              className="flex items-center gap-2 rounded-full border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] py-1.5 pr-4 pl-1.5 text-[14px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
+              className="flex items-center gap-2 rounded-sm border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] py-1.5 pr-4 pl-1.5 text-[14px] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={PROFILE.avatar}
                 alt=""
                 aria-hidden
-                className="size-6 rounded-full object-cover"
+                className="size-6 rounded-sm object-cover"
               />
               Hablemos
             </a>

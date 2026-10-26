@@ -94,7 +94,7 @@ export function VisualsContact() {
             </div>
             <button
               type="submit"
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-medium text-brand-foreground transition-colors hover:opacity-90"
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-sm bg-brand px-6 py-3.5 text-sm font-medium text-brand-foreground transition-colors hover:opacity-90"
             >
               Enviar mensaje
               <ArrowUpRight className="h-4 w-4" />

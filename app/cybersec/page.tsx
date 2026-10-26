@@ -70,7 +70,7 @@ export default async function CybersecLanding() {
           className="group flex flex-col gap-5 rounded-3xl border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] p-6 transition-colors hover:bg-[var(--ink-surface-hi)] sm:flex-row sm:items-center sm:justify-between"
         >
           <div className="flex items-start gap-4">
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--ink-line-strong)]">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-sm border border-[var(--ink-line-strong)]">
               <Terminal className="size-[18px]" />
             </span>
             <div>
@@ -86,7 +86,7 @@ export default async function CybersecLanding() {
               </p>
             </div>
           </div>
-          <span className="flex shrink-0 items-center gap-2 rounded-full border border-[var(--ink-line-strong)] px-3 py-1.5 text-[13px] text-[var(--ink-fg-dim)]">
+          <span className="flex shrink-0 items-center gap-2 rounded-sm border border-[var(--ink-line-strong)] px-3 py-1.5 text-[13px] text-[var(--ink-fg-dim)]">
             <GithubIcon className="size-3.5" />
             bolado-dev/BoladoBSPWM
             <ArrowUpRight className="size-3 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -120,7 +120,7 @@ function LandingCard({
     >
       <div>
         <div className="flex items-center justify-between">
-          <span className="flex size-10 items-center justify-center rounded-full border border-[var(--ink-line-strong)]">
+          <span className="flex size-10 items-center justify-center rounded-sm border border-[var(--ink-line-strong)]">
             {icon}
           </span>
           <ArrowUpRight className="size-4 text-[var(--ink-fg-dim)] opacity-0 transition-opacity group-hover:opacity-100" />

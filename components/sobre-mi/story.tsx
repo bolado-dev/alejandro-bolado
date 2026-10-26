@@ -115,7 +115,7 @@ export function Story() {
 
                 <div className="relative">
                   {beat.Icon && (
-                    <span className="text-brand mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-secondary">
+                    <span className="text-brand mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-sm bg-secondary">
                       <beat.Icon className="h-6 w-6" />
                     </span>
                   )}

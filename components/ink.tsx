@@ -106,10 +106,10 @@ export function InkContainer({
   return <div className={cn(CONTAINER, "ink-rail", className)}>{children}</div>
 }
 
-/** Píldora de stack: borde sutil, texto pequeño. */
+/** Etiqueta de stack: borde sutil, texto pequeño. */
 export function StackPill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="rounded-full border border-[var(--ink-line-strong)] px-2.5 py-1 text-[13px] text-[var(--ink-fg-dim)]">
+    <span className="rounded-sm border border-[var(--ink-line-strong)] px-2.5 py-1 text-[13px] text-[var(--ink-fg-dim)]">
       {children}
     </span>
   )

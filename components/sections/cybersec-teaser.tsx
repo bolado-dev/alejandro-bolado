@@ -14,7 +14,7 @@ import { getMachines, getMachineStats, type Machine } from "@/lib/machines"
 function MachineChip({ m }: { m: Machine }) {
   const inner = (
     <div className="mx-5 flex flex-col items-center gap-3">
-      <span className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-muted ring-1 ring-border/60 transition-all duration-500 ease-out group-hover:ring-brand/50">
+      <span className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-sm bg-muted ring-1 ring-border transition-all duration-500 ease-out group-hover:ring-brand/50">
         {m.image ? (
           <Image
             src={m.image}
@@ -110,9 +110,9 @@ export async function CybersecTeaser() {
             <p className="mt-4 text-[clamp(2.25rem,4.5vw,3.25rem)] font-medium leading-none tracking-tight text-brand">
               <Counter to={pct} suffix="%" />
             </p>
-            <div className="mt-4 h-1 w-full rounded-full bg-border">
+            <div className="mt-4 h-1 w-full rounded-sm bg-border">
               <div
-                className="h-1 rounded-full bg-brand transition-[width] duration-700"
+                className="h-1 rounded-sm bg-brand transition-[width] duration-700"
                 style={{ width: `${pct}%` }}
               />
             </div>
@@ -172,7 +172,7 @@ export async function CybersecTeaser() {
                 escalada de privilegios.
               </p>
             </div>
-            <span className="relative flex shrink-0 items-center gap-2 rounded-full border border-background/30 px-5 py-2.5 text-sm font-medium transition-all duration-300 group-hover:scale-[1.03] group-hover:bg-background group-hover:text-foreground">
+            <span className="relative flex shrink-0 items-center gap-2 rounded-sm border border-background/30 px-5 py-2.5 text-sm font-medium transition-all duration-300 group-hover:scale-[1.03] group-hover:bg-background group-hover:text-foreground">
               Entrar al lab
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>

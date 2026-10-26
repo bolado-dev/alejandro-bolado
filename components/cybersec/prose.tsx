@@ -82,7 +82,7 @@ export function Prose({ html }: { html: string }) {
             onClick={() => setLightbox(null)}
           >
             <button
-              className="absolute top-5 right-5 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/80 transition-colors hover:bg-white/10"
+              className="absolute top-5 right-5 flex h-10 w-10 items-center justify-center rounded-sm border border-white/20 text-white/80 transition-colors hover:bg-white/10"
               aria-label="Cerrar"
               onClick={() => setLightbox(null)}
             >

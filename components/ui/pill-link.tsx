@@ -9,9 +9,9 @@ type PillLinkProps = ComponentProps<typeof Link> & {
 }
 
 /**
- * Botón-enlace de referencia del sitio: píldora (full rounded) con relleno
- * reactivo al hover. Úsalo para cualquier CTA principal en vez de estilos
- * ad-hoc (subrayados, esquinas cuadradas, etc.).
+ * Botón-enlace de referencia del sitio: esquinas vivas (radio base) con
+ * relleno reactivo al hover. Úsalo para cualquier CTA principal en vez de
+ * estilos ad-hoc (subrayados, radios propios, etc.).
  */
 export function PillLink({
   href,
@@ -24,10 +24,10 @@ export function PillLink({
     <Link
       href={href}
       className={cn(
-        "group inline-flex shrink-0 items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300 hover:scale-[1.03] active:scale-95",
+        "group inline-flex shrink-0 items-center gap-2 rounded-sm border px-5 py-2.5 text-sm font-medium transition-all duration-300 hover:scale-[1.03] active:scale-95",
         variant === "inverted"
           ? "border-background/30 text-background hover:bg-background hover:text-foreground"
-          : "border-foreground/15 text-foreground hover:border-foreground hover:bg-foreground hover:text-background",
+          : "border-border text-foreground hover:border-foreground hover:bg-foreground hover:text-background",
         className,
       )}
       {...props}

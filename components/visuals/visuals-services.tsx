@@ -82,7 +82,7 @@ export function VisualsServices({
                 data-card
                 className="group flex flex-col gap-5 rounded-3xl border border-border bg-card p-8 transition-colors hover:border-foreground/30"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-foreground transition-colors group-hover:bg-brand group-hover:text-brand-foreground">
+                <span className="flex h-12 w-12 items-center justify-center rounded-sm bg-secondary text-foreground transition-colors group-hover:bg-brand group-hover:text-brand-foreground">
                   <Icon className="h-5 w-5" />
                 </span>
                 <div>
@@ -97,7 +97,7 @@ export function VisualsServices({
         </StaggerReveal>
 
         <Reveal y={24} delay={0.1}>
-          <div className="mt-6 flex flex-col items-start justify-between gap-6 rounded-[2.5rem] bg-foreground px-8 py-12 text-background md:flex-row md:items-center md:px-14">
+          <div className="mt-6 flex flex-col items-start justify-between gap-6 rounded-2xl bg-foreground px-8 py-12 text-background md:flex-row md:items-center md:px-14">
             <div>
               <h3 className="visuals-display text-2xl md:text-3xl">
                 ¿Tienes algo en mente?
@@ -110,7 +110,7 @@ export function VisualsServices({
             <Magnetic>
               <button
                 onClick={() => scrollTo("#contacto")}
-                className="group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-medium text-brand-foreground transition-colors hover:opacity-90"
+                className="group inline-flex items-center gap-2 rounded-sm bg-brand px-6 py-3.5 text-sm font-medium text-brand-foreground transition-colors hover:opacity-90"
               >
                 Pedir presupuesto
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

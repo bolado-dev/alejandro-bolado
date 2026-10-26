@@ -21,8 +21,8 @@ export function SectionHeading({
     >
       <span
         className={cn(
-          "inline-flex items-center rounded-full px-3 py-1 text-xs font-medium",
-          dark ? "bg-white/10 text-white/70" : "bg-secondary text-muted-foreground"
+          "inline-flex items-center rounded-sm px-3 py-1 text-xs font-medium",
+          dark ? "bg-zinc-800 text-zinc-300" : "bg-secondary text-muted-foreground"
         )}
       >
         {eyebrow}

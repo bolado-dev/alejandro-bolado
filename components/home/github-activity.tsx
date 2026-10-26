@@ -49,7 +49,7 @@ export async function GithubActivity({ user }: { user: string }) {
                   <span
                     key={d.date}
                     title={`${d.count} contribuciones · ${d.date}`}
-                    className="size-[10px] rounded-full"
+                    className="size-[10px] rounded-sm"
                     style={{ backgroundColor: LEVEL_COLOR[d.level] }}
                   />
                 ))}

@@ -45,7 +45,7 @@ export function VisualsAbout() {
           </Reveal>
 
           <Reveal y={24} delay={0.1}>
-            <div className="flex aspect-square items-center justify-center rounded-[2rem] border border-border bg-secondary">
+            <div className="flex aspect-square items-center justify-center rounded-2xl border border-border bg-secondary">
               <VisualsMark className="h-28 w-auto text-brand" />
             </div>
           </Reveal>

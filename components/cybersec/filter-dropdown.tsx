@@ -79,7 +79,7 @@ export function FilterDropdown({
         aria-haspopup="listbox"
         aria-expanded={open}
         className={cn(
-          "flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition-colors",
+          "flex items-center gap-2 rounded-sm border px-3 py-1.5 text-xs transition-colors",
           isFiltered
             ? "border-foreground bg-foreground text-background"
             : "border-border text-muted-foreground hover:bg-secondary hover:text-foreground"

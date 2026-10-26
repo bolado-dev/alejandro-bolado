@@ -21,7 +21,7 @@ function SocialButton({
       aria-label={label}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
-      className="flex size-[34px] items-center justify-center rounded-full border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] text-[var(--ink-fg)] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
+      className="flex size-[34px] items-center justify-center rounded-sm border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] text-[var(--ink-fg)] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
     >
       {children}
     </a>
@@ -59,7 +59,7 @@ export function Cover() {
         className="relative z-10 -mt-[36px] flex items-end justify-between gap-6 sm:-mt-[46px]"
         delay={120}
       >
-        <span className="flex size-[72px] shrink-0 items-center justify-center rounded-full border-[3px] border-[var(--ink-bg)] bg-[var(--ink-surface-hi)] sm:size-[92px]">
+        <span className="flex size-[72px] shrink-0 items-center justify-center rounded-sm border-[3px] border-[var(--ink-bg)] bg-[var(--ink-surface-hi)] sm:size-[92px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={PROFILE.logo}

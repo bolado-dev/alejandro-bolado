@@ -60,7 +60,7 @@ export function CyberHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] transition-colors",
+                  "flex items-center gap-2 rounded-sm px-3.5 py-1.5 text-[13px] transition-colors",
                   active
                     ? "bg-[var(--ink-surface-hi)] text-[var(--ink-fg-strong)]"
                     : "text-[var(--ink-fg-dim)] hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)]",
@@ -78,26 +78,26 @@ export function CyberHeader() {
             onClick={() =>
               window.dispatchEvent(new Event("open-command-palette"))
             }
-            className="hidden items-center gap-2 rounded-full border border-[var(--ink-line-strong)] px-3 py-1.5 text-[13px] text-[var(--ink-fg-dim)] transition-colors hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)] md:flex"
+            className="hidden items-center gap-2 rounded-sm border border-[var(--ink-line-strong)] px-3 py-1.5 text-[13px] text-[var(--ink-fg-dim)] transition-colors hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)] md:flex"
             aria-label="Buscar"
           >
             <Search className="size-3.5" />
             <span>Buscar</span>
-            <kbd className="rounded-full border border-[var(--ink-line-strong)] px-1.5 py-0.5 text-[10px]">
+            <kbd className="rounded-sm border border-[var(--ink-line-strong)] px-1.5 py-0.5 text-[10px]">
               ⌘K
             </kbd>
           </button>
           <Link
             href="/"
             data-cursor-label="Portfolio"
-            className="hidden items-center gap-1.5 rounded-full border border-[var(--ink-line-strong)] px-3.5 py-1.5 text-[13px] text-[var(--ink-fg-dim)] transition-colors hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)] sm:flex"
+            className="hidden items-center gap-1.5 rounded-sm border border-[var(--ink-line-strong)] px-3.5 py-1.5 text-[13px] text-[var(--ink-fg-dim)] transition-colors hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)] sm:flex"
           >
             <ArrowLeft className="size-3.5" />
             Portfolio
           </Link>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="flex size-9 items-center justify-center rounded-full border border-[var(--ink-line-strong)] sm:hidden"
+            className="flex size-9 items-center justify-center rounded-sm border border-[var(--ink-line-strong)] sm:hidden"
             aria-label="Menú"
             aria-expanded={open}
           >
@@ -114,7 +114,7 @@ export function CyberHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-2 rounded-full px-3 py-2 text-[14px] text-[var(--ink-fg-dim)] hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)]"
+                className="flex items-center gap-2 rounded-sm px-3 py-2 text-[14px] text-[var(--ink-fg-dim)] hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)]"
               >
                 <item.icon className="size-4" />
                 {item.label}
@@ -123,7 +123,7 @@ export function CyberHeader() {
             <Link
               href="/"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2 rounded-full px-3 py-2 text-[14px] text-[var(--ink-fg-dim)] hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)]"
+              className="flex items-center gap-2 rounded-sm px-3 py-2 text-[14px] text-[var(--ink-fg-dim)] hover:bg-[var(--ink-surface)] hover:text-[var(--ink-fg-strong)]"
             >
               <ArrowLeft className="size-4" />
               Volver al portfolio

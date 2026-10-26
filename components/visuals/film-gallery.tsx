@@ -51,7 +51,7 @@ export function FilmGallery() {
                   className="relative h-full w-full object-cover grayscale transition duration-700 ease-out group-hover:scale-[1.02] group-hover:grayscale-0"
                 />
                 <span className="absolute bottom-0 left-0 flex w-full items-center gap-4 p-6">
-                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand text-brand-foreground">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-sm bg-brand text-brand-foreground">
                     <Play className="h-5 w-5 translate-x-px fill-current" />
                   </span>
                   <span className="text-left">
@@ -92,7 +92,7 @@ export function FilmGallery() {
                     loading="lazy"
                     className="relative h-full w-full object-cover grayscale transition duration-700 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
                   />
-                  <span className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-background/90 backdrop-blur transition-colors duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
+                  <span className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-sm bg-background transition-colors duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
                     <Play className="h-4 w-4 translate-x-px fill-current" />
                   </span>
                   <span className="absolute bottom-4 left-4">

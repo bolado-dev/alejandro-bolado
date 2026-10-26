@@ -68,7 +68,7 @@ export async function Cybersec() {
             href={href}
             className="group flex items-center gap-3 rounded-3xl border border-[var(--ink-line-strong)] px-5 py-4 transition-colors hover:bg-[var(--ink-surface)]"
           >
-            <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[var(--ink-line-strong)]">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-sm border border-[var(--ink-line-strong)]">
               <Icon className="size-4" />
             </span>
             <span className="min-w-0">

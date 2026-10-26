@@ -98,7 +98,7 @@ function ProjectCard({ project }: { project: Project }) {
           <TerminalPreview />
         )}
         {project.comingSoon && (
-          <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[10px] tracking-widest text-white uppercase backdrop-blur">
+          <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 rounded-sm border border-zinc-700 bg-black px-2.5 py-1 text-[10px] tracking-widest text-white uppercase">
             <span className="bg-brand h-1.5 w-1.5 rounded-full" />
             Próximamente
           </span>
