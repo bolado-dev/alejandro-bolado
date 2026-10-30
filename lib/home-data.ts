@@ -78,6 +78,12 @@ export type Project = {
   description: string
   stack: string[]
   image?: string
+  /**
+   * Logo del proyecto: un tile cuadrado (SVG en `public/projects/<slug>/`) que
+   * sale junto al título. Es la marca real del proyecto, no un icono genérico;
+   * si no hay, la tarjeta simplemente no muestra badge.
+   */
+  icon?: string
   live?: string
   repo?: string
 }
@@ -86,11 +92,12 @@ export const PROJECTS: Project[] = [
   {
     title: "Spotted",
     status: "Activo", // REVISAR
-    year: "2025", // REVISAR
+    year: "2026",
     description:
       "App para amantes del motor: fotografía los coches que te encuentras, guárdalos en tu garaje y descúbrelos en un mapa por ubicación.",
     stack: ["React Native", "TypeScript", "Node.js", "PostgreSQL"], // REVISAR
     image: "/projects/spotted/screenshot.webp",
+    icon: "/projects/spotted/icon.svg",
     live: "https://spotted.es",
   },
   {
@@ -101,16 +108,8 @@ export const PROJECTS: Project[] = [
       "Driver a medida para el teclado interno (scancodes corruptos y LED de Bloq Mayús nunca implementado) y parche de la tabla ACPI DSDT que arregla que la batería nunca reportase “Charging”, cargado en caliente vía initrd sin flashear la BIOS.",
     stack: ["C", "Python", "Bash", "ACPI"],
     image: "/projects/medion-linux-fixes/laptop.webp",
+    icon: "/projects/medion-linux-fixes/icon.svg",
     repo: "https://github.com/bolado-dev/medion-14-s1-oled-linux",
-  },
-  {
-    title: "BoladoBSPWM",
-    status: "Completado", // REVISAR
-    year: "2025", // REVISAR
-    description:
-      "Setup de escritorio sobre BSPWM orientado a hacking y desarrollo: Polybar, Rofi, Kitty, Picom y scripts propios.",
-    stack: ["Bash", "BSPWM", "Linux"],
-    repo: "https://github.com/bolado-dev/BoladoBSPWM",
   },
 ]
 

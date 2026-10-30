@@ -116,10 +116,21 @@ export function SelectedWork() {
                 </span>
               </div>
             )}
-            <div className="flex items-baseline justify-between gap-3">
-              <h3 className="text-[15px] font-medium text-[var(--ink-fg-strong)]">
-                {p.title}
-              </h3>
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex min-w-0 items-center gap-2.5">
+                {p.icon ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={p.icon}
+                    alt=""
+                    aria-hidden
+                    className="size-8 shrink-0 rounded-sm border border-[var(--ink-line-strong)]"
+                  />
+                ) : null}
+                <h3 className="text-[15px] font-medium text-[var(--ink-fg-strong)]">
+                  {p.title}
+                </h3>
+              </div>
               <span className="shrink-0 text-[13px] text-[var(--ink-fg-dim)]">
                 {p.year}
               </span>

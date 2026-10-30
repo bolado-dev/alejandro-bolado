@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Spotted">
+  <!--
+    Icono de app de Spotted tras el rebranding (manual de marca, 2026-10-29).
+
+    Vectorizado desde ~/Dev/spotted/assets/brand/logo-icon.png: tile con el
+    degradado de marca (#EB4701 → #E26600 → #FCA001, de abajo-izquierda a
+    arriba-derecha) y la marca en blanco centrada, 536 px de ancho sobre 1024.
+
+    Los trazos son los mismos del lockup vectorial del manual, los que usan
+    `web/public/favicon.svg` y `web/components/ui/LogoGlyph.tsx` en el repo de
+    Spotted (viewBox original 324.7 × 322.08, escalado ×1.65). Si vuelve a
+    cambiar la marca, la fuente es ese SVG — no redibujar esto a mano.
+  -->
+  <defs>
+    <linearGradient id="spotted-brand" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#EB4701"/>
+      <stop offset="0.5" stop-color="#E26600"/>
+      <stop offset="1" stop-color="#FCA001"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#spotted-brand)"/>
+  <g transform="translate(244 246) scale(1.65)" fill="#FFFFFF">
+    <path d="M322.96,0v.44l-96.89,96.89h-95.67c-35.03,0-68.63,13.92-93.4,38.69l-25.03,25.03H0v-31.58c0-3.41,1.35-6.67,3.76-9.08l23.05-23.05c31.16-31.16,67.86-55.49,107.8-72.03C174.55,8.75,217.71,0,261.77,0h61.19Z"/>
+    <path d="M162.35,161.04 L98.2,225.2 L0,225.2 L0,161.04 L162.35,161.04 Z"/>
+    <path d="M1.75,322.08v-.44s96.89-96.89,96.89-96.89h95.67c35.03,0,68.63-13.92,93.4-38.69l25.03-25.03h11.98v31.58c0,3.41-1.35,6.67-3.76,9.08l-23.05,23.05c-31.16,31.16-67.86,55.49-107.8,72.03-39.93,16.54-83.1,25.3-127.16,25.3H1.75Z"/>
+    <path d="M162.35,161.04 L226.51,96.89 L324.7,96.89 L324.7,161.04 L162.35,161.04 Z"/>
+  </g>
+</svg>
