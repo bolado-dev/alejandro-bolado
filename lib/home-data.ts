@@ -101,6 +101,17 @@ export const PROJECTS: Project[] = [
     live: "https://spotted.es",
   },
   {
+    title: "island",
+    status: "Activo",
+    year: "2026",
+    description:
+      "Notch para bspwm con la mecánica del Dynamic Island: una ventana GTK transparente que se dibuja con cairo a 60 fps en vez de una barra de estado. Se repliega para devolverle la pantalla entera a las ventanas y se despliega con notificaciones, volumen o carga; las transiciones usan muelles amortiguados porque el destino puede cambiar a mitad de animación. Trae lanzador, calendario y paneles de wifi, energía y mosaico.",
+    stack: ["Python", "GTK 3", "cairo", "X11"],
+    image: "/projects/island/screenshot.webp",
+    icon: "/projects/island/icon.svg",
+    repo: "https://github.com/bolado-dev/island",
+  },
+  {
     title: "MEDION 14 S1 OLED — Linux fixes",
     status: "Activo", // REVISAR
     year: "2026", // REVISAR

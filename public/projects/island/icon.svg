@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="island">
+  <!--
+    Icono del notch. La marca del proyecto es su propia silueta: canto
+    recto arriba contra el borde, esquinas redondeadas abajo y los dos
+    enlaces concavos donde encuentra el borde de la pantalla. Esos
+    filetes son lo que hace que parezca tallado en el panel en vez de
+    pegado encima, asi que son la parte que no se puede quitar.
+
+    Dentro, la pildora azul del indicador de escritorios, que es el
+    unico color de la interfaz: systemBlue de Apple en modo oscuro
+    (#0A84FF), el mismo valor que usa theme.py.
+
+    Tile con el violeta del fondo sobre el que se ve en las capturas.
+    A 32 px, que es como lo pinta la tarjeta, el negro sobre violeta es
+    lo que mantiene la silueta legible; con tile oscuro se perderia.
+
+    Geometria (viewBox 48): notch de 26 de ancho por 17 de alto, radio
+    inferior 6, filete 4. Son las proporciones reales escaladas.
+  -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#7B3FE4"/>
+      <stop offset="1" stop-color="#5B2BE0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="48" height="48" fill="url(#bg)"/>
+
+  <!-- Silueta del notch, colgando del borde superior. -->
+  <path fill="#000000"
+        d="M7,0
+           A4,4 0 0 1 11,4
+           L11,11
+           A6,6 0 0 0 17,17
+           L31,17
+           A6,6 0 0 0 37,11
+           L37,4
+           A4,4 0 0 1 41,0
+           Z"/>
+
+  <!-- Pildora del escritorio activo. -->
+  <rect x="19" y="6.6" width="10" height="3.2" rx="1.6" fill="#0A84FF"/>
+</svg>
