@@ -28,9 +28,9 @@ export function Thoughts({ items }: { items: Thought[] }) {
                 type="button"
                 onClick={() => setOpen(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className="flex w-full items-center justify-between gap-6 py-4 text-left"
+                className="group flex w-full items-center justify-between gap-6 py-6 text-left"
               >
-                <span className="text-[15px] font-medium text-[var(--ink-fg-strong)]">
+                <span className="text-[1.15rem] font-medium text-[var(--ink-fg-strong)] transition-colors group-hover:text-[var(--ink-accent)]">
                   {t.title}
                 </span>
                 <ChevronDown
@@ -50,7 +50,7 @@ export function Thoughts({ items }: { items: Thought[] }) {
                 )}
               >
                 <div className="overflow-hidden">
-                  <p className="pb-4 text-[14px] leading-[1.65] text-[var(--ink-fg-dim)]">
+                  <p className="max-w-[70ch] pb-6 text-[16px] leading-[1.7] text-[var(--ink-fg-dim)]">
                     {t.body}
                   </p>
                 </div>

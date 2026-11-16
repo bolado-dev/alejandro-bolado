@@ -14,7 +14,7 @@ export default async function MachinesPage() {
 
   return (
     <main className="pt-14 pb-24">
-      <div className="ink-rail mx-auto w-full max-w-[1008px] px-8">
+      <div className="ink-rail mx-auto w-full max-w-[1200px] px-6 sm:px-10">
         <p className="text-[13px] text-[var(--ink-fg-dim)]">
           Hack The Box · Roadmap
         </p>

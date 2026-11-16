@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import { BottomBlur } from "@/components/bottom-blur"
-import { InkRain } from "@/components/ink-rain"
 import { CyberFooter } from "@/components/cybersec/cyber-footer"
 import {
   CommandPalette,
@@ -71,7 +70,7 @@ export default async function CybersecLayout({
     // tokens de shadcn, así que los exploradores que hay debajo la adoptan
     // sin tocarles una clase.
     <div data-surface="ink" className="relative min-h-screen">
-      <InkRain />
+      <div aria-hidden className="ink-glow" />
       <div className="relative z-10">
         {children}
         <CyberFooter

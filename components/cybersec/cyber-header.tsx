@@ -22,7 +22,7 @@ const NAV = [
 ]
 
 /**
- * Cabecera de la sección. Alineada a los raíles de 1008px del portfolio, con
+ * Cabecera de la sección. Alineada al contenedor de 1200px del portfolio, con
  * las mismas píldoras y el mismo filete punteado.
  *
  * Sin selector de tema: la superficie ink es solo oscura, así que el logo es
@@ -34,7 +34,7 @@ export function CyberHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--ink-line)] bg-[var(--ink-bg)]">
-      <div className="mx-auto flex h-16 w-full max-w-[1008px] items-center justify-between gap-4 px-8">
+      <div className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between gap-4 px-6 sm:px-10">
         <Link
           href="/cybersec"
           data-cursor-label="Cybersec"

@@ -90,13 +90,13 @@ export function MachinesExplorer({
         return `· ${done} hechas · ${items.length - done} pendientes`
       }}
       header={
-        <div className="mb-10 rounded-xl border bg-card p-5">
+        <div className="mb-10 rounded-3xl border bg-card p-8">
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="text-[11px] tracking-widest text-muted-foreground uppercase">
                 Progreso
               </p>
-              <p className="mt-1 text-2xl font-medium">
+              <p className="mt-2 text-[2rem] font-medium">
                 {stats.done}
                 <span className="text-muted-foreground"> / {stats.total}</span>
                 <span className="ml-2 text-sm text-muted-foreground">
@@ -104,11 +104,13 @@ export function MachinesExplorer({
                 </span>
               </p>
             </div>
-            <span className="text-3xl font-semibold tabular-nums">{pct}%</span>
+            <span className="text-[clamp(2.5rem,5vw,3.5rem)] leading-none font-semibold tabular-nums text-brand">
+              {pct}%
+            </span>
           </div>
-          <div className="mt-4 h-2 overflow-hidden rounded-sm bg-secondary">
+          <div className="mt-6 h-2.5 overflow-hidden rounded-full bg-secondary">
             <div
-              className="h-full rounded-sm bg-foreground transition-[width] duration-700"
+              className="h-full rounded-full bg-brand transition-[width] duration-700"
               style={{ width: `${pct}%` }}
             />
           </div>

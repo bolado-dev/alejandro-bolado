@@ -1,5 +1,4 @@
 import { BottomBlur } from "@/components/bottom-blur"
-import { InkRain } from "@/components/ink-rain"
 import { SiteFooter } from "@/components/ui/site-footer"
 import { Cover } from "@/components/home/cover"
 import { Cybersec } from "@/components/home/cybersec"
@@ -21,7 +20,7 @@ import { THOUGHTS } from "@/lib/home-data"
 export default function Page() {
   return (
     <div data-surface="ink" className="relative min-h-screen">
-      <InkRain />
+      <div aria-hidden className="ink-glow" />
       <div className="relative z-10">
         <Cover />
         <Intro />

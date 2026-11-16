@@ -42,18 +42,18 @@
     --color-background: var(--background);
     --color-brand: var(--brand);
     --color-brand-foreground: var(--brand-foreground);
-    /* Escala plana a propósito: el sitio es de esquinas vivas, así que los
-       pasos grandes (2xl/3xl/4xl, los que usan Card y Button) apenas suben
-       sobre el radio base en vez de multiplicarlo. --radius sigue siendo el
-       único mando por scope. */
-    --radius-xs: calc(var(--radius) * 0.5);
-    --radius-sm: calc(var(--radius) * 0.75);
-    --radius-md: var(--radius);
+    /* Escala progresiva: el sitio es de esquinas blandas. Cada paso crece de
+       verdad sobre el radio base, así que `rounded-3xl` en una tarjeta de
+       proyecto se lee como tal. --radius sigue siendo el único mando por
+       scope. */
+    --radius-xs: calc(var(--radius) * 0.25);
+    --radius-sm: calc(var(--radius) * 0.45);
+    --radius-md: calc(var(--radius) * 0.7);
     --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.25);
-    --radius-2xl: calc(var(--radius) * 1.5);
-    --radius-3xl: calc(var(--radius) * 1.5);
-    --radius-4xl: calc(var(--radius) * 1.5);
+    --radius-xl: calc(var(--radius) * 1.3);
+    --radius-2xl: calc(var(--radius) * 1.7);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.8);
 }
 
 :root {
@@ -80,7 +80,7 @@
     --chart-3: oklch(0.439 0 0);
     --chart-4: oklch(0.371 0 0);
     --chart-5: oklch(0.269 0 0);
-    --radius: 0.125rem;
+    --radius: 0.75rem;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -89,9 +89,9 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
-    /* Sin accent de color: el "brand" es monocromo (= foreground) */
-    --brand: oklch(0.145 0 0);
-    --brand-foreground: oklch(0.985 0 0);
+    /* Azul de marca, compartido con Bolado Visuals */
+    --brand: #1354f4;
+    --brand-foreground: #ffffff;
 }
 
 .dark {
@@ -126,9 +126,9 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
-    /* Sin accent de color: el "brand" es monocromo (= foreground) */
-    --brand: oklch(0.985 0 0);
-    --brand-foreground: oklch(0.145 0 0);
+    /* Azul de marca, aclarado para que aguante sobre fondo oscuro */
+    --brand: #4d7cff;
+    --brand-foreground: #ffffff;
 }
 
 @layer base {
@@ -154,7 +154,7 @@
 
   ::-webkit-scrollbar-thumb {
     background: color-mix(in oklch, var(--muted-foreground), transparent 70%);
-    border-radius: 0;
+    border-radius: 999px;
     border: 2px solid transparent;
     background-clip: content-box;
   }
@@ -557,7 +557,7 @@ html.has-custom-cursor * {
   /* Acento de marca */
   --brand: #1354f4;
   --brand-foreground: #ffffff;
-  --radius: 0.125rem;
+  --radius: 0.75rem;
 }
 
 /* Titulares de marca: peso medio (Outfit) y tracking ajustado */
@@ -627,41 +627,42 @@ html.has-custom-cursor * {
    blanco puro. Se aplica bajo [data-surface="ink"] para que /cybersec y
    /visuals conserven su paleta y su toggle claro/oscuro intactos. */
 [data-surface="ink"] {
-    --ink-bg: #0a0a0a;
+    --ink-bg: #09090b;
     --ink-fg: oklch(0.872 0.01 258.338);
     --ink-fg-strong: #ffffff;
-    --ink-fg-dim: oklch(0.708 0 0);
-    --ink-accent: rgb(0, 111, 238);
-    --ink-ok: oklch(0.696 0.17 162.48);
-    --ink-line: #1b1b1b;
-    --ink-line-strong: #2b2b2b;
-    --ink-surface: #141414;
-    --ink-surface-hi: #222222;
+    --ink-fg-dim: oklch(0.72 0.01 258);
+    --ink-accent: #4d7cff;
+    --ink-accent-strong: #1354f4;
+    --ink-ok: oklch(0.72 0.18 162.48);
+    --ink-line: #1e1e22;
+    --ink-line-strong: #303036;
+    --ink-surface: #141418;
+    --ink-surface-hi: #22222a;
 
     /* Además de sus propios --ink-*, la superficie redefine los tokens de
        shadcn. Así todo lo que ya existe debajo (exploradores, tarjetas,
        prosa) adopta la paleta sin tocar una clase. */
-    --background: #0a0a0a;
-    --foreground: #d1d5dc;
-    --card: #0f0f10;
-    --card-foreground: #d1d5dc;
-    --popover: #141416;
-    --popover-foreground: #d1d5dc;
+    --background: #09090b;
+    --foreground: #d4d6de;
+    --card: #141418;
+    --card-foreground: #d4d6de;
+    --popover: #17171c;
+    --popover-foreground: #d4d6de;
     --primary: #ffffff;
-    --primary-foreground: #0a0a0a;
-    --secondary: #191919;
+    --primary-foreground: #09090b;
+    --secondary: #1c1c22;
     --secondary-foreground: #ffffff;
-    --muted: #161616;
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: #1e1e1e;
+    --muted: #17171c;
+    --muted-foreground: oklch(0.72 0.01 258);
+    --accent: #22222a;
     --accent-foreground: #ffffff;
     --destructive: oklch(0.704 0.191 22.216);
-    --border: #2b2b2b;
-    --input: #2c2c2c;
-    --ring: #606060;
-    --brand: #ffffff;
-    --brand-foreground: #0a0a0a;
-    --radius: 0.125rem;
+    --border: #26262c;
+    --input: #2c2c34;
+    --ring: #4d7cff;
+    --brand: #4d7cff;
+    --brand-foreground: #ffffff;
+    --radius: 1rem;
 
     background-color: var(--ink-bg);
     color: var(--ink-fg);
@@ -675,42 +676,77 @@ html.has-custom-cursor * {
     font-weight: 400;
 }
 
-/* Raíles verticales punteados del contenedor, con marcas + en los cortes */
+/* El contenedor ya no lleva raíles: la retícula técnica punteada era lo que
+   daba al sitio su aire cuadriculado. Se mantiene la clase porque la usan
+   varias secciones como ancla de posicionamiento. */
 [data-surface="ink"] .ink-rail {
     position: relative;
 }
-[data-surface="ink"] .ink-rail::before,
-[data-surface="ink"] .ink-rail::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background-image: linear-gradient(
-        to bottom,
-        var(--ink-line) 0 4px,
-        transparent 4px 8px
-    );
-    background-size: 1px 8px;
-    pointer-events: none;
-}
-[data-surface="ink"] .ink-rail::before {
-    left: 0;
-}
-[data-surface="ink"] .ink-rail::after {
-    right: 0;
-}
 
-/* Línea horizontal punteada de separación entre secciones */
+/* Separador entre secciones: hairline continua que se desvanece por los
+   extremos, en vez de la línea punteada a sangre. */
 [data-surface="ink"] .ink-hr {
     height: 1px;
     background-image: linear-gradient(
         to right,
-        var(--ink-line) 0 4px,
-        transparent 4px 8px
+        transparent,
+        var(--ink-line-strong) 18%,
+        var(--ink-line-strong) 82%,
+        transparent
     );
-    background-size: 8px 1px;
-    background-repeat: repeat-x;
+}
+
+/* Halo de marca: dos manchas de color difusas detrás del contenido. Sustituye
+   a la lluvia de caracteres — aporta profundidad y color sin ruido ni glifos
+   que compitan con el texto. Va fija al viewport porque la página mide varias
+   pantallas: anclada al documento, el color solo se vería en un tramo. */
+[data-surface="ink"] .ink-glow {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+[data-surface="ink"] .ink-glow::before,
+[data-surface="ink"] .ink-glow::after {
+    content: "";
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(120px);
+}
+[data-surface="ink"] .ink-glow::before {
+    top: -26rem;
+    left: -14rem;
+    width: min(60rem, 110vw);
+    height: 52rem;
+    opacity: 0.55;
+    background: radial-gradient(
+        closest-side,
+        color-mix(in oklab, var(--ink-accent-strong) 70%, transparent),
+        transparent
+    );
+}
+[data-surface="ink"] .ink-glow::after {
+    right: -20rem;
+    bottom: -24rem;
+    width: min(52rem, 100vw);
+    height: 46rem;
+    opacity: 0.4;
+    background: radial-gradient(
+        closest-side,
+        color-mix(in oklab, var(--ink-accent) 55%, transparent),
+        transparent
+    );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    [data-surface="ink"] .ink-glow::before {
+        animation: ink-glow-drift 22s ease-in-out infinite alternate;
+    }
+}
+@keyframes ink-glow-drift {
+    from { transform: translate(0, 0); }
+    to { transform: translate(4rem, 3rem); }
 }
 
 /* El footer halftone trae su propio inset horizontal. Dentro del contenedor
@@ -790,10 +826,9 @@ html.has-custom-cursor * {
     }
 }
 
-/* Las marcas + montan 4px sobre el borde del contenedor. A 1008px sobra sitio,
-   pero en móvil el contenedor llena la pantalla y provocaban scroll
-   horizontal. `clip` recorta sin crear contenedor de scroll, así que la
-   cabecera sticky de cybersec sigue funcionando. */
+/* El halo de marca desborda el contenedor a propósito. `clip` recorta ese
+   desbordamiento sin crear un contenedor de scroll, así que la cabecera
+   sticky de cybersec sigue funcionando. */
 [data-surface="ink"] {
     overflow-x: clip;
 }

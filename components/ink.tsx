@@ -4,39 +4,19 @@ import { cn } from "@/lib/utils"
 /**
  * Primitivos de la home.
  *
- * El contenedor mide 1008px (contenido de 944 + 32 de padding a cada lado) y
- * lleva raíles verticales punteados en sus bordes. Cada sección abre con una
- * línea horizontal punteada a sangre completa, y en los dos cruces con los
- * raíles se dibuja una marca `+`. Las medidas salen de la retícula de
- * referencia: contenido 944, columnas de 458 con 28 de gap.
+ * El contenedor mide 1200px y no dibuja retícula: las secciones se separan por
+ * aire y por una hairline que se desvanece en los extremos, no por raíles
+ * punteados. Los rótulos de sección van en serif a tamaño grande, con un
+ * antetítulo en el azul de marca.
  */
 
-const CONTAINER = "mx-auto w-full max-w-[1008px] px-8"
+const CONTAINER = "mx-auto w-full max-w-[1200px] px-6 sm:px-10"
 
-/** Cruz de 9px en la intersección de la línea de sección con un raíl. */
-function Crosshair({ className }: { className?: string }) {
-  return (
-    <span
-      aria-hidden
-      className={cn("absolute block h-[9px] w-[9px]", className)}
-    >
-      <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[var(--ink-line-strong)]" />
-      <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-[var(--ink-line-strong)]" />
-    </span>
-  )
-}
-
-/** Línea punteada a sangre completa con las dos marcas `+` en los raíles. */
+/** Línea de separación entre secciones, a sangre completa. */
 export function InkDivider() {
   return (
     <div aria-hidden className="relative h-px w-full">
       <div className="ink-hr absolute inset-0" />
-      <div className="pointer-events-none absolute inset-x-0 top-0">
-        <div className={cn(CONTAINER, "relative")}>
-          <Crosshair className="-left-[4px] -top-[4px]" />
-          <Crosshair className="-right-[4px] -top-[4px]" />
-        </div>
-      </div>
     </div>
   )
 }
@@ -58,6 +38,35 @@ type InkSectionProps = {
   revealContent?: boolean
 }
 
+/** Antetítulo en el azul de marca: versalitas pequeñas sobre el rótulo. */
+export function InkEyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mb-3 text-[12px] font-medium tracking-[0.18em] text-[var(--ink-accent)] uppercase">
+      {children}
+    </p>
+  )
+}
+
+/** Rótulo de sección: serif itálica, grande. */
+export function InkTitle({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <h2
+      className={cn(
+        "font-display text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05] tracking-[-0.01em] text-[var(--ink-fg-strong)] italic",
+        className,
+      )}
+    >
+      {children}
+    </h2>
+  )
+}
+
 export function InkSection({
   children,
   title,
@@ -71,17 +80,11 @@ export function InkSection({
     <>
       {divider ? <InkDivider /> : null}
       <section id={id} className="relative">
-        <div className={cn(CONTAINER, "ink-rail py-12", className)}>
+        <div className={cn(CONTAINER, "ink-rail py-20 sm:py-28", className)}>
           {eyebrow || title ? (
-            <InkReveal>
-              {eyebrow ? (
-                <p className="mb-1 text-[13px] text-[var(--ink-fg-dim)]">
-                  {eyebrow}
-                </p>
-              ) : null}
-              {title ? (
-                <h2 className="font-display mb-7 text-xl italic">{title}</h2>
-              ) : null}
+            <InkReveal className="mb-12">
+              {eyebrow ? <InkEyebrow>{eyebrow}</InkEyebrow> : null}
+              {title ? <InkTitle>{title}</InkTitle> : null}
             </InkReveal>
           ) : null}
           {revealContent ? (
@@ -106,10 +109,10 @@ export function InkContainer({
   return <div className={cn(CONTAINER, "ink-rail", className)}>{children}</div>
 }
 
-/** Etiqueta de stack: borde sutil, texto pequeño. */
+/** Etiqueta de stack: píldora de borde sutil. */
 export function StackPill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="rounded-sm border border-[var(--ink-line-strong)] px-2.5 py-1 text-[13px] text-[var(--ink-fg-dim)]">
+    <span className="rounded-full border border-[var(--ink-line-strong)] px-3 py-1 text-[13px] text-[var(--ink-fg-dim)]">
       {children}
     </span>
   )
@@ -138,12 +141,18 @@ export function StatusDot({ status }: { status: string }) {
 /** Enlace "View All →" alineado a la derecha. */
 export function MoreLink({ href, children }: { href: string; children: string }) {
   return (
-    <div className="mt-8 flex justify-end">
+    <div className="mt-12 flex justify-end">
       <a
         href={href}
-        className="text-[13px] text-[var(--ink-fg-dim)] transition-colors hover:text-[var(--ink-fg-strong)]"
+        className="group inline-flex items-center gap-2 rounded-full border border-[var(--ink-line-strong)] px-5 py-2.5 text-[14px] text-[var(--ink-fg)] transition-colors hover:border-[var(--ink-accent)] hover:text-[var(--ink-accent)]"
       >
-        {children} <span aria-hidden>→</span>
+        {children}
+        <span
+          aria-hidden
+          className="transition-transform group-hover:translate-x-0.5"
+        >
+          →
+        </span>
       </a>
     </div>
   )

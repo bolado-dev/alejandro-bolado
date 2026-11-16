@@ -95,7 +95,7 @@ const SOCIALS = [
 ]
 
 /**
- * Pie del sitio. El contenedor es el de 1008px de la superficie, no el
+ * Pie del sitio. El contenedor es el de 1200px de la superficie, no el
  * max-w-6xl de la plantilla, para que alinee con el resto de secciones.
  *
  * La cifra del indicador se lee de las mismas fuentes que el resto del sitio,
@@ -114,7 +114,7 @@ export async function SiteFooter({ wordmark = "bolado" }: { wordmark?: string })
     // además enturbiaba el degradado del wordmark. El filete superior hace de
     // corte, así que la transición se lee como intencionada.
     <footer className="relative overflow-hidden border-t border-[var(--ink-line)] bg-[var(--ink-bg)]">
-      <div className="mx-auto w-full max-w-[1008px] px-8 pt-16 sm:pt-20">
+      <div className="mx-auto w-full max-w-[1200px] px-6 sm:px-10 pt-16 sm:pt-20">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.2fr_2fr]">
           <div className="flex max-w-sm flex-col gap-6">
             <Link
@@ -207,7 +207,7 @@ export async function SiteFooter({ wordmark = "bolado" }: { wordmark?: string })
 
       <div
         aria-hidden
-        className="pointer-events-none mx-auto w-full max-w-[1008px] px-8 select-none"
+        className="pointer-events-none mx-auto w-full max-w-[1200px] px-6 sm:px-10 select-none"
       >
         <p className="-mb-[0.22em] bg-gradient-to-b from-foreground/15 to-transparent bg-clip-text text-center text-[clamp(5rem,22vw,16rem)] leading-none font-semibold tracking-tighter text-transparent">
           {wordmark}

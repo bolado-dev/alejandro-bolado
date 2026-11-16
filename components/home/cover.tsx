@@ -1,11 +1,10 @@
-import { InkContainer } from "@/components/ink"
-import { InkReveal, InkStagger } from "@/components/ink-reveal"
+import { InkStagger } from "@/components/ink-reveal"
 import { GithubIcon } from "@/components/icons/github-icon"
 import { LinkedinIcon } from "@/components/icons/linkedin-icon"
 import { Mail } from "@/components/icons/solar"
 import { PROFILE } from "@/lib/home-data"
 
-/** Botón social circular de cristal. */
+/** Botón social circular. */
 function SocialButton({
   href,
   label,
@@ -21,7 +20,7 @@ function SocialButton({
       aria-label={label}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
-      className="flex size-[34px] items-center justify-center rounded-sm border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] text-[var(--ink-fg)] transition-colors hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
+      className="flex size-11 items-center justify-center rounded-full border border-[var(--ink-line-strong)] bg-[var(--ink-surface)]/80 text-[var(--ink-fg)] backdrop-blur transition-colors hover:border-[var(--ink-accent)] hover:bg-[var(--ink-surface-hi)] hover:text-[var(--ink-fg-strong)]"
     >
       {children}
     </a>
@@ -29,71 +28,69 @@ function SocialButton({
 }
 
 /**
- * Portada: banner a lo ancho del contenedor con la frase en serif itálica
- * encima, avatar circular solapando el borde inferior, y nombre + rol a la
- * izquierda con los sociales a la derecha.
+ * Portada: imagen a sangre de pantalla completa con el nombre a tamaño de
+ * cartel encima. El degradado inferior funde la foto con el fondo de la
+ * página, así que el bloque no necesita borde ni marco.
  */
 export function Cover() {
   return (
-    <InkContainer className="pt-0 pb-10">
-      <InkReveal className="relative">
+    <section className="relative">
+      <div className="relative h-[clamp(420px,58vw,700px)] w-full overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={PROFILE.banner}
           alt=""
           aria-hidden
-          className="h-[clamp(160px,30vw,268px)] w-full object-cover object-center"
+          className="absolute inset-0 size-full object-cover object-center"
         />
-        <div aria-hidden className="absolute inset-0 bg-[var(--ink-bg)]/35" />
+        <div aria-hidden className="absolute inset-0 bg-[var(--ink-bg)]/40" />
+        {/* El fundido inferior ocupa la mitad baja de la foto: sobre él cae el
+            nombre, y sin esta rampa el texto se pierde en la imagen. */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-[var(--ink-bg)] via-transparent to-transparent"
+          className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-[var(--ink-bg)] from-25% via-[var(--ink-bg)]/55 to-transparent"
         />
-        <p className="font-display absolute inset-x-0 bottom-3 px-6 text-center text-[13px] text-white/90 italic drop-shadow-[0_1px_8px_rgba(0,0,0,0.75)] sm:top-1/2 sm:bottom-auto sm:-translate-y-1/2 sm:text-[15px]">
-          {PROFILE.tagline}
-        </p>
-      </InkReveal>
+      </div>
 
-      {/* El avatar monta sobre el borde inferior del banner */}
-      <InkReveal
-        className="relative z-10 -mt-[36px] flex items-end justify-between gap-6 sm:-mt-[46px]"
-        delay={120}
-      >
-        <span className="flex size-[72px] shrink-0 items-center justify-center rounded-sm border-[3px] border-[var(--ink-bg)] bg-[var(--ink-surface-hi)] sm:size-[92px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={PROFILE.logo}
-            alt={PROFILE.name}
-            className="h-[26px] w-auto object-contain sm:h-[34px]"
-          />
-        </span>
-      </InkReveal>
+      {/* El bloque de identidad monta sobre el borde inferior de la imagen */}
+      <div className="relative z-10 mx-auto -mt-[clamp(8rem,16vw,13rem)] w-full max-w-[1200px] px-6 pb-16 sm:px-10">
+        <InkStagger className="flex flex-col gap-6" step={110}>
+          <div className="flex items-center gap-4">
+            <span className="flex size-16 shrink-0 items-center justify-center rounded-2xl border border-[var(--ink-line-strong)] bg-[var(--ink-surface-hi)] sm:size-20">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={PROFILE.logo}
+                alt={PROFILE.name}
+                className="h-7 w-auto object-contain sm:h-9"
+              />
+            </span>
+            <p className="font-display text-[clamp(1rem,2vw,1.35rem)] text-[var(--ink-fg)] italic">
+              {PROFILE.tagline}
+            </p>
+          </div>
 
-      <InkStagger
-        className="mt-4 flex flex-wrap items-center justify-between gap-y-4"
-        delay={200}
-        step={110}
-      >
-        <div>
-          <h1 className="font-display text-4xl tracking-[0.01em] text-[var(--ink-fg-strong)] italic">
+          <h1 className="font-display mt-2 text-[clamp(3rem,9.5vw,7.5rem)] leading-[0.95] tracking-[-0.02em] text-[var(--ink-fg-strong)] italic">
             {PROFILE.name}
           </h1>
-          <p className="mt-1 text-[14px] text-[var(--ink-fg-dim)]">
-            {PROFILE.role} · {PROFILE.location}
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <SocialButton href={PROFILE.github} label="GitHub">
-            <GithubIcon className="size-[15px]" />
-          </SocialButton>
-          <SocialButton href={PROFILE.linkedin} label="LinkedIn">
-            <LinkedinIcon className="size-[15px]" />
-          </SocialButton>
-          <SocialButton href={`mailto:${PROFILE.email}`} label="Correo">
-            <Mail className="size-4" />
-          </SocialButton>
-        </div>
-      </InkStagger>
-    </InkContainer>
+
+          <div className="flex flex-wrap items-center justify-between gap-y-6">
+            <p className="text-[clamp(0.95rem,1.4vw,1.1rem)] text-[var(--ink-fg-dim)]">
+              {PROFILE.role} · {PROFILE.location}
+            </p>
+            <div className="flex items-center gap-3">
+              <SocialButton href={PROFILE.github} label="GitHub">
+                <GithubIcon className="size-[18px]" />
+              </SocialButton>
+              <SocialButton href={PROFILE.linkedin} label="LinkedIn">
+                <LinkedinIcon className="size-[18px]" />
+              </SocialButton>
+              <SocialButton href={`mailto:${PROFILE.email}`} label="Correo">
+                <Mail className="size-5" />
+              </SocialButton>
+            </div>
+          </div>
+        </InkStagger>
+      </div>
+    </section>
   )
 }

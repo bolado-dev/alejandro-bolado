@@ -25,29 +25,29 @@ export function Experience() {
 
           const row = (
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <span className="flex size-[38px] shrink-0 items-center justify-center overflow-hidden rounded-sm border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] text-[15px] text-[var(--ink-fg-dim)]">
+              <span className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] text-[15px] text-[var(--ink-fg-dim)]">
                 {e.logo ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={e.logo}
                     alt=""
                     aria-hidden
-                    className="size-full object-contain p-1.5"
+                    className="size-full object-contain p-2"
                   />
                 ) : (
                   (e.initial ?? e.company[0])
                 )}
               </span>
               <div className="min-w-0 flex-1 text-left">
-                <h3 className="text-[18px] font-medium text-[var(--ink-fg-strong)]">
+                <h3 className="text-[1.25rem] font-medium text-[var(--ink-fg-strong)]">
                   {e.company}
                 </h3>
-                <p className="mt-0.5 text-[13px] text-[var(--ink-fg-dim)]">
+                <p className="mt-1 text-[14px] text-[var(--ink-fg-dim)]">
                   {e.role}
                   {e.status ? ` · ${e.status}` : null}
                 </p>
               </div>
-              <span className="shrink-0 rounded-sm border border-[var(--ink-line-strong)] px-2.5 py-1 text-[13px] text-[var(--ink-fg-dim)]">
+              <span className="shrink-0 rounded-full border border-[var(--ink-line-strong)] px-3.5 py-1.5 text-[13px] text-[var(--ink-fg-dim)]">
                 {e.period}
               </span>
               {expandable ? (
@@ -65,7 +65,7 @@ export function Experience() {
           )
 
           return (
-            <li key={`${e.company}-${e.period}`} className="py-4 first:pt-0">
+            <li key={`${e.company}-${e.period}`} className="py-6 first:pt-0">
               {expandable ? (
                 <button
                   type="button"
@@ -89,7 +89,7 @@ export function Experience() {
                   )}
                 >
                   <div className="overflow-hidden">
-                    <ul className="mt-3 space-y-1.5 pl-[54px] text-[14px] leading-[1.6] text-[var(--ink-fg-dim)]">
+                    <ul className="mt-4 space-y-2 pl-[64px] text-[15px] leading-[1.65] text-[var(--ink-fg-dim)]">
                       {e.bullets?.map((b) => (
                         <li key={b} className="relative pl-4">
                           <span

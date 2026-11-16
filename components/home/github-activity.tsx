@@ -10,9 +10,9 @@ import { InkSection } from "@/components/ink"
 
 type Day = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 }
 
-// Rampa opaca. Equivale a blanco al 5/25/45/70/100% sobre el fondo del panel
-// (#141414), pero sin alfa: nada en esta superficie es semitransparente.
-const LEVEL_COLOR = ["#202020", "#4f4f4f", "#7e7e7e", "#b8b8b8", "#ffffff"] as const
+// Rampa opaca hacia el azul de marca, sobre el fondo del panel (#141418):
+// nada en esta superficie es semitransparente.
+const LEVEL_COLOR = ["#212128", "#1e3570", "#2a51b4", "#3d6bff", "#8aa8ff"] as const
 
 async function getContributions(user: string): Promise<Day[] | null> {
   try {
@@ -40,7 +40,7 @@ export async function GithubActivity({ user }: { user: string }) {
 
   return (
     <InkSection title="Actividad en GitHub">
-      <div className="rounded-3xl border border-[var(--ink-line-strong)] bg-[var(--ink-surface)] p-5">
+      <div className="rounded-3xl border border-[var(--ink-line)] bg-[var(--ink-surface)] p-8">
         <div className="overflow-x-auto">
           <div className="flex min-w-max gap-[3px]">
             {weeks.map((week, i) => (
@@ -49,7 +49,7 @@ export async function GithubActivity({ user }: { user: string }) {
                   <span
                     key={d.date}
                     title={`${d.count} contribuciones · ${d.date}`}
-                    className="size-[10px] rounded-sm"
+                    className="size-[11px] rounded-[3px]"
                     style={{ backgroundColor: LEVEL_COLOR[d.level] }}
                   />
                 ))}
@@ -57,7 +57,7 @@ export async function GithubActivity({ user }: { user: string }) {
             ))}
           </div>
         </div>
-        <p className="mt-4 text-[13px] text-[var(--ink-fg-dim)]">
+        <p className="mt-6 text-[15px] text-[var(--ink-fg-dim)]">
           {total.toLocaleString("es-ES")} contribuciones en el último año
         </p>
       </div>
